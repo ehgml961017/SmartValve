@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SmartValve</string>
+    <string name="main_title">가스 현황</string>
+    <string name="burning_switch">점화 손잡이</string>
+    <string name="gas_valve">가스 밸브 </string>
+    <string name="log_name">최근 사용 내역</string>
+    <string name="more">더보기</string>
+</resources>
