@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        //
         Thread(){
             test()
         }.start()
@@ -24,11 +24,15 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         button_more.setOnClickListener {
             val intent = Intent(this, RecentLogActivity::class.java)
-
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
         }
+
+
     }
 
     fun test(){
+        // url connection & data parsing
         val url = URL("http://192.168.0.90:8080/hello/dto")
         var conn = url.openConnection() as HttpURLConnection
         Log.i("testLog", "connection : ${conn.responseCode}")

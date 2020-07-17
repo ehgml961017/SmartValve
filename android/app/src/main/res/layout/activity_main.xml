@@ -11,88 +11,90 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/main_title"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintStart_toStartOf="@+id/view" />
 
-    <Switch
-        android:id="@+id/switch_burning"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="51dp"
-        android:text="@string/burning_switch"
-        android:textSize="45sp"
-        app:layout_constraintStart_toEndOf="@+id/gas_title"
-        app:layout_constraintTop_toTopOf="@+id/view" />
-
-    <Switch
-        android:id="@+id/switch_gas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="41dp"
-        android:text="@string/gas_valve"
-        android:textSize="45sp"
-        app:layout_constraintStart_toStartOf="@+id/switch_burning"
-        app:layout_constraintTop_toBottomOf="@+id/switch_burning" />
-
-
-    <TextView
-        android:id="@+id/log"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginBottom="390dp"
-        android:text="@string/log_name"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/view2" />
-
-    <TextView
-        android:id="@+id/log_body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="41dp"
-        android:layout_marginTop="32dp"
-        android:text="마지막 사용내역:"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="@+id/view2"
-        app:layout_constraintTop_toBottomOf="@+id/log" />
-
-    <Button
-        android:id="@+id/button_more"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="26dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/more"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toTopOf="@+id/view2"
-        app:layout_constraintEnd_toEndOf="@+id/view2" />
-
     <View
         android:id="@+id/view"
-        android:layout_width="442dp"
-        android:layout_height="277dp"
-        android:layout_marginTop="234dp"
+        android:layout_width="350dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="100dp"
         android:background="@drawable/round_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Switch
+        android:id="@+id/switch_burning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:layout_marginStart="15dp"
+        android:text="@string/burning_switch"
+        android:textSize="45sp"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view" />
+
+    <Switch
+        android:id="@+id/switch_gas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="41dp"
+        android:layout_marginStart="15dp"
+        android:text="@string/gas_valve"
+        android:textSize="45sp"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintBottom_toBottomOf="@+id/view" />
+
+
+    <TextView
+        android:id="@+id/log_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginBottom="15dp"
+        android:text="@string/log_name"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/view2"
+        app:layout_constraintStart_toStartOf="@+id/view2" />
+
+    <Button
+        android:id="@+id/button_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="15dp"
+        android:text="@string/more"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="@+id/view2" />
+
     <View
         android:id="@+id/view2"
-        android:layout_width="0dp"
-        android:layout_height="83dp"
-        android:layout_marginStart="104dp"
-        android:layout_marginEnd="104dp"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="200dp"
         android:background="@drawable/round_layout"
-        app:layout_constraintBottom_toBottomOf="@+id/log_body"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/log_body" />
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+    <TextView
+        android:id="@+id/log_body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="마지막 사용내역:"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toTopOf="@+id/view2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
