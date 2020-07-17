@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface Svdao {
     public List<SvDTO> getValue();
-    public List<SvDTO> InsertValue();
+    public List<SvDTO> insertValue();
 }
