@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springboot.smartvalve.dao.Svdao">
+    <select id="getValue"
+            resultType="com.springboot.smartvalve.dto.SvDTO">
+        select
+        sw1,
+        sw2
+        from
+        valve_status
+
+    </select>
+
+
+</mapper>
