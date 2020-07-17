@@ -10,7 +10,7 @@
     </select>
 
     <insert id="insertValue"
-            parameterType="com.springboot.smartvalve.dto.SvDTO>
+            parameterType="com.springboot.smartvalve.dto.SvDTO">
             insert into
             valve_status(
                          num
@@ -25,4 +25,4 @@
                 ,#{on_sw2}, #{off_sw2}
                 );
     </insert>
-</mapper>
+                    </mapper>
