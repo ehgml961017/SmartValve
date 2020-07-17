@@ -12,7 +12,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@MapperScan("com.springboot.smartvalve.dao")
+@MapperScan("com.springboot.smartvalve.mapper")
 @EnableTransactionManagement
 public class MyBatisConfig {
 

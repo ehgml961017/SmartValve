@@ -9,4 +9,6 @@
 
     </select>
 
+    <insert id="insert"></insert>
+
 </mapper>
