@@ -4,20 +4,24 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONArray
 import org.json.JSONObject
 import java.net.HttpURLConnection
 import java.net.URL
+import kotlin.concurrent.thread
+
+val ON:Int = 1
+val OFF:Int = 0
 
 class MainActivity : AppCompatActivity() {
+    var burningStatus:Int = OFF
+    var valveStatus:Int = OFF
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //
-        Thread(){
-            test()
-        }.start()
+
     }
 
     override fun onResume() {
@@ -28,6 +32,30 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        //
+        Thread(){
+            test()
+        }.start()
+
+        text_burning.setOnClickListener {
+            Log.i("testLog", "burning text clicked")
+            if(burningStatus == ON) burningStatus = OFF
+            else burningStatus = ON
+        }
+
+        text_valve.setOnClickListener {
+            Log.i("testLog", "valve text clicked")
+            if(valveStatus == ON) valveStatus = OFF
+            else valveStatus = ON
+        }
+
+        // status check
+        /*
+        * We need to regular check for DB
+        * if status change, image will change using checkStatus()
+        * checkStatus()
+        * */
+        checkStatus()
 
     }
 
@@ -46,6 +74,19 @@ class MainActivity : AppCompatActivity() {
             Log.i("testLog", "${jsonobjTest}")
         } else{
             Log.i("testLog", "connection fail")
+        }
+    }
+
+    fun checkStatus(){
+        if(burningStatus == ON){
+            image_burning.setImageResource(R.drawable.fire_on)
+        } else{
+            image_burning.setImageResource(R.drawable.fire_off)
+        }
+        if(valveStatus == ON){
+            image_valve.setImageResource(R.drawable.fire_on)
+        } else{
+            image_valve.setImageResource(R.drawable.fire_off)
         }
     }
 }
