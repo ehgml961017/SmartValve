@@ -60,5 +60,4 @@
         android:layout_weight="0.2"
         android:textAlignment="center"/>
 
-
 </LinearLayout>

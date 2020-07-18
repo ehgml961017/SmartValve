@@ -15,13 +15,12 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="50dp">
 
-
         <TextView
             android:id="@+id/status_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/status_title"
-            android:textSize="30sp" />
+            android:textSize="30sp"/>
 
         <TableLayout
             android:id="@+id/gasStatusBody"
@@ -71,6 +70,7 @@
                     android:layout_weight="0.5"/>
 
             </TableRow>
+
         </TableLayout>
 
         <LinearLayout
@@ -85,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/log_title"
-                android:textSize="20sp" />
+                android:textSize="20sp"/>
 
             <View
                 android:layout_width="0dp"
@@ -119,8 +119,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
