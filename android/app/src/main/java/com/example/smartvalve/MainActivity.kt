@@ -3,8 +3,10 @@ package com.example.smartvalve
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
+import androidx.core.view.marginTop
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONArray
 import org.json.JSONObject
@@ -16,11 +18,19 @@ val ON:Int = 1
 val OFF:Int = 0
 
 class MainActivity : AppCompatActivity() {
-    var burningStatus:Int = OFF
+    var knobStatus:Int = OFF
     var valveStatus:Int = OFF
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val displayMetrics = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(displayMetrics)
+
+        var width = displayMetrics.widthPixels
+        var height = displayMetrics.heightPixels
+
+
 
     }
 
@@ -33,14 +43,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         //
-        Thread(){
-            test()
-        }.start()
+//        Thread(){
+//            test()
+//        }.start()
 
-        text_burning.setOnClickListener {
-            Log.i("testLog", "burning text clicked")
-            if(burningStatus == ON) burningStatus = OFF
-            else burningStatus = ON
+        text_knob.setOnClickListener {
+            Log.i("testLog", "knob text clicked")
+            if(knobStatus == ON) knobStatus = OFF
+            else knobStatus = ON
         }
 
         text_valve.setOnClickListener {
@@ -78,10 +88,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun checkStatus(){
-        if(burningStatus == ON){
-            image_burning.setImageResource(R.drawable.fire_on)
+        if(knobStatus == ON){
+            image_knob.setImageResource(R.drawable.fire_on)
         } else{
-            image_burning.setImageResource(R.drawable.fire_off)
+            image_knob.setImageResource(R.drawable.fire_off)
         }
         if(valveStatus == ON){
             image_valve.setImageResource(R.drawable.fire_on)

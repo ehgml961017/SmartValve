@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <TextView
+        android:id="@+id/no_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="20sp"
+        android:textColor="@color/colorBlack"
+        android:textStyle="bold"
+        android:layout_weight="0.2"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/status_valve_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text=" "
+        android:textColor="@color/colorBlack"
+        android:layout_weight="0.2"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/status_knob_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text=" "
+        android:textColor="@color/colorBlack"
+        android:textStyle="bold"
+        android:layout_weight="0.2"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/on_time_valve_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text=" "
+        android:textColor="@color/colorBlack"
+        android:textStyle="bold"
+        android:layout_weight="0.2"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/off_time_valve_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text=" "
+        android:textColor="@color/colorBlack"
+        android:textStyle="bold"
+        android:layout_weight="0.2"
+        android:textAlignment="center"/>
+
+</LinearLayout>
