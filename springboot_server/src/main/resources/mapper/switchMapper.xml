@@ -8,27 +8,20 @@
         select * from valve_status;
 
     </select>
-
-<<<<<<< HEAD
-    <insert id="insert"></insert>
-
-</mapper>
-=======
     <insert id="insertValue"
             parameterType="com.springboot.smartvalve.dto.SvDTO">
             insert into
             valve_status(
-                         num
                         ,sw1,sw2
                         ,on_sw1,off_sw1
                         ,on_sw2,off_sw2
                         )
             values (
-                 #{num}
                  #{sw1}, #{sw2}
                 ,#{on_sw1}, #{off_sw1}
                 ,#{on_sw2}, #{off_sw2}
                 );
     </insert>
-                    </mapper>
->>>>>>> 7f65fb9084b58c4cdf7623f88b6aae84bcfe8ae5
+
+</mapper>
+

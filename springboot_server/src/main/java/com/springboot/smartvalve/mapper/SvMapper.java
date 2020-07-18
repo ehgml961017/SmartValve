@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface SvMapper {
     public List<SvDTO> getValue() throws Exception;
+    public void insertValue(SvDTO svDTO) throws Exception;
 
 }
