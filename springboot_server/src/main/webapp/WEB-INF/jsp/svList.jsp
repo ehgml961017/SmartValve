@@ -29,7 +29,7 @@
       href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <body>
-<div>
+<section>
     <p>
     <h1 class="align">Smart Valve
         <img src="/resources/logo.png" width=40px
@@ -38,6 +38,45 @@
     </p>
     <hr>
 
+<<<<<<< HEAD
+</section>
+<section>
+    <article>
+        <table class="table table-striped">
+            <tr>
+                <th>No.</th>
+                <th>valve</th>
+                <th>cork</th>
+                <th>valve_on_date</th>
+                <th>valve_off_date</th>
+                <th>cork_on_date
+                <th>cork_off_date</th>
+            </tr>
+            <c:forEach items="${list}" var="list">
+                <tr>
+                    <td>${list.num}</td>
+                    <td>${list.sw1}</td>
+                    <td>${list.sw2}</td>
+                    <td>
+                        <c:if test="${list.on_sw1 ne null}">
+                            <fmt:formatDate
+                                    pattern="yyyy-MM-dd  HH:mm:ss"
+                                    value="${list.on_sw1}"></fmt:formatDate>
+                        </c:if>
+                        <c:if test="${list.on_sw1 eq null}">
+                            null
+                        </c:if>
+                    </td>
+                    <td>
+                        <c:if test="${list.off_sw1 ne null}">
+                            <fmt:formatDate
+                                    pattern="yyyy-MM-dd  HH:mm:ss"
+                                    value="${list.off_sw1}"/>
+                        </c:if>
+                        <c:if test="${list.off_sw1 eq null}">
+                            null
+                        </c:if>
+=======
 </div>
 <table class="table table-striped">
     <tr>
@@ -74,28 +113,59 @@
                 <c:if test="${list.off_sw1 eq null}">
                     null
                 </c:if>
+>>>>>>> 17e5aee76569aec6a2e129627c0f27acef0e2124
 
-            </td>
-            <td>
-                <c:if test="${list.on_sw2 ne null}"><fmt:formatDate
-                        pattern="yyyy-MM-dd 'T' HH:mm:ss"
-                        value="${list.on_sw2}"/>
-                </c:if>
-                <c:if test="${list.on_sw2 eq null}">
-                    null
-                </c:if>
-            </td>
-            <td><c:if test="${list.off_sw2 ne null}"/><fmt:formatDate
-                    pattern="yyyy-MM-dd 'T' HH:mm:ss"
-                    value="${list.off_sw2}"/>
-                <c:if test="${list.off_sw2 eq null}">
-                    null
-                </c:if>
-            </td>
-        </tr>
+                    </td>
+                    <td>
+                        <c:if test="${list.on_sw2 ne null}"><fmt:formatDate
+                                pattern="yyyy-MM-dd  HH:mm:ss"
+                                value="${list.on_sw2}"/>
+                        </c:if>
+                        <c:if test="${list.on_sw2 eq null}">
+                            null
+                        </c:if>
+                    </td>
+                    <td><c:if test="${list.off_sw2 ne null}"/><fmt:formatDate
+                            pattern="yyyy-MM-dd  HH:mm:ss"
+                            value="${list.off_sw2}"/>
+                        <c:if test="${list.off_sw2 eq null}">
+                            null
+                        </c:if>
+                    </td>
+                </tr>
 
-    </c:forEach>
-</table>
+            </c:forEach>
+        </table>
+    </article>
+
+    <article>
+        <button id="on_sw1" onclick="on_sw1()">sw1(on)</button>
+        <button id="off_sw1" onclick="off_sw1()">sw1(off)</button>
+        <button id="on_sw2" onclick="off_sw2()">sw2(on)</button>
+        <button id="off_sw2" onclick="off_sw2()">sw2(off)</button>
+    </article>
+</section>
 
 </body>
+<script>
+    function on_sw1() {
+        alert("1번스위치 시작");
+        location.href = "/onSw1?num=4";
+    }
+
+    function off_sw1() {
+        alert("1번스위치 종료");
+        location.href = "/offSw1num=4";
+    }
+
+    function on_sw2() {
+        alert("2번스위치 시작");
+        location.href = "/onSw2num=4";
+    }
+
+    function off_sw2() {
+        alert("2번스위치 종료");
+        location.href = "/offSw2?num=4";
+    }
+</script>
 </html>
