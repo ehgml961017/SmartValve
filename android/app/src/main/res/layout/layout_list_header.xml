@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorHeader">
+
+    <TextView
+        android:id="@+id/no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/num"
+        android:textSize="20sp"
+        android:textColor="@color/colorBlack"
+        android:textStyle="bold"
+        android:layout_weight="0.2"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/status_valve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="@string/status_valve"
+        android:textColor="@color/colorBlack"
+        android:layout_weight="0.2"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/status_knob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="@string/status_knob"
+        android:textColor="@color/colorBlack"
+        android:textStyle="bold"
+        android:layout_weight="0.2"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/on_time_valve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="@string/on_time_valve"
+        android:textColor="@color/colorBlack"
+        android:textStyle="bold"
+        android:layout_weight="0.2"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/off_time_valve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="@string/off_time_valve"
+        android:textColor="@color/colorBlack"
+        android:textStyle="bold"
+        android:layout_weight="0.2"
+        android:textAlignment="center"/>
+
+</LinearLayout>

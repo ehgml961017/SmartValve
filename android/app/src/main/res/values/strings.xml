@@ -1,8 +1,13 @@
 <resources>
     <string name="app_name">SmartValve</string>
-    <string name="main_title">가스 현황</string>
-    <string name="burning_switch">점화 손잡이</string>
-    <string name="gas_valve">가스 밸브 </string>
-    <string name="log_name">최근 사용 내역</string>
+    <string name="status_title">가스 현황</string>
+    <string name="gas_knob">점화 손잡이</string>
+    <string name="gas_valve">가스 밸브</string>
+    <string name="log_title">최근 사용 내역</string>
     <string name="more">더보기</string>
+    <string name="num">No.</string>
+    <string name="status_valve">밸브 상태</string>
+    <string name="status_knob">콕크 상태</string>
+    <string name="on_time_valve">밸브가\n열린 시간</string>
+    <string name="off_time_valve">밸브가\n잠긴 시간</string>
 </resources>

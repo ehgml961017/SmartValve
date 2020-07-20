@@ -6,106 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".RecentLogActivity">
 
-    <TableLayout
-        android:stretchColumns="*"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:layout_marginTop="150dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <LinearLayout
+        android:id="@+id/logTable"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="100dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        >
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TableRow>
-            <TextView android:text="No." />
-            <TextView android:text="밸브" />
-            <TextView android:text="콕크" />
-            <TextView android:text="열린 시간" />
-            <TextView android:text="잠긴 시간" />
-        </TableRow>
+        <ListView
+            android:id="@+id/log_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-        <TableRow>
-            <TextView android:text="10" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-        </TableRow>
-
-        <TableRow>
-            <TextView android:text="9" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-        </TableRow>
-
-        <TableRow>
-            <TextView android:text="8" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-        </TableRow>
-
-        <TableRow>
-            <TextView android:text="7" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-        </TableRow>
-
-        <TableRow>
-            <TextView android:text="6" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-        </TableRow>
-
-        <TableRow>
-            <TextView android:text="5" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-        </TableRow>
-
-        <TableRow>
-            <TextView android:text="4" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-        </TableRow>
-
-        <TableRow>
-            <TextView android:text="3" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-        </TableRow>
-
-        <TableRow>
-            <TextView android:text="2" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-        </TableRow>
-
-        <TableRow>
-            <TextView android:text="1" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-            <TextView android:text="" />
-        </TableRow>
-    </TableLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

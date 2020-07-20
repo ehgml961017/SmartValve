@@ -13,15 +13,14 @@
         android:orientation="vertical"
         android:layout_marginRight="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="100dp">
-
+        android:layout_marginTop="50dp">
 
         <TextView
-            android:id="@+id/gas_title"
+            android:id="@+id/status_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/main_title"
-            android:textSize="30sp" />
+            android:text="@string/status_title"
+            android:textSize="30sp"/>
 
         <TableLayout
             android:id="@+id/gasStatusBody"
@@ -31,18 +30,19 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_margin="15dp">
 
                 <TextView
-                    android:id="@+id/text_burning"
+                    android:id="@+id/text_valve"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/burning_switch"
+                    android:text="@string/gas_valve"
                     android:textSize="30sp"
-                    android:layout_weight="0.8"/>
+                    android:layout_weight="0.5"/>
 
                 <ImageView
-                    android:id="@+id/image_burning"
+                    android:id="@+id/image_valve"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     app:srcCompat="@drawable/fire_off"
@@ -51,38 +51,41 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_margin="15dp">
 
                 <TextView
-                    android:id="@+id/text_valve"
+                    android:id="@+id/text_knob"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/gas_valve"
-                    android:textSize="30sp" />
+                    android:text="@string/gas_knob"
+                    android:textSize="30sp"
+                    android:layout_weight="0.5"/>
 
                 <ImageView
-                    android:id="@+id/image_valve"
+                    android:id="@+id/image_knob"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
-                    app:srcCompat="@drawable/fire_off" />
+                    app:srcCompat="@drawable/fire_off"
+                    android:layout_weight="0.5"/>
+
             </TableRow>
+
         </TableLayout>
 
         <LinearLayout
             android:id="@+id/LogTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="50dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/log_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/log_name"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/view2"
-                app:layout_constraintStart_toStartOf="@+id/view2" />
+                android:text="@string/log_title"
+                android:textSize="20sp"/>
 
             <View
                 android:layout_width="0dp"
@@ -103,24 +106,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/round_layout" >
+            android:background="@drawable/round_layout">
 
             <TextView
                 android:id="@+id/log_body"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
                 android:text="마지막 사용내역:"
                 android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="@+id/view2"
-                app:layout_constraintTop_toTopOf="@+id/view2" />
+                android:layout_margin="15dp"/>
 
         </LinearLayout>
 
     </LinearLayout>
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
