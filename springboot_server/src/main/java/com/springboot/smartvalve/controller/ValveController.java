@@ -25,9 +25,9 @@ public class ValveController {
         return SvService.getValue();
     }
 
-
-
-
-
 }
-
+/*
+* RedirectAttributes의 addFlashAttribute를 이용하여
+* post방식처럼 url뒤에 parameter를 추가하지 않아도
+* 화면에 값을 받을 수 있다.
+* */

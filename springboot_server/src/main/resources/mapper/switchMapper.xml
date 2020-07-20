@@ -11,12 +11,12 @@
     <insert id="insertValue"
             parameterType="com.springboot.smartvalve.dto.SvDTO">
             insert into
-            valve_status(
-                        ,sw1,sw2
-                        ,on_sw1,off_sw1
-                        ,on_sw2,off_sw2
-                        )
-            values (
+                valve_status(
+                sw1,sw2
+                ,on_sw1,off_sw1
+                ,on_sw2,off_sw2
+                )
+        values (
                  #{sw1}, #{sw2}
                 ,#{on_sw1}, #{off_sw1}
                 ,#{on_sw2}, #{off_sw2}

@@ -2,8 +2,17 @@ package com.example.smartvalve
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.DisplayMetrics
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_recent_log.*
+import kotlinx.android.synthetic.main.layout_list.*
+import org.json.JSONArray
+import org.json.JSONObject
+import java.net.HttpURLConnection
+import java.net.URL
+
 
 class RecentLogActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,22 +22,53 @@ class RecentLogActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        Thread(){
-            ConnectionDB()
-        }.start()
 
         var listItem:ArrayList<LogVO> = arrayListOf()
-        var log1 = LogVO(1, "닫힘", "닫힘", "2020/07/14\n14:37", "2020/07/14\n15:00")
-        listItem.add(log1)
-        val header:View = layoutInflater.inflate(R.layout.layout_list_header,null)
 
-        log_list.addHeaderView(header)
-        log_list.adapter = LogAdapter(this, R.layout.layout_list, listItem)
+        Thread(){
+            ReadDB(listItem)
+
+            runOnUiThread {
+                val header:View = layoutInflater.inflate(R.layout.layout_list_header,null)
+                log_list.addHeaderView(header)
+                log_list.adapter = LogAdapter(this, R.layout.layout_list, listItem)
+            }
+        }.start()
+
+        Log.i("testLog", "view create")
     }
 
-    fun ConnectionDB(){
+    fun ReadDB(listItem:ArrayList<LogVO>) {
+        val url = URL("http://192.168.0.90:8080/query/")
+        val conn = url.openConnection() as HttpURLConnection // casting
+        Log.i("testLog", "conn.responseCode : ${conn.responseCode}")
 
+        if(conn.responseCode == 200){
+            val txt = url.readText()
+            val arr = JSONArray(txt)
+
+            for(i in 0 until arr.length()){
+                var obj:JSONObject = arr.get(i) as JSONObject
+                var valve = if(obj["sw1"] == ON) "열림" else "닫힘"
+                var knob = if(obj["sw2"] == ON) "열림" else "닫힘"
+                var onTime:String = if(obj["on_sw1"].equals(null)) "시간 정보 없음" else{
+                    var tmp = obj["on_sw1"].toString()
+                    tmp = tmp.substring(0,4) + "/" + tmp.substring(5,7) + "/" + tmp.substring(8,10) + "\n" + tmp.substring(11, 19)
+                    tmp
+                }
+                var offTime = if(obj["off_sw1"].equals(null)) "시간 정보 없음" else{
+                    var tmp = obj["off_sw1"].toString()
+                    tmp = tmp.substring(0,4) + "/" + tmp.substring(5,7) + "/" + tmp.substring(8,10) + "\n" + tmp.substring(11, 19)
+                    tmp
+                }
+
+                listItem.add(LogVO(i, valve, knob, onTime, offTime))
+            }
+        } else {
+            Toast.makeText(this, "서버에 접속할수없습니다.", Toast.LENGTH_LONG).show()
+        }
     }
+
 
 
 }

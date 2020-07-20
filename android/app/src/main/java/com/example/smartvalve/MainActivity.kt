@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
-import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.marginTop
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONArray
@@ -24,18 +24,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val displayMetrics = DisplayMetrics()
-        windowManager.defaultDisplay.getMetrics(displayMetrics)
-
-        var width = displayMetrics.widthPixels
-        var height = displayMetrics.heightPixels
-
-
-
     }
 
     override fun onResume() {
         super.onResume()
+        // status check & event
         button_more.setOnClickListener {
             val intent = Intent(this, RecentLogActivity::class.java)
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -47,13 +40,13 @@ class MainActivity : AppCompatActivity() {
 //            test()
 //        }.start()
 
-        text_knob.setOnClickListener {
+        image_knob.setOnClickListener {
             Log.i("testLog", "knob text clicked")
             if(knobStatus == ON) knobStatus = OFF
             else knobStatus = ON
         }
 
-        text_valve.setOnClickListener {
+        image_valve.setOnClickListener {
             Log.i("testLog", "valve text clicked")
             if(valveStatus == ON) valveStatus = OFF
             else valveStatus = ON
@@ -65,8 +58,15 @@ class MainActivity : AppCompatActivity() {
         * if status change, image will change using checkStatus()
         * checkStatus()
         * */
-        checkStatus()
+        CheckStatus()
 
+        Thread(){
+            var tmp = UpdateMainLog()
+            runOnUiThread{
+
+                log_main_body.text = tmp.substring(0,4) + "/" + tmp.substring(5,7) + "/" + tmp.substring(8,10) + " " + tmp.substring(11, 19)
+            }
+        }.start()
     }
 
     fun test(){
@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun checkStatus(){
+    fun CheckStatus(){
         if(knobStatus == ON){
             image_knob.setImageResource(R.drawable.fire_on)
         } else{
@@ -98,5 +98,18 @@ class MainActivity : AppCompatActivity() {
         } else{
             image_valve.setImageResource(R.drawable.fire_off)
         }
+    }
+
+    fun UpdateMainLog():String{
+        val url = URL("http://192.168.0.90:8080/query/")
+        val conn = url.openConnection() as HttpURLConnection // casting
+        Log.i("testLog", "conn.responseCode : ${conn.responseCode}")
+
+        if(conn.responseCode == 200){
+            val txt = url.readText()
+            val arr = JSONArray(txt)
+            var item = arr.get(0) as JSONObject
+            return "${item["on_sw1"]}"
+        } else return "null"
     }
 }

@@ -38,6 +38,7 @@
     </p>
     <hr>
 
+<<<<<<< HEAD
 </section>
 <section>
     <article>
@@ -75,6 +76,44 @@
                         <c:if test="${list.off_sw1 eq null}">
                             null
                         </c:if>
+=======
+</div>
+<table class="table table-striped">
+    <tr>
+        <th>No.</th>
+        <th>valve</th>
+        <th>cork</th>
+        <th>valve_on_date</th>
+        <th>valve_off_date</th>
+        <th>cork_on_date
+        <th>cork_off_date</th>
+    </tr>
+    <c:forEach items="${list}" var="list">
+        <tr>
+            <c:if test="${not empty list}"/>
+            <td>${list.num}</td>
+            <td>${list.sw1}</td>
+            <td>${list.sw2}</td>
+            <td>
+                <c:if test="${list.on_sw1 ne null}">  <%--ne : not equal--%>
+                    <fmt:formatDate
+                            pattern="yyyy-MM-dd 'T' HH:mm:ss"
+                            value="${list.on_sw1}"></fmt:formatDate>
+                </c:if>
+                <c:if test="${list.on_sw1 eq null}">
+                    null
+                </c:if>
+            </td>
+            <td>
+                <c:if test="${list.off_sw1 ne null}">
+                    <fmt:formatDate
+                            pattern="yyyy-MM-dd 'T' HH:mm:ss"
+                            value="${list.off_sw1}"/>
+                </c:if>
+                <c:if test="${list.off_sw1 eq null}">
+                    null
+                </c:if>
+>>>>>>> 17e5aee76569aec6a2e129627c0f27acef0e2124
 
                     </td>
                     <td>
