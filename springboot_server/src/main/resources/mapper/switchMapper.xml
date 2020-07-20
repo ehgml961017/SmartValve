@@ -5,7 +5,8 @@
 <mapper namespace="com.springboot.smartvalve.mapper.SvMapper">
     <select id="getValue"
             resultType="com.springboot.smartvalve.dto.SvDTO">
-        select * from valve_status;
+        select * from valve_status
+        order by num desc limit 10;
 
     </select>
     <insert id="insertValue"
@@ -23,7 +24,7 @@
                 );
     </insert>
 
-    <!--<update id="updateValue"
+    <update id="updateValue"
             parameterType="com.springboot.smartvalve.dto.SvDTO">
 
         UPDATE valve_status
@@ -46,7 +47,7 @@
                 </if>
             </trim>
         WHERE num=#{num}
-    </update>-->
+    </update>
 
     <update id="sw1_on"
             parameterType="com.springboot.smartvalve.dto.SvDTO">
@@ -54,7 +55,7 @@
 		valve_status
 		set
 		sw1 = 1,
-		off_sw1=now()
+		on_sw1=now()
 		where num = #{num}
 	</update>
     <update id="sw1_off"
@@ -63,7 +64,7 @@
 		valve_status
 		set
 		sw1 = 0,
-		on_sw1=now()
+		off_sw1=now()
 		where num = #{num}
 	</update>
     <update id="sw2_on"
@@ -72,7 +73,7 @@
 		valve_status
 		set
 		sw2 = 1,
-		off_sw2=now()
+		on_sw2=now()
 		where num = #{num}
 	</update>
     <update id="sw2_off"
@@ -81,10 +82,8 @@
 		valve_status
 		set
 		sw2 = 0,
-		on_sw2=now()
+		off_sw2=now()
 		where num = #{num}
 	</update>
-
-
 </mapper>
 
