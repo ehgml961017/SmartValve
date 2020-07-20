@@ -20,10 +20,10 @@ class LogAdapter(val c: Context, val layoutList: Int, val listItem: ArrayList<Lo
         var off_time_valve_view:TextView = v.findViewById(R.id.off_time_valve_content)
 
         no_view.text = listItem.get(position).num.toString()
-        status_valve_view.text = listItem.get(position).statusOfValve.toString()
-        status_knob_view.text = listItem.get(position).statusOfKnob.toString()
-        on_time_valve_view.text = listItem.get(position).onTimeValve.toString()
-        off_time_valve_view.text = listItem.get(position).offTimeValve.toString()
+        status_valve_view.text = listItem.get(position).statusOfValve
+        status_knob_view.text = listItem.get(position).statusOfKnob
+        on_time_valve_view.text = listItem.get(position).onTimeValve
+        off_time_valve_view.text = listItem.get(position).offTimeValve
 
         return v
     }
