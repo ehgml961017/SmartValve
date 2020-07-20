@@ -56,7 +56,7 @@
             <td>${list.sw1}</td>
             <td>${list.sw2}</td>
             <td>
-                <c:if test="${list.on_sw1 ne null}">
+                <c:if test="${list.on_sw1 ne null}">  <%--ne : not equal--%>
                     <fmt:formatDate
                             pattern="yyyy-MM-dd 'T' HH:mm:ss"
                             value="${list.on_sw1}"></fmt:formatDate>

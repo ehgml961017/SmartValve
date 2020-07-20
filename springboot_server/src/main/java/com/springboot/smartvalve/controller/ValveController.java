@@ -30,7 +30,9 @@ public class ValveController {
         //버튼입력시마다 or 일정시간마다 특정 데이터 입력 or
         // 비즈니스 로직 구현해야함.
     }
-
-
 }
-
+/*
+* RedirectAttributes의 addFlashAttribute를 이용하여
+* post방식처럼 url뒤에 parameter를 추가하지 않아도
+* 화면에 값을 받을 수 있다.
+* */
