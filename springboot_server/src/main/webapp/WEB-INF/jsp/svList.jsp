@@ -1,8 +1,15 @@
+<%@ page import="com.springboot.smartvalve.dto.SvDTO" %>
+<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page session="false" %>
+<% SvDTO svDTO = new SvDTO();
+    List<SvDTO> numArr = (List<SvDTO>) request.getAttribute("list");
+    //모델에서 넘어온 파라미터.
+    int num = numArr.get(numArr.size() - 1).getNum();
+%>
 
 <!doctype html>
 <html lang="ko">
@@ -30,7 +37,6 @@
     </h1>
     </p>
     <hr>
-
 </section>
 <section>
     <article>
@@ -54,7 +60,8 @@
                         <c:if test="${list.on_sw1 ne null}">  <%--ne : not equal--%>
                             <fmt:formatDate
                                     pattern="yyyy-MM-dd HH:mm:ss"
-                                    value="${list.on_sw1}"></fmt:formatDate>
+                                    value="${list.on_sw1}">
+                            </fmt:formatDate>
                         </c:if>
                         <c:if test="${list.on_sw1 eq null}">
                             null
@@ -62,34 +69,37 @@
                     </td>
                     <td>
                         <c:if test="${list.off_sw1 ne null}">
+                            <%--ne : not equal--%>
                             <fmt:formatDate
                                     pattern="yyyy-MM-dd HH:mm:ss"
-                                    value="${list.off_sw1}"/>
+                                    value="${list.on_sw1}">
+                            </fmt:formatDate>
                         </c:if>
                         <c:if test="${list.off_sw1 eq null}">
                             null
                         </c:if>
-
-
                     </td>
                     <td>
-                        <c:if test="${list.on_sw2 ne null}"><fmt:formatDate
-                                pattern="yyyy-MM-dd  HH:mm:ss"
-                                value="${list.on_sw2}"/>
+                        <c:if test="${list.on_sw2 ne null}">
+                            <fmt:formatDate
+                                    pattern="yyyy-MM-dd  HH:mm:ss"
+                                    value="${list.on_sw2}"/>
                         </c:if>
                         <c:if test="${list.on_sw2 eq null}">
                             null
                         </c:if>
                     </td>
-                    <td><c:if test="${list.off_sw2 ne null}"/><fmt:formatDate
-                            pattern="yyyy-MM-dd  HH:mm:ss"
-                            value="${list.off_sw2}"/>
+                    <td>
+                        <c:if test="${list.off_sw2 ne null}">
+                            <fmt:formatDate
+                                    pattern="yyyy-MM-dd  HH:mm:ss"
+                                    value="${list.off_sw2}"/>
+                        </c:if>
                         <c:if test="${list.off_sw2 eq null}">
                             null
                         </c:if>
                     </td>
                 </tr>
-
             </c:forEach>
         </table>
     </article>
@@ -107,22 +117,22 @@
 <script>
     function on_sw1() {
         alert("1번스위치 시작");
-        location.href = "/onSw1?num=4";
+        location.href = "/onSw1?num=<%=num%>";
     }
 
     function off_sw1() {
         alert("1번스위치 종료");
-        location.href = "/offSw1?num=4";
+        location.href = "/offSw1num=<%=num%>";
     }
 
     function on_sw2() {
         alert("2번스위치 시작");
-        location.href = "/onSw2?num=4";
+        location.href = "/onSw2num=<%=num%>";
     }
 
     function off_sw2() {
         alert("2번스위치 종료");
-        location.href = "/offSw2?num=4";
+        location.href = "/offSw2?num=<%=num%>";
     }
 
     var result = "${result}";
