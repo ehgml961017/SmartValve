@@ -24,31 +24,6 @@
                 );
     </insert>
 
-    <update id="updateValue"
-            parameterType="com.springboot.smartvalve.dto.SvDTO">
-
-        UPDATE valve_status
-            <trim prefix="SET" suffixOverrides=",">
-                <if test="sw1 == 0">
-                    sw1 = 1,
-                    on_sw1 = SYSDATE,
-                </if>
-                <if test="sw1 == 1">
-                    sw1 = 0,
-                    off_sw1 = SYSDATE,
-                </if>
-                <if test="sw2 == 0">
-                    sw2 = 1,
-                    on_sw2 = SYSDATE,
-                </if>
-                <if test="sw2 == 1">
-                    sw2 = 0,
-                    off_sw2 = SYSDATE,
-                </if>
-            </trim>
-        WHERE num=#{num}
-    </update>
-
     <update id="sw1_on"
             parameterType="com.springboot.smartvalve.dto.SvDTO">
 		update

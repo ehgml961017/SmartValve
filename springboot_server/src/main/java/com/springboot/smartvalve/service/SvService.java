@@ -19,7 +19,11 @@ public class SvService {
 
     public void insertValue(SvDTO svDTO) throws Exception {
         // sw 1 sw2가 둘다 0일때만 인서트 되게
-        svMapper.insertValue(svDTO);
+        if (svDTO.getSw1() == 0 && svDTO.getSw2() == 0) {
+            svMapper.insertValue(svDTO);
+        }
+
+
     }
 
     public void onSw1(SvDTO svDTO) throws Exception {

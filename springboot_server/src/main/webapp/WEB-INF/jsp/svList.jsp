@@ -99,6 +99,7 @@
         <button id="off_sw1" onclick="off_sw1()">sw1(off)</button>
         <button id="on_sw2" onclick="on_sw2()">sw2(on)</button>
         <button id="off_sw2" onclick="off_sw2()">sw2(off)</button>
+        <button id="test" onclick="test()">test</button>
     </article>
 </section>
 
@@ -122,6 +123,15 @@
     function off_sw2() {
         alert("2번스위치 종료");
         location.href = "/offSw2?num=4";
+    }
+
+    var result = "${result}";
+    if (result == "registerOk"){
+        alert("등록띠");
+    }
+
+    function test() {
+        location.href = "/insert";
     }
 </script>
 </html>
