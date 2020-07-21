@@ -8,7 +8,7 @@
 <% SvDTO svDTO = new SvDTO();
     List<SvDTO> numArr = (List<SvDTO>) request.getAttribute("list");
     //모델에서 넘어온 파라미터.
-    int num = numArr.get(numArr.size() - 1).getNum();
+    int num = numArr.get(0).getNum();
 %>
 
 <!doctype html>
@@ -52,7 +52,6 @@
             </tr>
             <c:forEach items="${list}" var="list">
                 <tr>
-                    <c:if test="${not empty list}"/>
                     <td>${list.num}</td>
                     <td>${list.sw1}</td>
                     <td>${list.sw2}</td>
@@ -60,8 +59,7 @@
                         <c:if test="${list.on_sw1 ne null}">  <%--ne : not equal--%>
                             <fmt:formatDate
                                     pattern="yyyy-MM-dd HH:mm:ss"
-                                    value="${list.on_sw1}">
-                            </fmt:formatDate>
+                                    value="${list.on_sw1}"></fmt:formatDate>
                         </c:if>
                         <c:if test="${list.on_sw1 eq null}">
                             null
@@ -72,8 +70,7 @@
                             <%--ne : not equal--%>
                             <fmt:formatDate
                                     pattern="yyyy-MM-dd HH:mm:ss"
-                                    value="${list.on_sw1}">
-                            </fmt:formatDate>
+                                    value="${list.on_sw1}"></fmt:formatDate>
                         </c:if>
                         <c:if test="${list.off_sw1 eq null}">
                             null
@@ -82,7 +79,7 @@
                     <td>
                         <c:if test="${list.on_sw2 ne null}">
                             <fmt:formatDate
-                                    pattern="yyyy-MM-dd  HH:mm:ss"
+                                    pattern="yyyy-MM-dd HH:mm:ss"
                                     value="${list.on_sw2}"/>
                         </c:if>
                         <c:if test="${list.on_sw2 eq null}">
@@ -92,7 +89,7 @@
                     <td>
                         <c:if test="${list.off_sw2 ne null}">
                             <fmt:formatDate
-                                    pattern="yyyy-MM-dd  HH:mm:ss"
+                                    pattern="yyyy-MM-dd HH:mm:ss"
                                     value="${list.off_sw2}"/>
                         </c:if>
                         <c:if test="${list.off_sw2 eq null}">
@@ -109,7 +106,7 @@
         <button id="off_sw1" onclick="off_sw1()">sw1(off)</button>
         <button id="on_sw2" onclick="on_sw2()">sw2(on)</button>
         <button id="off_sw2" onclick="off_sw2()">sw2(off)</button>
-        <button id="test" onclick="test()">test</button>
+        <%--<button id="test" onclick="test()">test</button>--%>
     </article>
 </section>
 
@@ -122,12 +119,12 @@
 
     function off_sw1() {
         alert("1번스위치 종료");
-        location.href = "/offSw1num=<%=num%>";
+        location.href = "/offSw1?num=<%=num%>";
     }
 
     function on_sw2() {
         alert("2번스위치 시작");
-        location.href = "/onSw2num=<%=num%>";
+        location.href = "/onSw2?num=<%=num%>";
     }
 
     function off_sw2() {
@@ -135,13 +132,13 @@
         location.href = "/offSw2?num=<%=num%>";
     }
 
-    var result = "${result}";
+    /* var result = "<%--${result}--%>";
     if (result == "registerOk"){
         alert("등록띠");
     }
 
     function test() {
         location.href = "/insert";
-    }
+    }*/
 </script>
 </html>
