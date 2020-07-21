@@ -59,7 +59,7 @@
                         <c:if test="${list.on_sw1 ne null}">  <%--ne : not equal--%>
                             <fmt:formatDate
                                     pattern="yyyy-MM-dd HH:mm:ss"
-                                    value="${list.on_sw1}"></fmt:formatDate>
+                                    value="${list.on_sw1}"/>
                         </c:if>
                         <c:if test="${list.on_sw1 eq null}">
                             null
@@ -70,7 +70,7 @@
                             <%--ne : not equal--%>
                             <fmt:formatDate
                                     pattern="yyyy-MM-dd HH:mm:ss"
-                                    value="${list.on_sw1}"></fmt:formatDate>
+                                    value="${list.off_sw1}"/>
                         </c:if>
                         <c:if test="${list.off_sw1 eq null}">
                             null
@@ -106,12 +106,13 @@
         <button id="off_sw1" onclick="off_sw1()">sw1(off)</button>
         <button id="on_sw2" onclick="on_sw2()">sw2(on)</button>
         <button id="off_sw2" onclick="off_sw2()">sw2(off)</button>
-        <%--<button id="test" onclick="test()">test</button>--%>
+        <button id="test" onclick="test()">test</button>
     </article>
 </section>
 
 </body>
 <script>
+
     function on_sw1() {
         alert("1번스위치 시작");
         location.href = "/onSw1?num=<%=num%>";
@@ -132,13 +133,13 @@
         location.href = "/offSw2?num=<%=num%>";
     }
 
-    /* var result = "<%--${result}--%>";
+     var result = "${result}";
     if (result == "registerOk"){
         alert("등록띠");
     }
 
     function test() {
         location.href = "/insert";
-    }*/
+    }
 </script>
 </html>

@@ -58,11 +58,11 @@ public class testController {
         return "redirect:/svList";
     }
 
-   /* @PostMapping("/insert")
+    @GetMapping("/insert")
     public String testDataInput(SvDTO svDTO, RedirectAttributes rttr) throws Exception{
         svService.insertValue(svDTO);
         rttr.addFlashAttribute("result", "registerOk");
         return "redirect:/svList";
-    }*/
+    }
 
 }

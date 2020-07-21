@@ -21,7 +21,7 @@
                  #{sw1}, #{sw2}
                 ,#{on_sw1}, #{off_sw1}
                 ,#{on_sw2}, #{off_sw2}
-                );
+                )
     </insert>
 
     <update id="sw1_on"
