@@ -14,14 +14,10 @@ import org.springframework.http.*;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
-
-<<<<<<< HEAD
-=======
 /*
 * 프로젝트를 실행한 뒤 /send로 접속하여 동작이 실행되게 한다. firebase project의 server key를 가지고
 * 디바이스 토큰으로 알림을 json 데이터 형식으로 firebase에게 요청한다.
 * */
->>>>>>> 6578604edf9fc17fe7ff7eede1918f62479febfc
 @RestController
 public class NotificationController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -29,12 +25,7 @@ public class NotificationController {
 
     @Autowired
     AndroidPushNotificationService androidPushNotificationService;
-<<<<<<< HEAD
     @Scheduled()
-=======
-
-    //@Scheduled(fixedRate = 10000) //10초 > 실제 서버 동작 시 1000*60*60*24 (23시간)
->>>>>>> 6578604edf9fc17fe7ff7eede1918f62479febfc
     @GetMapping(value = "/send")
     public @ResponseBody
     ResponseEntity<String> send() throws JSONException, InterruptedException {
