@@ -40,13 +40,9 @@ public class AndroidPushPeriodicNotifications {
 
         //title : 알림의 제목
         notification.put("title","hello!");
-<<<<<<< HEAD
+        //body : 알림의 내용
         notification.put("body","Today is "+localDate.getDayOfWeek().name()+
                 "!");
-=======
-        //body : 알림의 내용
-        notification.put("body","Today is "+localDate.getDayOfWeek().name()+"!");
->>>>>>> 6578604edf9fc17fe7ff7eede1918f62479febfc
 
         body.put("notification", notification);
 
