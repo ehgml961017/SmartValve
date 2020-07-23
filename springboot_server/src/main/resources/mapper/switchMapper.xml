@@ -16,11 +16,13 @@
                 sw1,sw2
                 ,on_sw1,off_sw1
                 ,on_sw2,off_sw2
+                ,valve_time,cork_time
                 )
         values (
                  #{sw1}, #{sw2}
                 ,#{on_sw1}, #{off_sw1}
                 ,#{on_sw2}, #{off_sw2}
+                ,#{valve_time}, #{cork_time}
                 )
     </insert>
 
@@ -39,7 +41,8 @@
 		valve_status
 		set
 		sw1 = 0,
-		off_sw1=now()
+		off_sw1=now(),
+		valve_time = TIMESTAMPDIFF(SECOND, on_sw1, off_sw1)
 		where num = #{num}
 	</update>
     <update id="sw2_on"
@@ -57,7 +60,8 @@
 		valve_status
 		set
 		sw2 = 0,
-		off_sw2=now()
+		off_sw2=now(),
+		cork_time = TIMESTAMPDIFF(SECOND, on_sw2, off_sw2)
 		where num = #{num}
 	</update>
     <select id="time"

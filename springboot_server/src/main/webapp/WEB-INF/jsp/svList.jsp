@@ -49,6 +49,8 @@
                 <th>valve_off_date</th>
                 <th>cork_on_date
                 <th>cork_off_date</th>
+                <th>valve_time</th>
+                <th>cork_time</th>
             </tr>
             <c:forEach items="${list}" var="list">
                 <tr>
@@ -96,6 +98,8 @@
                             null
                         </c:if>
                     </td>
+                    <td>${list.valve_time}</td>
+                    <td>${list.cork_time}</td>
                 </tr>
             </c:forEach>
         </table>
