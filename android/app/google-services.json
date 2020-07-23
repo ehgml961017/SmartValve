@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "683100505841",
+    "firebase_url": "https://smartvalve-dd0f6.firebaseio.com",
+    "project_id": "smartvalve-dd0f6",
+    "storage_bucket": "smartvalve-dd0f6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:683100505841:android:4a7a3d91d8ed8f23c6cb50",
+        "android_client_info": {
+          "package_name": "com.example.smartvalve"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "683100505841-vf5u3ps3qir48le6e33kjco9bcd7ltf8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.smartvalve",
+            "certificate_hash": "c077d6ec8803141e311663fe4111e33977c88208"
+          }
+        },
+        {
+          "client_id": "683100505841-dc7qjo35lc6pbc23vvc6lclolgkjfgth.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmvIRQ7iL2s3QMhhWsgA_ROV2o5lsCooU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "683100505841-dc7qjo35lc6pbc23vvc6lclolgkjfgth.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -8,6 +8,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+* 이 클래스의 용도는 하루에 한번 씩 보내는 주기적인 알림이므로
+* 클래스명이 Android Push Periodic Notification 이다.
+* 현재 코드에서는 /send로 접속을 할 시에만 알림이 push된다.
+* */
 public class AndroidPushPeriodicNotifications {
 
     public static String PeriodicNotificationJson() throws JSONException {
@@ -17,7 +22,7 @@ public class AndroidPushPeriodicNotifications {
 
         JSONObject body = new JSONObject();
 
-        List<String> tokenlist = new ArrayList<String>();
+        List<String> tokenlist = new ArrayList<String>();  //<~>는 <String>값이 생략
 
         for(int i=0; i<sampleData.length; i++){
             tokenlist.add(sampleData[i]);
@@ -32,9 +37,16 @@ public class AndroidPushPeriodicNotifications {
         body.put("registration_ids", array);
 
         JSONObject notification = new JSONObject();
+
+        //title : 알림의 제목
         notification.put("title","hello!");
+<<<<<<< HEAD
         notification.put("body","Today is "+localDate.getDayOfWeek().name()+
                 "!");
+=======
+        //body : 알림의 내용
+        notification.put("body","Today is "+localDate.getDayOfWeek().name()+"!");
+>>>>>>> 6578604edf9fc17fe7ff7eede1918f62479febfc
 
         body.put("notification", notification);
 
@@ -43,3 +55,7 @@ public class AndroidPushPeriodicNotifications {
         return body.toString();
     }
 }
+/*
+* tokenlist : 알림을 보낼 디바이스의 디바이스토큰을 넣는 list( registration_ids의 값으로 들어간다.)
+*
+* */
