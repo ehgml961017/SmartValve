@@ -18,11 +18,15 @@ import java.util.concurrent.CompletableFuture;
 * */
 @Service
 public class AndroidPushNotificationService {
+<<<<<<< HEAD
+    private static final String firebase_server_key="AAAAnwv2hvE:APA91bGPoq-ZsvBGdpyXGTrhSFrnHnX57uU8_s9BwrLki8nJ84_TMd_DJ3gRkOH-0pdlmRuDjxWOI7zhQPeBSZBIYk6adxWWGbRrH4GUwGqJkF9RdyWFaEKdREot0KhqshMEkWarMMnI";
+=======
 
     /*firebase에서 복사한 서버키*/
     private static final String firebase_server_key="firebase server key!!";
 
     /*FCM HTTP를 호출하는 URL*/
+>>>>>>> 6578604edf9fc17fe7ff7eede1918f62479febfc
     private static final String firebase_api_url="https://fcm.googleapis.com/fcm/send";
 
     @Async

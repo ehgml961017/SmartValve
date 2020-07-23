@@ -64,5 +64,14 @@
 		cork_time = TIMESTAMPDIFF(SECOND, on_sw2, off_sw2)
 		where num = #{num}
 	</update>
+    <select id="time"
+            resultType="int"
+            parameterType="com.springboot.smartvalve.dto.SvDTO">
+        select
+        TIMESTAMPDIFF(SECOND, on_sw1, off_sw1)
+    	from valve_status
+    	where num=#{num}
+
+    </select>
 </mapper>
 

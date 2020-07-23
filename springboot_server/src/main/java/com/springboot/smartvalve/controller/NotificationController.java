@@ -3,6 +3,7 @@ package com.springboot.smartvalve.controller;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
+import com.springboot.smartvalve.dto.SvDTO;
 import com.springboot.smartvalve.service.AndroidPushNotificationService;
 import com.springboot.smartvalve.service.AndroidPushPeriodicNotifications;
 import org.json.JSONException;
@@ -14,41 +15,49 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 
+<<<<<<< HEAD
+=======
 /*
 * 프로젝트를 실행한 뒤 /send로 접속하여 동작이 실행되게 한다. firebase project의 server key를 가지고
 * 디바이스 토큰으로 알림을 json 데이터 형식으로 firebase에게 요청한다.
 * */
+>>>>>>> 6578604edf9fc17fe7ff7eede1918f62479febfc
 @RestController
 public class NotificationController {
-
     Logger logger = LoggerFactory.getLogger(this.getClass());
+
 
     @Autowired
     AndroidPushNotificationService androidPushNotificationService;
+<<<<<<< HEAD
+    @Scheduled()
+=======
 
     //@Scheduled(fixedRate = 10000) //10초 > 실제 서버 동작 시 1000*60*60*24 (23시간)
+>>>>>>> 6578604edf9fc17fe7ff7eede1918f62479febfc
     @GetMapping(value = "/send")
-    public @ResponseBody ResponseEntity<String> send() throws JSONException, InterruptedException  {
-        String notifications = AndroidPushPeriodicNotifications.PeriodicNotificationJson();
-
+    public @ResponseBody
+    ResponseEntity<String> send() throws JSONException, InterruptedException {
+        String notifications =
+                AndroidPushPeriodicNotifications.PeriodicNotificationJson();
         HttpEntity<String> request = new HttpEntity<>(notifications);
 
-        CompletableFuture<String> pushNotification = androidPushNotificationService.send(request);
+        CompletableFuture<String> pushNotification =
+                androidPushNotificationService.send(request);
         CompletableFuture.allOf(pushNotification).join();
 
-        try{
+        try {
             String firebaseResponse = pushNotification.get();
             return new ResponseEntity<>(firebaseResponse, HttpStatus.OK);
-        }
-        catch (InterruptedException e){
+        } catch (InterruptedException e) {
             logger.debug("got interrupted!");
             throw new InterruptedException();
-        }
-        catch (ExecutionException e){
+        } catch (ExecutionException e) {
             logger.debug("execution error!");
         }
 
-        return new ResponseEntity<>("Push Notification ERROR!", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Push Notification ERROR!",
+                HttpStatus.BAD_REQUEST);
     }
 }
 /*

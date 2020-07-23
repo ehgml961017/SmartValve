@@ -18,7 +18,7 @@ public class AndroidPushPeriodicNotifications {
     public static String PeriodicNotificationJson() throws JSONException {
         LocalDate localDate = LocalDate.now();
 
-        String sampleData[] = {"device token value 1","device token value 2","device token value 3"};
+        String sampleData[] = {"de-vEfbfQCOETuZcDsG8Xf:APA91bFJOgVuEaW1nJ14oDtsRsqDCub7q6-msDatpFBN1tXdzf3kuWGvLrAf9Uu73KFy4x_RMV3tLRRGNTIaCRU9pgFrgfKALUdOXLfgPo6rfy_PmWahLNTMpIUfNF1UWgQ-XibYfImE"};
 
         JSONObject body = new JSONObject();
 
@@ -40,8 +40,13 @@ public class AndroidPushPeriodicNotifications {
 
         //title : 알림의 제목
         notification.put("title","hello!");
+<<<<<<< HEAD
+        notification.put("body","Today is "+localDate.getDayOfWeek().name()+
+                "!");
+=======
         //body : 알림의 내용
         notification.put("body","Today is "+localDate.getDayOfWeek().name()+"!");
+>>>>>>> 6578604edf9fc17fe7ff7eede1918f62479febfc
 
         body.put("notification", notification);
 
