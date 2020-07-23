@@ -39,7 +39,7 @@ class RecentLogActivity : AppCompatActivity() {
     }
 
     fun ReadDB(listItem:ArrayList<LogVO>) {
-        val url = URL("http://192.168.0.90:8080/query/")
+        val url = URL(JSON_URL)
         val conn = url.openConnection() as HttpURLConnection // casting
         Log.i("testLog", "conn.responseCode : ${conn.responseCode}")
 
@@ -47,7 +47,7 @@ class RecentLogActivity : AppCompatActivity() {
             val txt = url.readText()
             val arr = JSONArray(txt)
 
-            for(i in 0 until arr.length()){
+            for(i in arr.length()-1 downTo 0){
                 var obj:JSONObject = arr.get(i) as JSONObject
                 var valve = if(obj["sw1"] == ON) "열림" else "닫힘"
                 var knob = if(obj["sw2"] == ON) "열림" else "닫힘"
