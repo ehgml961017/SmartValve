@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -38,5 +39,10 @@ public class SvService {
     }
     public void offSw2(SvDTO svDTO) throws Exception {
         svMapper.sw2_off(svDTO);
+    }
+
+    public Integer time(int num) throws Exception {
+            return svMapper.time(num);
+
     }
 }
