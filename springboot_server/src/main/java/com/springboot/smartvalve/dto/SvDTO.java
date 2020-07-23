@@ -23,4 +23,6 @@ public class SvDTO {
     private Date on_sw2;
     @DateTimeFormat(pattern = "yyyy-MM-dd 'T' HH:mm:ss")
     private Date off_sw2;
+    private int valve_time;
+    private int cork_time;
 }
