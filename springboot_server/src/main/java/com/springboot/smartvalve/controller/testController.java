@@ -45,8 +45,8 @@ public class testController {
     @GetMapping("/onSw2")
     public String onSw2(SvDTO svDTO, RedirectAttributes rttr
     ) throws Exception {
+            svService.onSw2(svDTO);
 
-        svService.onSw2(svDTO);
         return "redirect:/svList";
     }
 

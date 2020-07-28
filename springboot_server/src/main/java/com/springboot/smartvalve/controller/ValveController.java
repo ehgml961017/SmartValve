@@ -19,10 +19,12 @@ public class ValveController {
 
     @GetMapping("/query")
     public List<SvDTO> svDTOList() throws Exception{
+
         return SvService.getValue();
     }
     @GetMapping("/time")
     public Integer time(@RequestParam int num) throws  Exception{
+
         return SvService.time(num);
     }
 
