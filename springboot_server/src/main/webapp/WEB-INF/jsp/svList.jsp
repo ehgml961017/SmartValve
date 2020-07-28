@@ -113,7 +113,6 @@
         <button id="off_sw1" onclick="off_sw1()">sw1(off)</button>
         <button id="on_sw2" onclick="on_sw2()">sw2(on)</button>
         <button id="off_sw2" onclick="off_sw2()">sw2(off)</button>
-        <button id="test" onclick="test()">test</button>
     </article>
 </section>
 
@@ -125,7 +124,7 @@
         var off_sw1 = <%=sw1%>
         if (off_sw1==0) {
             alert("1번스위치 시작");
-            location.href = "/onSw1?num=<%=num%>";
+            location.href = "/onSw1?num=<%=num%>&sw1=<%=sw1%>&sw2=<%=sw2%>";
         }
         else
         {
@@ -137,7 +136,7 @@
         var on_sw1 = <%=sw1%>
         if (on_sw1==1) {
             alert("1번스위치 종료");
-            location.href = "/offSw1?num=<%=num%>";
+            location.href = "/offSw1?num=<%=num%>&sw1=<%=sw1%>&sw2=<%=sw2%>";
         }
         else
         {
@@ -149,7 +148,7 @@
         var off_sw2 = <%=sw2%>
         if (off_sw2==0) {
             alert("2번스위치 시작");
-            location.href = "/onSw2?num=<%=num%>";
+            location.href = "/onSw2?num=<%=num%>&sw1=<%=sw1%>&sw2=<%=sw2%>";
         }
         else
         {
@@ -161,7 +160,7 @@
         var on_sw2 = <%=sw2%>
         if (on_sw2==1) {
             alert("2번스위치 종료");
-            location.href = "/offSw2?num=<%=num%>";
+            location.href = "/offSw2?num=<%=num%>&sw1=<%=sw1%>&sw2=<%=sw2%>";
         }
         else
         {
@@ -169,13 +168,7 @@
         }
     }
 
-    var result = "${result}";
-    if (result == "registerOk") {
-        alert("등록띠");
-    }
 
-    function test() {
-        location.href = "/insert";
-    }
+
 </script>
 </html>
