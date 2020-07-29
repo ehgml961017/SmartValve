@@ -22,20 +22,22 @@ public class SvService {
         int corkS = svDTO.getSw2();
         System.out.println(valveS);
         System.out.println(corkS);
-        if (valveS == 0 && corkS == 0) {
-            svMapper.insertValue(svDTO);
-        }
+        svMapper.insertValue(svDTO);
+
     }
 
     public void onSw1(SvDTO svDTO) throws Exception {
-        System.out.println(svDTO.getSw1());
-        System.out.println(svDTO.getValve_time());
         svMapper.sw1_on(svDTO);
     }
     public void offSw1(SvDTO svDTO) throws Exception {
-        System.out.println(svDTO.getSw1());
-        System.out.println(svDTO.getValve_time());
+        System.out.println("아나 진짜 :"+svDTO);
         svMapper.sw1_off(svDTO);
+        svDTO.setSw1(0);
+        if((svDTO.getSw1()==0) && (svDTO.getSw2()==0)){
+            insertValue(svDTO);
+        }
+
+
     }
 
     public void onSw2(SvDTO svDTO) throws Exception {
@@ -44,13 +46,21 @@ public class SvService {
         svMapper.sw2_on(svDTO);
     }
     public void offSw2(SvDTO svDTO) throws Exception {
-        System.out.println(svDTO.getSw2());
-        System.out.println(svDTO.getCork_time());
+        System.out.println("아나 진짜 :"+svDTO);
         svMapper.sw2_off(svDTO);
+        svDTO.setSw2(0);
+        if((svDTO.getSw1()==0) && (svDTO.getSw2()==0)){
+            insertValue(svDTO);
+        }
+
+
     }
 
+    public Integer time_sw1(int num) throws Exception {
+            return svMapper.time_sw1(num);
+    }
 
-    public Integer time(int num) throws Exception {
-            return svMapper.time(num);
+    public Integer time_sw2(int num) throws Exception {
+        return svMapper.time_sw2(num);
     }
 }
