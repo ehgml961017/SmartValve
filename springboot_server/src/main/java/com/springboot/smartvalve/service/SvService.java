@@ -22,9 +22,9 @@ public class SvService {
         // sw 1 sw2가 둘다 0일때만 인서트 되게
         int valveS = svDTO.getSw1();
         int corkS = svDTO.getSw2();
-        if (valveS == 0 && corkS == 0) {
-            svMapper.insertValue(svDTO);
-        }
+        System.out.println(valveS);
+        System.out.println(corkS);
+        svMapper.insertValue(svDTO);
     }
 
     public void onSw1(SvDTO svDTO) throws Exception {
