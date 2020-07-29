@@ -11,8 +11,8 @@
 
 </head>
 <body>
-<img src="http://blogfiles.naver.net/20140804_136/qkrgks1008_1407126106188QQX6
-    s_JPEG/%B3%AA%C0%CC%C6%AE%BF%F6%C4%BF.jpg" width="40px" height="40px">
+<img src="/resources/극혐.jpg" width="110px" height="110px">
+<hr>
 <h1>에러페이지 입니다.</h1>
 </body>
 </html>

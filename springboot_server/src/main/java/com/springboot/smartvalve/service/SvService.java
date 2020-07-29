@@ -56,8 +56,11 @@ public class SvService {
 
     }
 
+    public Integer time_sw1(int num) throws Exception {
+            return svMapper.time_sw1(num);
+    }
 
-    public Integer time(int num) throws Exception {
-            return svMapper.time(num);
+    public Integer time_sw2(int num) throws Exception {
+        return svMapper.time_sw2(num);
     }
 }
