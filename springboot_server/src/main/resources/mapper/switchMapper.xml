@@ -31,7 +31,7 @@
 		update
 		valve_status
 		set
-		sw1 = 1,
+		sw1 = #{sw1},
 		on_sw1=now()
 		where num = #{num}
 	</update>

@@ -13,7 +13,6 @@
     int sw2 = numArr.get(0).getSw2();
 
 %>
-
 <!doctype html>
 <html lang="ko">
 <head>
@@ -21,11 +20,52 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="http://d3js.org/d3.v3.js"></script>
     <title>스마트 밸브 리스트</title>
 </head>
 <style>
     .align {
         text-align: center
+    }
+    .blue{background: #5abae6; }
+    .red{background: #d34e4e; }
+    .green{background: #9dbb19; }
+    .yellow{background: #f7b358; }
+
+    div {
+        margin: 50px 50px;
+        height: 400px;
+        border: 1px solid #FFF;
+        position: relative;
+    }
+
+    span:nth-of-type(1){
+        height: 100%;
+        left: 0px;
+    }
+    span:nth-of-type(2){
+        height: 80%;
+        left: 70px;
+    }
+    span:nth-of-type(3){
+        height: 60%;
+        left: 140px;
+    }
+    span:nth-of-type(4){
+        height: 20%;
+        left: 210px;
+    }
+
+    span{
+        bottom: 0;
+        position: absolute;
+        font-size:20px;
+        line-height: 20px;
+        color: #FFF;
+        text-align: center;
+        border-radius: 15px;
+        display: inline-block;
+        width: 60px;
     }
 </style>
 <link rel="stylesheet"
@@ -116,7 +156,24 @@
     </article>
 </section>
 
+
+<c:forEach items="${list}" var="list">
+    <div>
+        <span class="blue" data-val=${list.valve_time}>A</span>
+        <span class="red" data-val=${list.cork_time}>B</span>
+    </div>
+</c:forEach>
+
 </body>
+<script>
+    d3.selectAll("span")
+    .datum(function(){ return this.dataset}) //data삽입, 선택물 각각의 속성에서 dataset을 data로 가져옴
+    .style("height","0%")//초기 높이 값을 설정 한다.
+    .style("left",(d,i)=>(i*80)+"px") //전달인수 d=data, i=index
+    .transition().duration(1500) //막대 그래프가 1.5초동안 천천히 움직이게 합니다.
+    .style("height", d=>d.val+ "%"); //선택물의 data속성 값으로 막대의 높이(height)를 바꿔줍니다.
+
+</script>
 <script>
 
     function on_sw1() {
