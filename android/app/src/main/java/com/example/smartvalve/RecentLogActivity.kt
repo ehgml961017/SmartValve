@@ -47,7 +47,7 @@ class RecentLogActivity : AppCompatActivity() {
             val txt = url.readText()
             val arr = JSONArray(txt)
 
-            for(i in arr.length()-1 downTo 0){
+            for(i in 0..arr.length()-1){
                 var obj:JSONObject = arr.get(i) as JSONObject
                 var valve = if(obj["sw1"] == ON) "열림" else "닫힘"
                 var knob = if(obj["sw2"] == ON) "열림" else "닫힘"

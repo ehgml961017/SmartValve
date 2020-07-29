@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.core.view.marginTop
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
@@ -14,14 +15,19 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.net.HttpURLConnection
 import java.net.URL
+import java.util.*
+import java.util.concurrent.Delayed
 import kotlin.concurrent.thread
+import kotlin.concurrent.timerTask
 
 val ON:Int = 1
 val OFF:Int = 0
-var JSON_URL = "http://192.168.0.90:8085/query/"
+var JSON_URL = "http://192.168.0.90:8085/query"
+var knobStatus:Int = OFF
+var valveStatus:Int = OFF
+var timerTask:Timer? = null
+
 class MainActivity : AppCompatActivity() {
-    var knobStatus:Int = OFF
-    var valveStatus:Int = OFF
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -46,30 +52,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        //
-//        Thread(){
-//            test()
-//        }.start()
-
-        image_knob.setOnClickListener {
-            Log.i("testLog", "knob text clicked")
-            if(knobStatus == ON) knobStatus = OFF
-            else knobStatus = ON
-        }
-
-        image_valve.setOnClickListener {
-            Log.i("testLog", "valve text clicked")
-            if(valveStatus == ON) valveStatus = OFF
-            else valveStatus = ON
-        }
-
-        // status check
-        /*
-        * We need to regular check for DB
-        * if status change, image will change using checkStatus()
-        * checkStatus()
-        * */
-        CheckStatus()
+        Thread(){
+            CheckStatus()
+        }.start()
 
         Thread(){
             var tmp = UpdateMainLog()
@@ -80,34 +65,39 @@ class MainActivity : AppCompatActivity() {
         }.start()
     }
 
-    fun test(){
-        // url connection & data parsing
-        val url = URL(JSON_URL)
-        var conn = url.openConnection() as HttpURLConnection
-        Log.i("testLog", "connection : ${conn.responseCode}")
-
-        if(conn.responseCode == 200){
-            Log.i("testLog", "connection success")
-            val msg = url.readText()
-            val testJson = JSONObject(msg)
-            Log.i("testLog", "${testJson}")
-            val jsonobjTest = testJson.getInt("amount")
-            Log.i("testLog", "${jsonobjTest}")
-        } else{
-            Log.i("testLog", "connection fail")
-        }
-    }
-
     fun CheckStatus(){
-        if(knobStatus == ON){
-            image_knob.setImageResource(R.drawable.fire_on)
-        } else{
-            image_knob.setImageResource(R.drawable.fire_off)
-        }
-        if(valveStatus == ON){
-            image_valve.setImageResource(R.drawable.fire_on)
-        } else{
-            image_valve.setImageResource(R.drawable.fire_off)
+        Log.i("testLog", "checkStatus")
+        timerTask = kotlin.concurrent.timer(period = 500) {
+            Log.i("testLog", "while ---")
+            val url = URL(JSON_URL)
+            val conn = url.openConnection() as HttpURLConnection // casting
+            Log.i("testLog", "conn.responseCode : ${conn.responseCode}")
+
+            if (conn.responseCode == 200) {
+                Log.i("testLog", "response success")
+                val txt = url.readText()
+                val arr = JSONArray(txt)
+                var item = arr.get(0) as JSONObject
+                knobStatus = item["sw2"].toString().toInt()
+                valveStatus = item["sw1"].toString().toInt()
+            } else {
+                Log.i("testLog", "response fail")
+            }
+
+            if (knobStatus == ON) {
+                Log.i("testLog", "knob on")
+                image_knob.setImageResource(R.drawable.fire_on)
+            } else {
+                Log.i("testLog", "knob off")
+                image_knob.setImageResource(R.drawable.fire_off)
+            }
+            if (valveStatus == ON) {
+                Log.i("testLog", "valve on")
+                image_valve.setImageResource(R.drawable.fire_on)
+            } else {
+                Log.i("testLog", "valve off")
+                image_valve.setImageResource(R.drawable.fire_off)
+            }
         }
     }
 
@@ -119,8 +109,7 @@ class MainActivity : AppCompatActivity() {
         if(conn.responseCode == 200){
             val txt = url.readText()
             val arr = JSONArray(txt)
-            val idx = arr.length() - 1
-            var item = arr.get(idx) as JSONObject
+            var item = arr.get(0) as JSONObject
             return "${item["on_sw1"]}"
         } else return "null"
     }
