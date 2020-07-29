@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -18,6 +19,13 @@ public class testController {
 
     @Autowired
     SvService svService;
+
+    @GetMapping("/")
+    public ModelAndView main() throws Exception{
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("main");
+        return mav;
+    }
 
     @GetMapping("/svList")
     public void getList(Model model) throws Exception {
