@@ -11,7 +11,10 @@ android api version 24부터 정상작동하는것 확인
   - Android  
   - Springboot  
   - WEB FrontEnd  
-  - Raspberry Pi  
+  - Raspberry Pi	(1)DB Data Response 
+		   구글에서 Python Json 연결 검색.
+		(2)SW1, SW2 ON/OFF 시 LED ON/OFF
+		   교재 실습 예제파일 응용 중 
   
 ## Local에서 돌려보는 매뉴얼  
   - Android  
