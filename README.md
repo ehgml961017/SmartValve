@@ -15,9 +15,10 @@ android api version 24부터 정상작동하는것 확인
   (이 기능을 구현하기 위해 무슨 기술을 사용했는지)
   - Android  
   - Springboot  
-  	#AWS EC2서버, RDS MariaDB 연동
-	#mybatis , JSP, JSON , spring scheduling, 안드로이드  푸쉬알림(firebase	
-	#slf4j,tomcat,lombok,jstl
+  *AWS EC2 서버RDS MariaDB 연동  
+  *mybatis , JSP, JSON , spring scheduling,
+  *안드로이드  푸쉬알림(firebase)
+  *slf4j,tomcat,lombok,jstl
   - WEB FrontEnd  
   - Raspberry Pi  
   
