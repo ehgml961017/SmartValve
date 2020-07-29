@@ -9,6 +9,9 @@
     List<SvDTO> numArr = (List<SvDTO>) request.getAttribute("list");
     //모델에서 넘어온 파라미터.
     int num = numArr.get(0).getNum();
+    int sw1 = numArr.get(0).getSw1();
+    int sw2 = numArr.get(0).getSw2();
+
 %>
 <!doctype html>
 <html lang="ko">
@@ -150,7 +153,6 @@
         <button id="off_sw1" onclick="off_sw1()">sw1(off)</button>
         <button id="on_sw2" onclick="on_sw2()">sw2(on)</button>
         <button id="off_sw2" onclick="off_sw2()">sw2(off)</button>
-        <button id="test" onclick="test()">test</button>
     </article>
 </section>
 
@@ -175,32 +177,55 @@
 <script>
 
     function on_sw1() {
-        alert("1번스위치 시작");
-        location.href = "/onSw1?num=<%=num%>";
+
+        var off_sw1 = <%=sw1%>
+        if (off_sw1==0) {
+            alert("1번스위치 시작");
+            location.href = "/onSw1?num=<%=num%>&sw1=<%=sw1%>&sw2=<%=sw2%>";
+        }
+        else
+        {
+            alert("스위치가 이미 켜져있습니다 확인해주세요..")
+        }
     }
 
     function off_sw1() {
-        alert("1번스위치 종료");
-        location.href = "/offSw1?num=<%=num%>";
+        var on_sw1 = <%=sw1%>
+        if (on_sw1==1) {
+            alert("1번스위치 종료");
+            location.href = "/offSw1?num=<%=num%>&sw1=<%=sw1%>&sw2=<%=sw2%>";
+        }
+        else
+        {
+            alert("스위치를 먼저 켜주세요.");
+        }
     }
 
     function on_sw2() {
-        alert("2번스위치 시작");
-        location.href = "/onSw2?num=<%=num%>";
+        var off_sw2 = <%=sw2%>
+        if (off_sw2==0) {
+            alert("2번스위치 시작");
+            location.href = "/onSw2?num=<%=num%>&sw1=<%=sw1%>&sw2=<%=sw2%>";
+        }
+        else
+        {
+            alert("스위치가 이미 켜져있습니다 확인해주세요..")
+        }
     }
 
     function off_sw2() {
-        alert("2번스위치 종료");
-        location.href = "/offSw2?num=<%=num%>";
+        var on_sw2 = <%=sw2%>
+        if (on_sw2==1) {
+            alert("2번스위치 종료");
+            location.href = "/offSw2?num=<%=num%>&sw1=<%=sw1%>&sw2=<%=sw2%>";
+        }
+        else
+        {
+            alert("스위치를 먼저 켜주세요.")
+        }
     }
 
-     var result = "${result}";
-    if (result == "registerOk"){
-        alert("등록띠");
-    }
 
-    function test() {
-        location.href = "/insert";
-    }
+
 </script>
 </html>

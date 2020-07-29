@@ -12,6 +12,7 @@ public interface SvMapper {
     public void sw1_off(SvDTO svDTO) throws Exception;
     public void sw2_on(SvDTO svDTO) throws Exception;
     public void sw2_off(SvDTO svDTO) throws Exception;
-    public Integer time(int num) throws Exception;
+    public Integer time_sw1(int num) throws Exception;
+    public Integer time_sw2(int num) throws Exception;
 
 }

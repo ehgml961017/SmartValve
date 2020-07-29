@@ -4,9 +4,7 @@ import com.springboot.smartvalve.dto.SvDTO;
 import com.springboot.smartvalve.mapper.SvMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -31,18 +29,37 @@ public class SvService {
         svMapper.sw1_on(svDTO);
     }
     public void offSw1(SvDTO svDTO) throws Exception {
+        System.out.println("아나 진짜 :"+svDTO);
         svMapper.sw1_off(svDTO);
+        svDTO.setSw1(0);
+        if((svDTO.getSw1()==0) && (svDTO.getSw2()==0)){
+            insertValue(svDTO);
+        }
+
+
     }
 
     public void onSw2(SvDTO svDTO) throws Exception {
+        System.out.println(svDTO.getSw2());
+        System.out.println(svDTO.getCork_time());
         svMapper.sw2_on(svDTO);
     }
     public void offSw2(SvDTO svDTO) throws Exception {
+        System.out.println("아나 진짜 :"+svDTO);
         svMapper.sw2_off(svDTO);
+        svDTO.setSw2(0);
+        if((svDTO.getSw1()==0) && (svDTO.getSw2()==0)){
+            insertValue(svDTO);
+        }
+
+
     }
 
-    public Integer time(int num) throws Exception {
-            return svMapper.time(num);
+    public Integer time_sw1(int num) throws Exception {
+            return svMapper.time_sw1(num);
+    }
 
+    public Integer time_sw2(int num) throws Exception {
+        return svMapper.time_sw2(num);
     }
 }
