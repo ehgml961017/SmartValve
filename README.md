@@ -55,11 +55,13 @@ android api version 24부터 정상작동하는것 확인
     
   - Springboot
     * Server : Tomcat 9.0.3
-    * Database : MariaDB 10.3(AWS EC2 RDS생성)
+    * Database : MariaDB 10.3.20(AWS EC2 RDS생성)
+                ,MariaDB-java-client:2.6.0
     * IDE : Intellij(Ultimate Version 2020.1.2)
     * Framework : Springboot 2.1.7
     * Java JDK ver. : 1.8
     * AWS : EC2 Amazon Linux1
+    * ORM : Mybatis(3.5.5), Mybatis-spring(2.0.5)
     
   - WEB Front  
     * IDE : Intellij(Ultimate Version)
