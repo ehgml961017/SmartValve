@@ -39,6 +39,7 @@ android api version 24부터 정상작동하는것 확인
         
 ## Local에서 돌려보는 매뉴얼  
   - Android  
+    https://blog.naver.com/ehgml961017/222046346179
   - Springboot + DB 실행  
   - WEB Front  
   - Raspberry Pi  
