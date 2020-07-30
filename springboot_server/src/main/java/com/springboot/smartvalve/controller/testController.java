@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -39,14 +40,15 @@ public class testController {
                         RedirectAttributes rttr) throws Exception {
 
         svService.onSw1(svDTO);
+
         return "redirect:/svList";
     }
 
     @GetMapping("/offSw1")
     public String offSw1(SvDTO svDTO, RedirectAttributes rttr
     ) throws Exception {
-
         svService.offSw1(svDTO);
+
         return "redirect:/svList";
     }
 
@@ -54,6 +56,7 @@ public class testController {
     public String onSw2(SvDTO svDTO, RedirectAttributes rttr
     ) throws Exception {
         svService.onSw2(svDTO);
+        System.out.println(svDTO.getSw2());
         return "redirect:/svList";
     }
 
@@ -62,13 +65,7 @@ public class testController {
     ) throws Exception {
 
         svService.offSw2(svDTO);
-        return "redirect:/svList";
-    }
-
-    @GetMapping("/insert")
-    public String testDataInput(SvDTO svDTO, RedirectAttributes rttr) throws Exception{
-        svService.insertValue(svDTO);
-        rttr.addFlashAttribute("result", "registerOk");
+        System.out.println(svDTO.getSw2());
         return "redirect:/svList";
     }
 

@@ -23,7 +23,6 @@ public class SvService {
         System.out.println(valveS);
         System.out.println(corkS);
         svMapper.insertValue(svDTO);
-
     }
 
     public void onSw1(SvDTO svDTO) throws Exception {
