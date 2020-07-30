@@ -52,13 +52,13 @@ android api version 24부터 정상작동하는것 확인
     * minimum SKD ver. : 22 (실행 SDK 24이상 권장)  
     
   - Springboot
-    [Web]
+    Web
     * SERVER : TOMCAT 11.0
     * DATABASE : MariaDB 10.3.20(AWS EC2 RDS생성)
     * IDE : Intellij(Ultimate Version)
     * FrontEnd : Bootstrap, Javascript, HTML5, CSS3
     * Language & Framework : Java 8, Spring boot 2.3.1
-    [App]
+    App
     * Language & Framework : Kotlin , Anroid Studio
     * DATABASE : MariaDB 10.3.20             
     * Git(2.27.0) & Sourcetree, Slack 메신저, oven 스토리 보드 활용
