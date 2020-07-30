@@ -3,7 +3,6 @@
 <html>
 <head>
     <title>smartValve</title>
-    <link rel="stylesheet" type="text/css" href="/resources/style.css">
 </head>
 <body>
 <section>

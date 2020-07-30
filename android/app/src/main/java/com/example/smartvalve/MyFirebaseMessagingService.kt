@@ -14,6 +14,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage : RemoteMessage) {
         super.onMessageReceived(remoteMessage)
         Log.i("testLog", "message received")
+        Log.i("testLog", "${remoteMessage.messageType}")
         if(remoteMessage.data.size > 0){
             Log.i("testLog", "msg data : ${remoteMessage.data}")
 
@@ -26,6 +27,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 Log.i("testLog", "msg notificationn Title : ${remoteMessage.notification!!.title}")
                 Log.i("testLog", "msg notificationn body : ${remoteMessage.notification!!.body}")
             }
+        } else{
+            Log.i("testLog", "size?")
         }
 
     }
