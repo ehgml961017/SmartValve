@@ -25,7 +25,7 @@ val OFF:Int = 0
 var JSON_URL = "http://192.168.0.90:8085/query"
 var knobStatus:Int = OFF
 var valveStatus:Int = OFF
-var timerTask:Timer? = null
+//var timerTask:Timer? = null
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,17 +57,17 @@ class MainActivity : AppCompatActivity() {
         }.start()
 
         Thread(){
-            var tmp = UpdateMainLog()
+            var logRes = UpdateMainLog()
             runOnUiThread{
-                if(!tmp.equals("null")) log_main_body.text = tmp.substring(0,4) + "/" + tmp.substring(5,7) + "/" + tmp.substring(8,10) + " " + tmp.substring(11, 19)
-                else log_main_body.text = ""
+                if(!logRes.equals("null")) log_main_body.text = logRes.substring(0,4) + "/" + logRes.substring(5,7) + "/" + logRes.substring(8,10) + " " + logRes.substring(11, 19)
+                else log_main_body.text = "No data"
             }
         }.start()
     }
 
     fun CheckStatus(){
         Log.i("testLog", "checkStatus")
-        timerTask = kotlin.concurrent.timer(period = 500) {
+        var timerTask:Timer? = kotlin.concurrent.timer(period = 500) {
             Log.i("testLog", "while ---")
             val url = URL(JSON_URL)
             val conn = url.openConnection() as HttpURLConnection // casting
@@ -102,15 +102,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun UpdateMainLog():String{
-        val url = URL(JSON_URL)
-        val conn = url.openConnection() as HttpURLConnection // casting
-        Log.i("testLog", "conn.responseCode : ${conn.responseCode}")
+        var res:String = "null";
+        val timerTask:Timer? = kotlin.concurrent.timer(period = 1500){
+            val url = URL(JSON_URL)
+            val conn = url.openConnection() as HttpURLConnection // casting
+            Log.i("testLog", "conn.responseCode : ${conn.responseCode}")
 
-        if(conn.responseCode == 200){
-            val txt = url.readText()
-            val arr = JSONArray(txt)
-            var item = arr.get(0) as JSONObject
-            return "${item["on_sw1"]}"
-        } else return "null"
+            if(conn.responseCode == 200){
+                val txt = url.readText()
+                val arr = JSONArray(txt)
+                var item = arr.get(0) as JSONObject
+                res = "${item["on_sw1"]}"
+            } else res = "null"
+        }
+        return res
     }
 }
