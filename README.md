@@ -46,8 +46,7 @@ android api version 24부터 정상작동하는것 확인
   - Raspberry Pi  
   
 ## 개발환경
-  - Git(2.27.0) & Sourcetree, Slack 메신저, oven 스토리 보드 활용  
- 
+  
   - Android  
     * Language & IDE : Kotlin, Android Studio
     * Compile SDK ver. : 30  
@@ -65,6 +64,9 @@ android api version 24부터 정상작동하는것 확인
   - WEB Front  
     * IDE : Intellij(Ultimate Version)
     
-  - Raspberry Pi
-    * Raspberry Pi Model 3 B  
+  - Hardware
+    * Raspberry Pi Model 3 B
+
+  - 형상관리
+    * Git(2.27.0) & Sourcetree, Slack 메신저, oven 스토리 보드 활용
   
