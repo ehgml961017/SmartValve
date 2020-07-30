@@ -20,7 +20,7 @@ android api version 24부터 정상작동하는것 확인
   - Android  
     1. FCM  
     2. base adapter  
-    3. thread, timer, json  
+    3. coroutines, timer, json, junit  
       
   - Springboot  
     1. AWS EC2 서버RDS MariaDB 연동  
@@ -28,7 +28,7 @@ android api version 24부터 정상작동하는것 확인
     3. 안드로이드  푸쉬알림(firebase)
     4. slf4j,tomcat,lombok,jstl
       
-  - WEB FrontEnd  
+  - WEB Front  
     1. html, css, java script, d3, bootstrap
       
   - Raspberry Pi  
@@ -44,4 +44,12 @@ android api version 24부터 정상작동하는것 확인
   - WEB Front  
   - Raspberry Pi  
   
-## 개발환경
+## 개발환경  
+  - Android  
+    * compile SDK ver. : 30  
+    * build tool Ver.  : 30.0.0  
+    * minimum SKD ver. : 22 (실행 SDK 24이상 권장)  
+    
+  - Springboot  
+  - WEB Front  
+  - Raspberry Pi  
