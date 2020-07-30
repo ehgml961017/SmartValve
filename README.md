@@ -45,25 +45,25 @@ android api version 24부터 정상작동하는것 확인
   - WEB Front  
   - Raspberry Pi  
   
-## 개발환경  
+## 개발환경
+  - Git(2.27.0) & Sourcetree, Slack 메신저, oven 스토리 보드 활용  
+ 
   - Android  
-    * compile SDK ver. : 30  
-    * build tool Ver.  : 30.0.0  
-    * minimum SKD ver. : 22 (실행 SDK 24이상 권장)  
+    * Language & IDE : Kotlin, Android Studio
+    * Compile SDK ver. : 30  
+    * Build tool Ver.  : 30.0.0  
+    * Minimum SKD ver. : 22 (실행 SDK 24이상 권장)  
     
   - Springboot
-    Web
-    * SERVER : TOMCAT 11.0
-    * DATABASE : MariaDB 10.3.20(AWS EC2 RDS생성)
+    * Server : Tomcat 9.0.3
+    * Database : MariaDB 10.3(AWS EC2 RDS생성)
     * IDE : Intellij(Ultimate Version)
-    * FrontEnd : Bootstrap, Javascript, HTML5, CSS3
-    * Language & Framework : Java 8, Spring boot 2.3.1
-    App
-    * Language & Framework : Kotlin , Anroid Studio
-    * DATABASE : MariaDB 10.3.20             
-    * Git(2.27.0) & Sourcetree, Slack 메신저, oven 스토리 보드 활용
-    * 라즈베리파이 Model 3 B
+    * Framework : Springboot 2.1.7
+    * Java JDK ver. : 1.8
     
   - WEB Front  
-  - Raspberry Pi  
+    * IDE : Intellij(Ultimate Version)
+    
+  - Raspberry Pi
+    * Raspberry Pi Model 3 B  
   
