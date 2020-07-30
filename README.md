@@ -24,12 +24,12 @@ android api version 24부터 정상작동하는것 확인
       
   - Springboot  
     1. AWS EC2 서버RDS MariaDB 연동  
-    2. mybatis , JSP, JSON , spring scheduling,
+    2. mybatis , JSP, JSON , spring scheduling, d3
     3. 안드로이드  푸쉬알림(firebase)
-    4. slf4j,tomcat,lombok,jstl  
+    4. slf4j,tomcat,lombok,jstl
       
   - WEB FrontEnd  
-    1. html, css, java script  
+    1. html, css, java script, d3, bootstrap
       
   - Raspberry Pi  
     1. DB Data Response  
@@ -42,3 +42,5 @@ android api version 24부터 정상작동하는것 확인
   - Springboot + DB 실행  
   - WEB Front  
   - Raspberry Pi  
+  
+## 개발환경
