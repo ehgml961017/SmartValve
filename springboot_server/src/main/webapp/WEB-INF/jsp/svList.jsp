@@ -24,21 +24,32 @@
     <title>스마트 밸브 리스트</title>
 </head>
 <style>
-    .align {
-        text-align: center
-    }
+.align{
+text-align:center
+}
+
+div{
+background-image:url("https://images.unsplash.com/photo-1550223026-0d6fd780c560?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80");
+}
+
+body {
+margin:0 auto;
+}
+
 </style>
 <link rel="stylesheet"
       href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <body>
 <section>
+    <div>
     <p>
     <h1 class="align">Smart Valve
         <img src="/resources/logo.png" width=40px
              height=40px>
     </h1>
     </p>
+    </div>
     <hr>
 </section>
 <section>
