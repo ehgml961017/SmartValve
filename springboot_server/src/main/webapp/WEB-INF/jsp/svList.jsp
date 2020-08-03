@@ -12,6 +12,11 @@
     int sw1 = numArr.get(0).getSw1();
     int sw2 = numArr.get(0).getSw2();
 
+//    int time1 = numArr.get(1).getValve_time();
+//    int time2 = numArr.get(1).getCork_time();
+//    int time3 = numArr.get(2).getValve_time();
+//    int time4 = numArr.get(2).getCork_time();
+
 %>
 <!doctype html>
 <html lang="ko">
@@ -21,9 +26,11 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="http://d3js.org/d3.v3.js"></script>
-    <title>스마트 밸브 리스트</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <title>Smart Valve List</title>
 </head>
 <style>
+<<<<<<< HEAD
     .align {
         text-align: center
     }
@@ -82,18 +89,55 @@
         display: inline-block;
         width: 60px;
     }
+=======
+.align {
+    text-align: center;
+    background-image: url('/resources/le-creuset-04rqqMN_x7Q-unsplash.jpg');
+    background-size: 1200px;
+    height: 150px;
+    padding-top: 40px;
+}
+.grid line {
+    stroke: lightgrey;
+    stroke-opacity: 0.7;
+}
+.lineChart {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 1.5px;
+}
+.lineChart:hover {
+    stroke: black;
+    stroke-width: 3px;
+}
+.toolTip {
+    position: absolute;
+    border: 1px solid;
+    border-radius: 4px 4px 4px 4px;
+    background: rgba(0, 0, 0, 0.8);
+    color : white;
+    padding: 5px;
+    text-align: center;
+    font-size: 12px;
+    min-width: 30px;
+}
+
+>>>>>>> 0d36c64bba2d02c8d9ff78fd18efec37cc95a318
 </style>
+
 <link rel="stylesheet"
       href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <body>
 <section>
+    <div>
     <p>
-    <h1 class="align">Smart Valve
-        <img src="/resources/logo.png" width=40px
-             height=40px>
-    </h1>
+        <h1 class="align">Smart Valve
+            <img src="/resources/logo.png" width=40px;
+                 height=40px;>
+        </h1>
     </p>
+    </div>
     <hr>
 </section>
 <section>
@@ -171,6 +215,7 @@
     </article>
 </section>
 
+<<<<<<< HEAD
 
 <c:forEach items="${list}" var="list">
     <div>
@@ -191,8 +236,9 @@
 <%--        .style("height", d => d.val + "%"); //선택물의 data속성 값으로 막대의 높이(height)를 바꿔줍니다.--%>
 
 <%--</script>--%>
+=======
+>>>>>>> 0d36c64bba2d02c8d9ff78fd18efec37cc95a318
 <script>
-
     function on_sw1() {
 
         let off_sw1 =<%=sw1%>;
@@ -233,7 +279,12 @@
             alert("스위치를 먼저 켜주세요.");
         }
     }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 0d36c64bba2d02c8d9ff78fd18efec37cc95a318
 </script>
+
+</body>
 </html>

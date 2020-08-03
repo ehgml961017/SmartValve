@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ page import="com.springboot.smartvalve.dto.SvDTO" %>
 <%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -16,9 +17,14 @@
 //    int time3 = numArr.get(2).getValve_time();
 //    int time4 = numArr.get(2).getCork_time();
 %>
+=======
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
+>>>>>>> 0d36c64bba2d02c8d9ff78fd18efec37cc95a318
 <!doctype html>
 <html lang="ko">
 <head>
+<<<<<<< HEAD
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -26,6 +32,10 @@
     <script src="http://d3js.org/d3.v3.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <title>Smart Valve List</title>
+=======
+    <title>Smart Valve</title>
+    <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+>>>>>>> 0d36c64bba2d02c8d9ff78fd18efec37cc95a318
 </head>
 <style>
     .align {
@@ -104,6 +114,7 @@
 <link rel="stylesheet"
       href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <body>
+<<<<<<< HEAD
 <section>
     <div>
         <p>
@@ -397,4 +408,32 @@
             return d;
         });
 </script>
+=======
+        <section>
+            <div class="bg">
+                <img src="/resources/bg1.jpg" width=100%>
+            </div>
+            <img src="/resources/1.png" class="layer" data-speed="4">
+            <img src="/resources/2.png" class="layer logo" data-speed="-4" width=60px>
+        </section>
+        <script type="text/javascript">
+            window.location.href="/"
+            document.addEventListener('mousemove', parallax);
+            function parallax(e){
+                this.querySelectorAll('.layer').
+                    forEach(layer =>{
+                    var speed = layer.get
+                        Attribute('data-speed')
+                    var x = (window.innerWidth -
+                        e.pageX * speed)/100
+                    var y = (window.innerWidth -
+                        e.pageY * speed)/100
+                    layer.style.transform = '
+                        translateX(${x}px)
+                        translateX(${y}px) '
+                })
+            }
+        </script>
+    </body>
+>>>>>>> 0d36c64bba2d02c8d9ff78fd18efec37cc95a318
 </html>

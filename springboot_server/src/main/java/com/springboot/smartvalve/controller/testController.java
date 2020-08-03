@@ -60,15 +60,4 @@ public class testController {
         return "redirect:/svList";
     }
 
-    @GetMapping("/insert")
-    public String testDataInput(SvDTO svDTO, RedirectAttributes rttr ) throws Exception{
-        if((svDTO.getSw1() != 0) & (svDTO.getSw2() != 0)) {
-
-            svService.insertValue(svDTO);
-            rttr.addFlashAttribute("result", "registerOk");
-        }
-        System.out.println(svDTO.getSw1());
-        return "redirect:/svList";
-    }
-
 }
