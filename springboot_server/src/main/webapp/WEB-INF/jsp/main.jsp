@@ -4,18 +4,18 @@
 <html>
 <head>
     <title>Smart Valve</title>
-    <link rel="stylesheet" type="text/css" href="style.css"
+    <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 </head>
 <body>
         <section>
             <div class="bg">
-                <img src="bg1.jpg" class="layer" data-speed="-2">
+                <img src="/resources/bg1.jpg" class="layer" data-speed="-2" width=100%>
             </div>
-            <img src="Smart Valve icon.png" class="layer" data-speed="4">
+            <img src="/resources/1.png" class="layer" data-speed="4">
+            <img src="/resources/2.png" class="layer logo" data-speed="-4" width=60px>
         </section>
         <script type="text/javascript">
-            document.addEventListener('mousemove'
-                , parallax);
+            document.addEventListener('mousemove', parallax);
             function parallax(e){
                 this.querySelectorAll('.layer').
                     forEach(layer =>{
