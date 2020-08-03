@@ -27,23 +27,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="http://d3js.org/d3.v3.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
-    <title>스마트 밸브 리스트</title>
+    <title>Smart Valve List</title>
 </head>
 <style>
-<<<<<<< HEAD
 .align{
 text-align:center
+
 }
 
 div{
-background-image:url("https://images.unsplash.com/photo-1550223026-0d6fd780c560?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80");
+background-image:url('/resources/le-creuset-04rqqMN_x7Q-unsplash.jpg');
+background-size: 1200px;
+height: 150px;
+padding-top:15px;
 }
 
 body {
-margin:0 auto;
-}
 
-=======
     .align {
         text-align: center
     }
@@ -94,7 +94,6 @@ margin:0 auto;
     font-size: 12px;
     min-width: 30px;
     }
->>>>>>> d0985dd0aa9c969c075a4c9b48e4d1cba86f7eae
 </style>
 <link rel="stylesheet"
       href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">

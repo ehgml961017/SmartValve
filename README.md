@@ -15,6 +15,7 @@ android api version 24부터 정상작동하는것 확인
   2. 마지막으로 사용된 가스레인지의 시간 확인 가능  
   3. 최근 10건의 가스레인지 사용기록을 확인 가능  
   4. 이미지를 통해 직관적인 가스레인지 현황 확인 가능
+  5. 차트를 통한 가스밸브, 콕크 사용시간 확인 가능
     
 ## 사용한 기술셋 
   - Android  
@@ -44,12 +45,30 @@ android api version 24부터 정상작동하는것 확인
   - WEB Front  
   - Raspberry Pi  
   
-## 개발환경  
+## 개발환경
+  
   - Android  
-    * compile SDK ver. : 30  
-    * build tool Ver.  : 30.0.0  
-    * minimum SKD ver. : 22 (실행 SDK 24이상 권장)  
+    * Language & IDE : Kotlin, Android Studio
+    * Compile SDK ver. : 30  
+    * Build tool Ver.  : 30.0.0  
+    * Minimum SKD ver. : 22 (실행 SDK 24이상 권장)  
     
-  - Springboot  
+  - Springboot
+    * Server : Tomcat 9.0.3
+    * Database : MariaDB 10.3.20(AWS EC2 RDS생성)
+                ,MariaDB-java-client:2.6.0
+    * IDE : Intellij(Ultimate Version 2020.1.2)
+    * Framework : Springboot 2.1.7
+    * Java JDK ver. : 1.8
+    * AWS : EC2 Amazon Linux1
+    * ORM : Mybatis(3.5.5), Mybatis-spring(2.0.5)
+    
   - WEB Front  
-  - Raspberry Pi  
+    * IDE : Intellij(Ultimate Version)
+    
+  - Hardware
+    * Raspberry Pi Model 3 B
+
+  - 형상관리
+    * Git(2.27.0) & Sourcetree, Slack 메신저, oven 스토리 보드 활용
+  
