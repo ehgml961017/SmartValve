@@ -27,10 +27,22 @@
     .align {
         text-align: center
     }
-    .blue{background: #5abae6; }
-    .red{background: #d34e4e; }
-    .green{background: #9dbb19; }
-    .yellow{background: #f7b358; }
+
+    .blue {
+        background: #5abae6;
+    }
+
+    .red {
+        background: #d34e4e;
+    }
+
+    .green {
+        background: #9dbb19;
+    }
+
+    .yellow {
+        background: #f7b358;
+    }
 
     div {
         margin: 50px 50px;
@@ -39,27 +51,30 @@
         position: relative;
     }
 
-    span:nth-of-type(1){
+    span:nth-of-type(1) {
         height: 100%;
         left: 0px;
     }
-    span:nth-of-type(2){
+
+    span:nth-of-type(2) {
         height: 80%;
         left: 70px;
     }
-    span:nth-of-type(3){
+
+    span:nth-of-type(3) {
         height: 60%;
         left: 140px;
     }
-    span:nth-of-type(4){
+
+    span:nth-of-type(4) {
         height: 20%;
         left: 210px;
     }
 
-    span{
+    span {
         bottom: 0;
         position: absolute;
-        font-size:20px;
+        font-size: 20px;
         line-height: 20px;
         color: #FFF;
         text-align: center;
@@ -165,66 +180,59 @@
 </c:forEach>
 
 </body>
-<script>
-    d3.selectAll("span")
-    .datum(function(){ return this.dataset}) //data삽입, 선택물 각각의 속성에서 dataset을 data로 가져옴
-    .style("height","0%")//초기 높이 값을 설정 한다.
-    .style("left",(d,i)=>(i*80)+"px") //전달인수 d=data, i=index
-    .transition().duration(1500) //막대 그래프가 1.5초동안 천천히 움직이게 합니다.
-    .style("height", d=>d.val+ "%"); //선택물의 data속성 값으로 막대의 높이(height)를 바꿔줍니다.
+<%--<script>--%>
+<%--    d3.selectAll("span")--%>
+<%--        .datum(function () {--%>
+<%--            return this.dataset--%>
+<%--        }) //data삽입, 선택물 각각의 속성에서 dataset을 data로 가져옴--%>
+<%--        .style("height", "0%")//초기 높이 값을 설정 한다.--%>
+<%--        .style("left", (d, i) => (i * 80) + "px") //전달인수 d=data, i=index--%>
+<%--        .transition().duration(1500) //막대 그래프가 1.5초동안 천천히 움직이게 합니다.--%>
+<%--        .style("height", d => d.val + "%"); //선택물의 data속성 값으로 막대의 높이(height)를 바꿔줍니다.--%>
 
-</script>
+<%--</script>--%>
 <script>
 
     function on_sw1() {
 
-        var off_sw1 = <%=sw1%>
-        if (off_sw1==0) {
+        let off_sw1 =<%=sw1%>;
+        if (off_sw1 === 0) {
             alert("1번스위치 시작");
-            location.href = "/onSw1?num=<%=num%>&sw1=<%=sw1%>&sw2=<%=sw2%>";
-        }
-        else
-        {
-            alert("스위치가 이미 켜져있습니다 확인해주세요..")
+            location.href = "/onSw1?num=<%=num%>&sw1=<%=sw1+1%>&sw2=<%=sw2%>";
+        } else {
+            alert("스위치가 이미 켜져있습니다 확인해주세요..");
         }
     }
 
     function off_sw1() {
-        var on_sw1 = <%=sw1%>
-        if (on_sw1==1) {
+        let on_sw1 =<%=sw1%>
+        if (on_sw1 === 1) {
             alert("1번스위치 종료");
             location.href = "/offSw1?num=<%=num%>&sw1=<%=sw1%>&sw2=<%=sw2%>";
-        }
-        else
-        {
+        } else {
             alert("스위치를 먼저 켜주세요.");
         }
     }
 
     function on_sw2() {
-        var off_sw2 = <%=sw2%>
-        if (off_sw2==0) {
+        let off_sw2 =<%=sw2%>
+        if (off_sw2 === 0) {
             alert("2번스위치 시작");
-            location.href = "/onSw2?num=<%=num%>&sw1=<%=sw1%>&sw2=<%=sw2%>";
-        }
-        else
-        {
-            alert("스위치가 이미 켜져있습니다 확인해주세요..")
+            location.href = "/onSw2?num=<%=num%>&sw1=<%=sw1%>&sw2=<%=sw2+1%>";
+        } else {
+            alert("스위치가 이미 켜져있습니다 확인해주세요..");
         }
     }
 
     function off_sw2() {
-        var on_sw2 = <%=sw2%>
-        if (on_sw2==1) {
+        let on_sw2 =<%=sw2%>
+        if (on_sw2 === 1) {
             alert("2번스위치 종료");
             location.href = "/offSw2?num=<%=num%>&sw1=<%=sw1%>&sw2=<%=sw2%>";
-        }
-        else
-        {
-            alert("스위치를 먼저 켜주세요.")
+        } else {
+            alert("스위치를 먼저 켜주세요.");
         }
     }
-
 
 
 </script>

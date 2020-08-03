@@ -2,12 +2,14 @@ package com.springboot.smartvalve.service;
 
 import com.springboot.smartvalve.dto.SvDTO;
 import com.springboot.smartvalve.mapper.SvMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Slf4j
 public class SvService {
     @Autowired
     SvMapper svMapper;
@@ -45,7 +47,7 @@ public class SvService {
         svMapper.sw2_on(svDTO);
     }
     public void offSw2(SvDTO svDTO) throws Exception {
-        System.out.println("아나 진짜 :"+svDTO);
+        log.debug("확인용"+svDTO);
         svMapper.sw2_off(svDTO);
         svDTO.setSw2(0);
         if((svDTO.getSw1()==0) && (svDTO.getSw2()==0)){
