@@ -49,9 +49,9 @@ android api version 24부터 정상작동하는것 확인
   
   - Android  
     * Language & IDE : Kotlin, Android Studio
-    * Compile SDK ver. : 30  
-    * Build tool Ver.  : 30.0.0  
-    * Minimum SKD ver. : 22 (실행 SDK 24이상 권장)  
+    * Compile SDK version : 30  
+    * Build tool Version  : 30.0.0  
+    * Minimum SKD version : 22 (실행 SDK 24이상 권장)  
     
   - Springboot
     * Server : Tomcat 9.0.3
