@@ -19,28 +19,28 @@ android api version 24부터 정상작동하는것 확인
     
 ## 사용한 기술셋 
   - Android  
-    1. FCM  
-    2. base adapter  
-    3. coroutines, timer, json, junit  
+    * FCM  
+    * base adapter  
+    * coroutines, timer, json, junit  
       
   - Springboot  
-    1. AWS EC2 서버RDS MariaDB 연동  
-    2. mybatis , JSP, JSON , spring scheduling, d3
-    3. 안드로이드  푸쉬알림(firebase)
-    4. slf4j,tomcat,lombok,jstl
+    * AWS EC2 서버RDS MariaDB 연동  
+    * mybatis , JSP, JSON , spring scheduling, d3
+    * FCM
+    * slf4j,tomcat,lombok,jstl
       
   - WEB Front  
-    1. html, css, java script, d3, bootstrap
+    * html, css, java script, d3, bootstrap
       
   - Raspberry Pi  
-    1. DB Data Response  
+    * DB Data Response  
       구글에서 "Python Json 연결" 검색  
-    2. SW1, SW2 On/Off시 LED On/Off  
+    * SW1, SW2 On/Off시 LED On/Off  
       교재 실습 예제파일 응용중  
         
 ## Local에서 돌려보는 매뉴얼  
   - Android  
-    https://blog.naver.com/ehgml961017/222046346179
+    https://blog.naver.com/ehgml961017/222046346179  
   - Springboot + DB 실행  
   - WEB Front  
   - Raspberry Pi  
@@ -49,9 +49,9 @@ android api version 24부터 정상작동하는것 확인
   
   - Android  
     * Language & IDE : Kotlin, Android Studio
-    * Compile SDK ver. : 30  
-    * Build tool Ver.  : 30.0.0  
-    * Minimum SKD ver. : 22 (실행 SDK 24이상 권장)  
+    * Compile SDK version : 30  
+    * Build tool Version  : 30.0.0  
+    * Minimum SKD version : 22 (실행 SDK 24이상 권장)  
     
   - Springboot
     * Server : Tomcat 9.0.3
