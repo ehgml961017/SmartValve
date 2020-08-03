@@ -17,15 +17,17 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.util.*
 import java.util.concurrent.Delayed
+import kotlin.collections.ArrayList
 import kotlin.concurrent.thread
 import kotlin.concurrent.timerTask
 
 val ON:Int = 1
 val OFF:Int = 0
-var JSON_URL = "http://192.168.0.90:8085/query"
+//var JSON_URL = "http://192.168.0.90:8085/query"
+var JSON_URL = "http://192.168.0.45:8085/query"
 var knobStatus:Int = OFF
 var valveStatus:Int = OFF
-//var timerTask:Timer? = null
+var num = 0;
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +43,19 @@ class MainActivity : AppCompatActivity() {
             val token = task.result?.token
             Log.i("testLog", "token : $token")
         })
+
+        image_valve.setOnClickListener {
+            Thread(){
+                if(valveStatus == ON) valveOff()
+                else valveOn()
+            }.start()
+        }
+        image_knob.setOnClickListener {
+            Thread(){
+                if(knobStatus == ON) knobOff()
+                else knobOn()
+            }.start()
+        }
     }
 
     override fun onResume() {
@@ -63,12 +78,14 @@ class MainActivity : AppCompatActivity() {
                 else log_main_body.text = "No data"
             }
         }.start()
+
     }
 
+    // using polling, it connects to web server and request current valve & knob's status
     fun CheckStatus(){
         Log.i("testLog", "checkStatus")
         var timerTask:Timer? = kotlin.concurrent.timer(period = 500) {
-            Log.i("testLog", "while ---")
+            // connect to server
             val url = URL(JSON_URL)
             val conn = url.openConnection() as HttpURLConnection // casting
             Log.i("testLog", "conn.responseCode : ${conn.responseCode}")
@@ -84,6 +101,7 @@ class MainActivity : AppCompatActivity() {
                 Log.i("testLog", "response fail")
             }
 
+            // show status using image's color
             if (knobStatus == ON) {
                 Log.i("testLog", "knob on")
                 image_knob.setImageResource(R.drawable.fire_on)
@@ -98,9 +116,11 @@ class MainActivity : AppCompatActivity() {
                 Log.i("testLog", "valve off")
                 image_valve.setImageResource(R.drawable.fire_off)
             }
+            Log.i("testLog", "num : $num")
         }
     }
 
+    // using polling, it gets last log and shows in view
     fun UpdateMainLog():String{
         var res:String = "null";
         val timerTask:Timer? = kotlin.concurrent.timer(period = 1500){
@@ -113,8 +133,54 @@ class MainActivity : AppCompatActivity() {
                 val arr = JSONArray(txt)
                 var item = arr.get(0) as JSONObject
                 res = "${item["on_sw1"]}"
+                num = "${item["num"]}".toInt()
             } else res = "null"
         }
         return res
+    }
+
+    fun valveOn(){
+        var res:String = "http://192.168.0.45:8085/onSw1?num=${num}&sw1=${valveStatus}&sw2=${knobStatus}";
+        val url = URL(res)
+        Log.i("urlLog", "$res")
+        val conn = url.openConnection() as HttpURLConnection // casting
+        Log.i("urlLog", "conn.responseCode : ${conn.responseCode}")
+
+        if(conn.responseCode == 200){
+            Log.i("urlLog", "valveOn")
+        } else Log.i("urlLog", "fail")
+    }
+    fun valveOff(){
+        var res:String = "http://192.168.0.45:8085/offSw1?num=${num}&sw1=${valveStatus}&sw2=${knobStatus}";
+        val url = URL(res)
+        Log.i("urlLog", "$res")
+        val conn = url.openConnection() as HttpURLConnection // casting
+        Log.i("urlLog", "conn.responseCode : ${conn.responseCode}")
+
+        if(conn.responseCode == 200){
+            Log.i("urlLog", "valve Off")
+        } else Log.i("urlLog", "fail")
+    }
+    fun knobOn(){
+        var res:String = "http://192.168.0.45:8085/onSw2?num=${num}&sw1=${valveStatus}&sw2=${knobStatus}";
+        val url = URL(res)
+        Log.i("urlLog", "$res")
+        val conn = url.openConnection() as HttpURLConnection // casting
+        Log.i("urlLog", "conn.responseCode : ${conn.responseCode}")
+
+        if(conn.responseCode == 200){
+            Log.i("urlLog", "knob on")
+        } else Log.i("urlLog", "fail")
+    }
+    fun knobOff(){
+        var res:String = "http://192.168.0.45:8085/offSw2?num=${num}&sw1=${valveStatus}&sw2=${knobStatus}";
+        val url = URL(res)
+        Log.i("urlLog", "$res")
+        val conn = url.openConnection() as HttpURLConnection // casting
+        Log.i("urlLog", "conn.responseCode : ${conn.responseCode}")
+
+        if(conn.responseCode == 200){
+            Log.i("urlLog", "knob off")
+        } else Log.i("urlLog", "fail")
     }
 }

@@ -1,7 +1,8 @@
-# coding: utf-8
+#-*-coding: utf-8-*-
 
 # GPIO 라이브러리 임포트
 import RPi.GPIO as GPIO
+import time
 
 def main():
     # 핀 번호 할당 방법을 커넥터 핀 번호로 설정
@@ -13,43 +14,58 @@ def main():
     SW2 = 19
     LED2 = 23
 
-    # 11번 핀을 출력 핀으로 설정, 초기 출력은 로우 레벨
+    # LED1, 11번 핀을 출력 핀으로 설정, 초기 출력은 로우 레벨
     GPIO.setup(LED1, GPIO.OUT, initial=GPIO.LOW)
+    # LED2, 23번 핀을 출력 핀으로 설정, 초기 출력은 로우 레벨
     GPIO.setup(LED2, GPIO.OUT, initial=GPIO.LOW)
 
-    # 7번 핀을 입력 핀으로 설정
+    # SW1, 7번 핀을 입력 핀으로 설정
     GPIO.setup(SW1, GPIO.IN)
+    # SW2, 19번 핀을 입력 핀으로 설정
     GPIO.setup(SW2, GPIO.IN)
 
     # 예외 처리
     try:
-
-    # 무한 반복
+        isLedOn1 = False
+        isLedOn2 = False
+        # 무한 반복
         while 1:
+            print('listening...')
+            print('isLedOn1', isLedOn1)
             # 스위치 상태를 변수 key_in에 할당
             key_in1 = GPIO.input(SW1)
             # 변수 key_in 상태 판별
-            if key_in1==0:
-                # 하이 레벨 출력
-                GPIO.output(LED1, GPIO.HIGH)
-            else:
-                # 로우 레벨 출력
-                GPIO.output(LED1, GPIO.LOW)
+            if key_in1==0: # 눌렀을 때
+                if isLedOn1 == False:               # isLedOn1이 False 일때
+                    GPIO.output(LED1, GPIO.HIGH)    # 하이 레벨 출력
+                    isLedOn1 = True                 # 하이레벨 출력 시 isLedOn1은 True
+                    pass                            # 아무것도 안 함
+                else:                    
+                    GPIO.output(LED1, GPIO.LOW)     # 로우 레벨 출력
+                    isLedOn1 = False                # 로우 레벨 출력 시 isLedOn1은 False
+                    pass                            # 아무것도 안 함
+            time.sleep(0.5)                         # 0.5초 대기
 
+            print('listening...')
+            print('isLedOn2', isLedOn2)
+            # 스위치 상태를 변수 key_in에 할당
             key_in2 = GPIO.input(SW2)
             # 변수 key_in 상태 판별
-            if key_in2==0:
-                # 하이 레벨 출력
-                GPIO.output(LED2, GPIO.HIGH)
-            else:
-                # 로우 레벨 출력
-                GPIO.output(LED2, GPIO.LOW)
+            if key_in2==0: # 눌렀을 때
+                if isLedOn2 == False:               # isLedOn1이 False 일때
+                    GPIO.output(LED2, GPIO.HIGH)    # 하이 레벨 출력
+                    isLedOn2 = True                 # 하이레벨 출력 시 isLedOn1은 True
+                    pass                            # 아무것도 안 함
+                else:
+                    GPIO.output(LED2, GPIO.LOW)     # 로우 레벨 출력
+                    isLedOn2 = False                # 로우 레벨 출력 시 isLedOn1은 False
+                    pass                            # 아무것도 안 함
+            time.sleep(0.5)                         # 0.5초 대기    
 
     # 키보드 예외 검출
     except KeyboardInterrupt:
         # 아무것도 하지 않음
         pass
-
 
     # GPIO 개방
     GPIO.cleanup()

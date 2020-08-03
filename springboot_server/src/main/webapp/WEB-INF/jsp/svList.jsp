@@ -195,7 +195,7 @@ body {
     </div>--%>
 <%--</c:forEach>--%>
 <svg width="1000" height="500"></svg>
-</body>
+
 <%--<script>
     d3.selectAll("span")
     .datum(function(){ return this.dataset}) //data삽입, 선택물 각각의 속성에서 dataset을 data로 가져옴
@@ -372,5 +372,5 @@ body {
         .text(function(d) { return d; });
 
 </script>
-
+</body>
 </html>
