@@ -27,7 +27,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="http://d3js.org/d3.v3.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
-    <title>스마트 밸브 리스트</title>
+    <title>Smart Valve List</title>
 </head>
 <style>
 .align{
