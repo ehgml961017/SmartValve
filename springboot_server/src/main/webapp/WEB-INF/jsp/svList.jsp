@@ -30,15 +30,37 @@
     <title>Smart Valve List</title>
 </head>
 <style>
-.align{
-    text-align:center;
-    background-image:url('/resources/le-creuset-04rqqMN_x7Q-unsplash.jpg');
+.align {
+    text-align: center;
+    background-image: url('/resources/le-creuset-04rqqMN_x7Q-unsplash.jpg');
     background-size: 1200px;
     height: 150px;
-    padding-top:15px;
-
+    padding-top: 35px;
 }
-
+.grid line {
+    stroke: lightgrey;
+    stroke-opacity: 0.7;
+}
+.lineChart {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 1.5px;
+}
+.lineChart:hover {
+    stroke: black;
+    stroke-width: 3px;
+}
+.toolTip {
+    position: absolute;
+    border: 1px solid;
+    border-radius: 4px 4px 4px 4px;
+    background: rgba(0, 0, 0, 0.8);
+    color : white;
+    padding: 5px;
+    text-align: center;
+    font-size: 12px;
+    min-width: 30px;
+}
 
 </style>
 
@@ -49,10 +71,10 @@
 <section>
     <div>
     <p>
-    <h1 class="align">Smart Valve
-        <img src="/resources/logo.png" width=40px
-             height=40px>
-    </h1>
+        <h1 class="align">Smart Valve
+            <img src="/resources/logo.png" width=40px;
+                 height=40px;>
+        </h1>
     </p>
     </div>
     <hr>
@@ -132,10 +154,7 @@
     </article>
 </section>
 
-<svg width="1000" height="500"></svg>
-
 <script>
-
     function on_sw1() {
 
         var off_sw1 = <%=sw1%>
@@ -184,9 +203,6 @@
             alert("스위치를 먼저 켜주세요.")
         }
     }
-
-
-
 </script>
 
 </body>
