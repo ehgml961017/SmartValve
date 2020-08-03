@@ -35,7 +35,7 @@
     background-image: url('/resources/le-creuset-04rqqMN_x7Q-unsplash.jpg');
     background-size: 1200px;
     height: 150px;
-    padding-top: 35px;
+    padding-top: 40px;
 }
 .grid line {
     stroke: lightgrey;
