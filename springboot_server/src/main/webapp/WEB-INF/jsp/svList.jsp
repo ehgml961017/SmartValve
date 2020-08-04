@@ -38,15 +38,15 @@
     padding-top: 40px;
 }
 .grid line {
-    stroke: lightgrey; /* 선의 색 */
-    stroke-opacity: 0.7; /* 선 투명도 */
+    stroke: lightgrey;
+    stroke-opacity: 0.7;
 }
 .lineChart {
-    fill: none; /* 선 채우기 */
+    fill: none;
     stroke: steelblue;
-    stroke-width: 1.5px; /* 선 굵기 */
+    stroke-width: 1.5px;
 }
-.lineChart:hover { /*차트에 마우스를 올리면 변환*/
+.lineChart:hover {
     stroke: black;
     stroke-width: 3px;
 }
