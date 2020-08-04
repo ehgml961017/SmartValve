@@ -89,7 +89,7 @@ body { text-align: center; }
                 <th>cork</th>
                 <th>valve_on_date</th>
                 <th>valve_off_date</th>
-                <th>cork_on_date
+                <th>cork_on_date</th>
                 <th>cork_off_date</th>
                 <th>valve_time</th>
                 <th>cork_time</th>
@@ -200,7 +200,46 @@ body { text-align: center; }
 </script>
 <svg width="800" height="420"></svg>
 <script> /*차트 script*/
-
+/*
+var series = ["valve_time", "cork_time"];
+$(document).ready(function () {
+    jQuery.ajax({
+        type: "GET",
+        url: "/query",
+        dataType: "JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+    });
+});
+var dataset = [
+    {
+        '1': 23,
+        '2': 27,
+        '3': 37,
+        '4': 27,
+        '5': 17,
+        '6': 7,
+        '7': 9,
+        '8': 19,
+        '9': 29,
+        '10': 19,
+        '11': 9,
+        '12': 0
+    },
+    {
+        '1': 9,
+        '2': 19,
+        '3': 29,
+        '4': 39,
+        '5': 29,
+        '6': 19,
+        '7': 9,
+        '8': 7,
+        '9': 17,
+        '10': 27,
+        '11': 17,
+        '12': 7
+    }
+];
+*/
     var series = ["valve_time", "cork_time"];
 
     var dataset = [
