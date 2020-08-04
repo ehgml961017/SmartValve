@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @Slf4j
 public class SNSLoginContoller {
-    @RequestMapping("/")
+    @RequestMapping("/main")
     public String login() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         log.info(auth.getPrincipal().toString());
