@@ -30,66 +30,6 @@
     <title>Smart Valve List</title>
 </head>
 <style>
-<<<<<<< HEAD
-    .align {
-        text-align: center
-    }
-
-    .blue {
-        background: #5abae6;
-    }
-
-    .red {
-        background: #d34e4e;
-    }
-
-    .green {
-        background: #9dbb19;
-    }
-
-    .yellow {
-        background: #f7b358;
-    }
-
-    div {
-        margin: 50px 50px;
-        height: 400px;
-        border: 1px solid #FFF;
-        position: relative;
-    }
-
-    span:nth-of-type(1) {
-        height: 100%;
-        left: 0px;
-    }
-
-    span:nth-of-type(2) {
-        height: 80%;
-        left: 70px;
-    }
-
-    span:nth-of-type(3) {
-        height: 60%;
-        left: 140px;
-    }
-
-    span:nth-of-type(4) {
-        height: 20%;
-        left: 210px;
-    }
-
-    span {
-        bottom: 0;
-        position: absolute;
-        font-size: 20px;
-        line-height: 20px;
-        color: #FFF;
-        text-align: center;
-        border-radius: 15px;
-        display: inline-block;
-        width: 60px;
-    }
-=======
 .align {
     text-align: center;
     background-image: url('/resources/le-creuset-04rqqMN_x7Q-unsplash.jpg');
@@ -123,7 +63,6 @@
 }
 body { text-align: center; }
 
->>>>>>> 0d36c64bba2d02c8d9ff78fd18efec37cc95a318
 </style>
 
 <link rel="stylesheet"
@@ -215,30 +154,8 @@ body { text-align: center; }
         <button id="off_sw2" onclick="off_sw2()">sw2(off)</button>
     </article>
 </section>
-
-<<<<<<< HEAD
-
-<c:forEach items="${list}" var="list">
-    <div>
-        <span class="blue" data-val=${list.valve_time}>A</span>
-        <span class="red" data-val=${list.cork_time}>B</span>
-    </div>
-</c:forEach>
-
 </body>
-<%--<script>--%>
-<%--    d3.selectAll("span")--%>
-<%--        .datum(function () {--%>
-<%--            return this.dataset--%>
-<%--        }) //data삽입, 선택물 각각의 속성에서 dataset을 data로 가져옴--%>
-<%--        .style("height", "0%")//초기 높이 값을 설정 한다.--%>
-<%--        .style("left", (d, i) => (i * 80) + "px") //전달인수 d=data, i=index--%>
-<%--        .transition().duration(1500) //막대 그래프가 1.5초동안 천천히 움직이게 합니다.--%>
-<%--        .style("height", d => d.val + "%"); //선택물의 data속성 값으로 막대의 높이(height)를 바꿔줍니다.--%>
 
-<%--</script>--%>
-=======
->>>>>>> 0d36c64bba2d02c8d9ff78fd18efec37cc95a318
 <script>
     function on_sw1() {
 
@@ -280,11 +197,6 @@ body { text-align: center; }
             alert("스위치를 먼저 켜주세요.");
         }
     }
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 0d36c64bba2d02c8d9ff78fd18efec37cc95a318
 </script>
 <svg width="800" height="420"></svg>
 <script> /*차트 script*/
