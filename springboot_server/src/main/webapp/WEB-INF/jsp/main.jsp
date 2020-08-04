@@ -11,7 +11,7 @@
     <div class="bg">
         <img src="/resources/bg1.jpg" width=100%>
     </div>
-    <a href="/svList">
+    <a href="/login">
     <img src="/resources/1.png" class="layer logo" data-speed="-4" width=300px>
     </a>
 </section>

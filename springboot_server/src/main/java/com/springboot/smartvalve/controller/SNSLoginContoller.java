@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @Slf4j
 public class SNSLoginContoller {
-    @RequestMapping("/main")
+    @RequestMapping("/")
     public String login() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         log.info(auth.getPrincipal().toString());
         return "main";
     }
 
-    @RequestMapping("/callback")
-    public String callback() {
-        System.out.println("redirecting to home page");
-        return "home";
-    }
+//    @RequestMapping("/callback")
+//    public String callback() {
+//        System.out.println("redirecting to home page");
+//        return "home";
+//    }
 }
