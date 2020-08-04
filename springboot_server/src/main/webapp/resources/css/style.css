@@ -27,16 +27,16 @@ section .bg img
     height: 100%;
     object-fit: cover;
 }
-section img
+section img.logo
 {
     position: absolute;
     max-width: 100%;
     top: 60px;
-    right: 240px;
+    right: 210px;
 
 }
-section img.logo
+section img.logo:hover
 {
-     top: 65px;
-     right: 210px;
+-webkit-filter: grayscale(100%);
 }
+
