@@ -13,7 +13,7 @@ public class SNSLoginContoller {
     public String login() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         log.info(auth.getPrincipal().toString());
-        return "index";
+        return "main";
     }
 
     @RequestMapping("/callback")
