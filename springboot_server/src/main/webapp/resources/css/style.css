@@ -31,12 +31,13 @@ section img.logo
 {
     position: absolute;
     max-width: 100%;
-    top: 60px;
+    top: 50px;
     right: 210px;
 
 }
 section img.logo:hover
 {
+transform: translate(0, 15px);
 -webkit-filter: grayscale(100%);
 }
 
