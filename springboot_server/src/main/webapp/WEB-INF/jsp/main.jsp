@@ -12,7 +12,7 @@
         <img src="/resources/bg1.jpg" width=100%>
     </div>
     <a href="/svList">
-    <img src="/resources/1.png" class="layer logo" data-speed="-4" width=300px>
+    <img src="/resources/1.png" class="layer logo" width=300px>
     </a>
 </section>
 </body>
