@@ -11,8 +11,10 @@ public class Criteria {
     private int perPageNum; //페이지당 표시할 게시글의 수
 
     //속성 searchType, keyword 추가
-    private String searchType;
-    private String keyword;
+    //검색을 했을 때 검색 결과에 따른 정보를 게시물을 삭제, 등록, 수정, 조회 후에도
+    //그대로 유지하려면 URI에 searchType, keyword를 달아야함.
+    private String searchType; //검색 타입
+    private String keyword; //검색어
 
     //최초 default 생성자로 기본 객체 생성시 초기값을 지정한다. (1페이지, 10개씩)
     public Criteria() {
@@ -81,6 +83,7 @@ public class Criteria {
                 .queryParam("page", page)
                 .queryParam("perPageNum", this.perPageNum);
 
+        /*사용자가 검색을 하지도 않았는데 굳이 searchType과 keyword를 가지고 갈 필요가 없기 때문에 조건을 줌*/
         if (searchType!=null) {
             uriComponentsBuilder
                     .queryParam("searchType", this.searchType)
@@ -95,3 +98,11 @@ public class Criteria {
                 + keyword + "]";
     }
 }
+
+/*
+org.spring.framework.web.util.UriComponentsBuilder는 여러 개의 파라미터들을 연결하여
+URL형태로 만들어주는 기능을 가지고 있습니다.
+쿼리 문자열을 추가해줘서 원하는 URI를 만들 수 있다.
+쿼리 문자열은 /~/~?page=3&perPageNum=10 처럼 URL에 ?뒤에 오는 것들을 말한다.
+
+*/
