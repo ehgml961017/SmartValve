@@ -40,8 +40,10 @@ android api version 24부터 정상작동하는것 확인
         
 ## Local에서 돌려보는 매뉴얼  
   - Android  
-    https://blog.naver.com/ehgml961017/222046346179  
+    * https://blog.naver.com/ehgml961017/222046346179  
   - Springboot + DB 실행  
+    * Maven > smartValve > Lifecycle > install 더블 클릭
+    * https://blog.naver.com/ehgml961017/222051108602
   - WEB Front  
   - Raspberry Pi  
   
@@ -72,5 +74,3 @@ android api version 24부터 정상작동하는것 확인
   - 형상관리
     * Git(2.27.0) & Sourcetree, Slack 메신저, oven 스토리 보드 활용
   
-##  Spring Boot Edit Configurations
-  - Maven > stmartvalve > Lifecycle > install 더블 클릭

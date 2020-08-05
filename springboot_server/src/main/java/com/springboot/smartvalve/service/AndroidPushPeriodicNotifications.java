@@ -45,9 +45,9 @@ public class AndroidPushPeriodicNotifications {
         JSONObject notification = new JSONObject();
 
         //title : 알림의 제목
-        notification.put("title", "SmartValve!");
+        notification.put("title", "smartValve!");
         //body : 알림의 내용
-        notification.put("body", name);
+        notification.put("body", "valve_5min over");
 
 
         body.put("notification", notification);

@@ -16,13 +16,15 @@
                 sw1,sw2
                 ,on_sw1,off_sw1
                 ,on_sw2,off_sw2
-                ,valve_time,cork_time
+                ,valve_time,cork_time,
+                sw1_onLimit,sw2_onLimit
                 )
         values (
                  #{sw1}, #{sw2}
                 ,#{on_sw1}, #{off_sw1}
                 ,#{on_sw2}, #{off_sw2}
                 ,#{valve_time}, #{cork_time}
+                ,#{sw1_onLimit},#{sw2_onLimit}
                 )
     </insert>
 
@@ -32,7 +34,8 @@
 		valve_status
 		set
 		sw1 = 1,
-		on_sw1=now()
+		on_sw1=now(),
+		sw1_onLimit=DATE_ADD(now(), INTERVAL 300 second )
 		where num = #{num}
 	</update>
     <update id="sw1_off"
@@ -42,7 +45,8 @@
 		set
 		sw1 = 0,
 		off_sw1=now(),
-		valve_time = TIMESTAMPDIFF(SECOND, on_sw1, off_sw1)
+		valve_time = TIMESTAMPDIFF(SECOND, on_sw1, off_sw1),
+		sw1_onLimit=null
 		where num = #{num}
 	</update>
     <update id="sw2_on"
@@ -51,7 +55,8 @@
 		valve_status
 		set
 		sw2 = 1,
-		on_sw2=now()
+		on_sw2=now(),
+		sw2_onLimit=DATE_ADD(now(), INTERVAL 300 second )
 		where num = #{num}
 	</update>
     <update id="sw2_off"
@@ -61,7 +66,9 @@
 		set
 		sw2 = 0,
 		off_sw2=now(),
-		cork_time = TIMESTAMPDIFF(SECOND, on_sw2, off_sw2)
+		cork_time = TIMESTAMPDIFF(SECOND, on_sw2, off_sw2),
+		sw2_onLimit=null
+
 		where num = #{num}
 	</update>
     <select id="time_sw1"
@@ -83,5 +90,15 @@
     	where num=#{num}
 
     </select>
+
+	<select id="getThreadCount"
+	resultType="int">
+		select th_count from Thread_count;
+	</select>
+
+	<update id="updateThreadCount"
+			parameterType="int">
+		update Thread_count set th_count=#{num}
+	</update>
 </mapper>
 

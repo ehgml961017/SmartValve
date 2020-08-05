@@ -57,11 +57,20 @@ public class SvService {
 
     }
 
+
     public Integer time_sw1(int num) throws Exception {
             return svMapper.time_sw1(num);
     }
 
     public Integer time_sw2(int num) throws Exception {
         return svMapper.time_sw2(num);
+    }
+
+    public int getThreadCount() throws Exception {
+        return svMapper.getThreadCount() ;
+    }
+
+    public int updateThreadCount(int num) throws Exception {
+        return svMapper.updateThreadCount(num) ;
     }
 }
