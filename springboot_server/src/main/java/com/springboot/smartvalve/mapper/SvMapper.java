@@ -14,5 +14,6 @@ public interface SvMapper {
     public void sw2_off(SvDTO svDTO) throws Exception;
     public Integer time_sw1(int num) throws Exception;
     public Integer time_sw2(int num) throws Exception;
-
+    public int getThreadCount() throws Exception;
+    public int updateThreadCount(int num) throws Exception;
 }

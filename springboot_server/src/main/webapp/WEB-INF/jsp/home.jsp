@@ -4,10 +4,10 @@
 <head>
 </head>
 <body>
-<h1>Congratulations !! You're authorized, this is the home page</h1>
+<h1>접속</h1>
 <a href="/logout">
 로그아웃
 </a><br>
-<a href = "/main">main</a>
+<a href = "/svList">main</a>
 </body>
 </html>
