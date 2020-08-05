@@ -6,7 +6,7 @@
     <select id="getValue"
             resultType="com.springboot.smartvalve.dto.SvDTO">
         select * from valve_status
-        order by num desc limit 10;
+        order by num desc limit 10;/* limit #{pageStart}, #{perPageNum} */
 
     </select>
     <insert id="insertValue"
