@@ -22,21 +22,15 @@ import lombok.extern.java.Log;
 @Controller
 @Log
 public class IncomeController {
-    private static final Logger logger = LoggerFactory.getLogger(IncomeController.class);
 
     @Setter(onMethod_=@Autowired)
-
     private IncomeService service;
 
     @RequestMapping(value = "dateIncome", method = RequestMethod.GET)
-
     public String dateIncome(Locale locale, Model model) {
-
         return "svList";
-
     }
     @RequestMapping(value = "incomeList", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
-
     public @ResponseBody String incomeList(Locale locale, Model model) {
         Gson gson = new Gson();
         List<IncomeVO> list = service.getIncome();
