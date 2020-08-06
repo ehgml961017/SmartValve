@@ -6,9 +6,14 @@
     <select id="getValue"
             resultType="com.springboot.smartvalve.dto.SvDTO">
         select * from valve_status
+<<<<<<< HEAD
         order by num desc limit 11;
 
+=======
+        order by num desc limit 10;
+>>>>>>> d5af7432362b515bf2faa4fe5c1afec3e74986a2
     </select>
+
     <insert id="insertValue"
             parameterType="com.springboot.smartvalve.dto.SvDTO">
             insert into
@@ -99,5 +104,6 @@
 			parameterType="int">
 		update Thread_count set th_count=#{num}
 	</update>
+
 </mapper>
 

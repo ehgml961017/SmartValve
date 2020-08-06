@@ -27,6 +27,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="http://d3js.org/d3.v3.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
+    <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
     <title>Smart Valve List</title>
 </head>
 <style>
@@ -76,6 +78,8 @@
       href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
 <section>
     <div>
         <p>
@@ -208,236 +212,252 @@
         }
     }
 </script>
-<svg width="800" height="420"></svg>
+<%--기존--%>
+<%--<svg width="800" height="420"></svg>--%>
+<%--/기존--%>
+<div style="width: 60%; margin: 30px 0px 100px 300px">
+    <canvas id="canvas" height="450" width="600"></canvas>
+</div>
 <script> /*차트 script*/
 /*
-var series = ["valve_time", "cork_time"];
-$(document).ready(function () {
-    jQuery.ajax({
-        type: "GET",
-        url: "/query",
-        dataType: "JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
-    });
-});
-var dataset = [
-    {
-        '1': 23,
-        '2': 27,
-        '3': 37,
-        '4': 27,
-        '5': 17,
-        '6': 7,
-        '7': 9,
-        '8': 19,
-        '9': 29,
-        '10': 19,
-        '11': 9,
-        '12': 0
-    },
-    {
-        '1': 9,
-        '2': 19,
-        '3': 29,
-        '4': 39,
-        '5': 29,
-        '6': 19,
-        '7': 9,
-        '8': 7,
-        '9': 17,
-        '10': 27,
-        '11': 17,
-        '12': 7
-    }
-];
-*/
-var series = ["valve_time", "cork_time"];
 
-var dataset = [
-    {
-        '1': 17,
-        '2': 27,
-        '3': 37,
-        '4': 27,
-        '5': 17,
-        '6': 7,
-        '7': 9,
-        '8': 19,
-        '9': 29,
-        '10': 19,
-        '11': 9,
-        '12': 0
-    },
-    {
-        '1': 9,
-        '2': 19,
-        '3': 29,
-        '4': 39,
-        '5': 29,
-        '6': 19,
-        '7': 9,
-        '8': 7,
-        '9': 17,
-        '10': 27,
-        '11': 17,
-        '12': 7
-    }];
+/*기존*/
+// var series = ["valve_time", "cork_time"];
+//
+// var dataset = [
+//     {'1': 17,'2': 27,'3': 37,'4': 27,'5': 17,'6': 7},
+//     {'1': 9,'2': 19,'3': 29,'4': 39,'5': 29,'6': 12}];
+//
+// /*---2차원 배열 작업---*/
+// /*d3.keys () 함수 는 지정된 객체의 속성 이름 또는 키가 포함 된 배열 또는 연관 배열을 반환하는 데 사용됩니다.*/
+// /*1차원 배열을 2차원 배열로 변환하는 작업*/
+// var keys = d3.keys(dataset[0]);
 
-/*---2차원 배열 작업---*/
-/*d3.keys () 함수 는 지정된 객체의 속성 이름 또는 키가 포함 된 배열 또는 연관 배열을 반환하는 데 사용됩니다.*/
-/*1차원 배열을 2차원 배열로 변환하는 작업*/
-var keys = d3.keys(dataset[0]);
-
-var data = [];
-
-dataset.forEach( /*변환을 위해 dataset의 개수만큼(2회) 반복한다.*/
-    /*그 안에서 각 배열의 원소인 Json의 개수만큼 반복(keys.map)해서 배열 반환*/
-    function (d, i) { /* data,index -> 17:'1'    '1'은 인덱스로 0이다. */
-        /*반환된 배열을 다시 배열(data[i])에 넣으면서 2차월 배열이 만들어진다.*/
-        data[i] = keys.map(function (key) {
-                return {
-                    /*{A:9}가 {x:'A',y:9}로 변환되어 저장*/
-                    x: key, y: d[key]
-                };
-            }
-        )
-    }
-);
-/*----2차원 배열 작업 끝----*/
-
-/*SVG내에서 차트를 중앙에 놓기 위한 코드*/
-var margin = {left: 20, top: 10, right: 10, bottom: 20};
-var svg = d3.select("svg");
-var width = parseInt(svg.style("width"), 10) - margin.left - margin.right;
-var height = parseInt(svg.style("height"), 10) - margin.top - margin.bottom;
-var svgG = svg.append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
-/*x축에 1,2,3,...가 출력되도록 이 값을 가지고 있는 keys를
-* xScale에 데이터로 지정하였다.*/
-var xScale = d3.scalePoint()//scaleBand와는 다르게 Point는 0부터 시작하는 차이가 있다. y축에 붙어서 시작
-    .domain(keys)
-    .rangeRound([0, width]);
-
-/*D3의 max함수는 주어진 배열내의 최대값을 찾아준다.
-* 첫 max에 dataset을 지정하면 2개의 json 데이터가 반환되고
-* 다시 각각에 대하여 max를 keys 개수만큼 반복한다.
-* keys 개수만큼 반복하는 이유는 각 json 데이터 개수를 의미하기 때문이다.
-* 이렇게 반복해서 키에 해당하는 값(d[key])을 반환하고 이중에 가장 큰 값(max)이
-* 반환되고, 반환된 2개의 큰 값 중 가장 큰 값이 반환되어 척도 구성을 위한 domain의 값으로 지정한다.
-* */
-var yScale = d3.scaleLinear()
-    .domain([0, d3.max(dataset, function (d) {
-        return d3.max(keys, function (key) {
-            return d[key];
-        });
-    })])
-    .nice()/*그리고 이 domain의 소수점이 너무 많으면 적당히 반올림한 값을 사용하도록 했다.*/
-    .range([height, 0]);
-
-/* d3에서 지정한 컬러 값 집합(schemeCategory10)을 사용*/
-var colors = d3.scaleOrdinal(d3.schemeCategory10);
-
-svgG.append("g")
-    .attr("class", "grid")
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(xScale)
-        .tickSize(-height)
-    );
-
-svgG.append("g")
-    .attr("class", "grid")
-    .call(d3.axisLeft(yScale)
-        .ticks(20)
-        .tickSize(-width)
-    );
-
-var line = d3.line()
-    //.curve(d3.curveBasis)
-    .x(function (d) {
-        return xScale(d.x);
-    })
-    .y(function (d) {
-        return yScale(d.y);
-    });
-var lineG = svgG.append("g")
-    .selectAll("g")
-    .data(data)
-    .enter().append("g");
-
-lineG.append("path")
-    .attr("class", "lineChart")
-    /*각 라인별로 다른 색을 사용하게끔 지정*/
-    .style("stroke", function (d, i) {
-        return colors(series[i]);
-    })
-    .attr("d", function (d, i) {
-        return line(d);
-    });
-
-lineG.selectAll("dot")
-    .data(function (d) {
-        return d
-    })
-    .enter().append("circle")
-    .attr("r", 3)
-    .attr("cx", function (d) {
-        return xScale(d.x)
-    })
-    .attr("cy", function (d) {
-        return yScale(d.y);
-    })
-    .on("mouseover", function () {
-        tooltip.style("display", null);
-    })
-    .on("mouseout", function () {
-        tooltip.style("display", "none");
-    })
-    .on("mousemove", function (d) {
-        tooltip.style("left", (d3.event.pageX + 10) + "px");
-        tooltip.style("top", (d3.event.pageY - 10) + "px");
-        tooltip.html("month. " + d.x + "<br/>" + "data value : " + d.y);
-    });
-
-var tooltip = d3.select("body")
-    .append("div")
-    .attr("class", "toolTip")
-    .style("display", "none");
-
-/*-------범례 start---------*/
-/*범례(legend)구현
-* 범례는 차트 내에서 적당한 위치(우측 상단)에
-* 각 라인이 나타내는 의미를 보여준다.*/
-var legend = svgG.append("g")
-    .attr("text-anchor", "end")
-    .selectAll("g")
-    .data(series)
-    .enter().append("g")
-    .attr("transform", function (d, i) {
-        return "translate(0," + i * 20 + ")";
-    });
-
-/*
-* 각 라인은 색으로 구분하기 때문에
-* 도형(rect)을 생성, 어떤 데이터인지(series)를
-* 문자로(text)로 출력
-*/
-legend.append("rect")
-    .attr("x", width - 20)
-    .attr("width", 19)
-    .attr("height", 19)
-    .attr("fill", colors);
-
-legend.append("text")
-    .attr("x", width - 30)
-    .attr("y", 9.5)
-    .attr("dy", "0.32em")
-    .text(function (d) {
-        return d;
-    });
+// var data = [];
+//
+// dataset.forEach( /*변환을 위해 dataset의 개수만큼(2회) 반복한다.*/
+//     /*그 안에서 각 배열의 원소인 Json의 개수만큼 반복(keys.map)해서 배열 반환*/
+//     function (d, i) { /* data,index -> 17:'1'    '1'은 인덱스로 0이다. */
+//         /*반환된 배열을 다시 배열(data[i])에 넣으면서 2차월 배열이 만들어진다.*/
+//         data[i] = keys.map(function (key) {
+//                 return {
+//                     /*{A:9}가 {x:'A',y:9}로 변환되어 저장*/
+//                     x: key, y: d[key]
+//                 };
+//             }
+//         )
+//     }
+// );
+// /*----2차원 배열 작업 끝----*/
+//
+// /*SVG내에서 차트를 중앙에 놓기 위한 코드*/
+// var margin = {left: 20, top: 10, right: 10, bottom: 20};
+// var svg = d3.select("svg");
+// var width = parseInt(svg.style("width"), 10) - margin.left - margin.right;
+// var height = parseInt(svg.style("height"), 10) - margin.top - margin.bottom;
+// var svgG = svg.append("g")
+//     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+//
+//
+// /*x축에 1,2,3,...가 출력되도록 이 값을 가지고 있는 keys를
+// * xScale에 데이터로 지정하였다.*/
+// var xScale = d3.scalePoint()//scaleBand와는 다르게 Point는 0부터 시작하는 차이가 있다. y축에 붙어서 시작
+//     .domain(keys)
+//     .rangeRound([0, width]);
+//
+// /*D3의 max함수는 주어진 배열내의 최대값을 찾아준다.
+// * 첫 max에 dataset을 지정하면 2개의 json 데이터가 반환되고
+// * 다시 각각에 대하여 max를 keys 개수만큼 반복한다.
+// * keys 개수만큼 반복하는 이유는 각 json 데이터 개수를 의미하기 때문이다.
+// * 이렇게 반복해서 키에 해당하는 값(d[key])을 반환하고 이중에 가장 큰 값(max)이
+// * 반환되고, 반환된 2개의 큰 값 중 가장 큰 값이 반환되어 척도 구성을 위한 domain의 값으로 지정한다.
+// * */
+// var yScale = d3.scaleLinear()
+//     .domain([0, d3.max(dataset, function (d) {
+//         return d3.max(keys, function (key) {
+//             return d[key];
+//         });
+//     })])
+//     .nice()/*그리고 이 domain의 소수점이 너무 많으면 적당히 반올림한 값을 사용하도록 했다.*/
+//     .range([height, 0]);
+//
+// /* d3에서 지정한 컬러 값 집합(schemeCategory10)을 사용*/
+// var colors = d3.scaleOrdinal(d3.schemeCategory10);
+//
+// svgG.append("g")
+//     .attr("class", "grid")
+//     .attr("transform", "translate(0," + height + ")")
+//     .call(d3.axisBottom(xScale)
+//         .tickSize(-height)
+//     );
+//
+// svgG.append("g")
+//     .attr("class", "grid")
+//     .call(d3.axisLeft(yScale)
+//         .ticks(20)
+//         .tickSize(-width)
+//     );
+//
+// var line = d3.line()
+//     //.curve(d3.curveBasis)
+//     .x(function (d) {
+//         return xScale(d.x);
+//     })
+//     .y(function (d) {
+//         return yScale(d.y);
+//     });
+// var lineG = svgG.append("g")
+//     .selectAll("g")
+//     .data(data)
+//     .enter().append("g");
+//
+// lineG.append("path")
+//     .attr("class", "lineChart")
+//     /*각 라인별로 다른 색을 사용하게끔 지정*/
+//     .style("stroke", function (d, i) {
+//         return colors(series[i]);
+//     })
+//     .attr("d", function (d, i) {
+//         return line(d);
+//     });
+//
+// lineG.selectAll("dot")
+//     .data(function (d) {
+//         return d
+//     })
+//     .enter().append("circle")
+//     .attr("r", 3)
+//     .attr("cx", function (d) {
+//         return xScale(d.x)
+//     })
+//     .attr("cy", function (d) {
+//         return yScale(d.y);
+//     })
+//     .on("mouseover", function () {
+//         tooltip.style("display", null);
+//     })
+//     .on("mouseout", function () {
+//         tooltip.style("display", "none");
+//     })
+//     .on("mousemove", function (d) {
+//         tooltip.style("left", (d3.event.pageX + 10) + "px");
+//         tooltip.style("top", (d3.event.pageY - 10) + "px");
+//         tooltip.html("month. " + d.x + "<br/>" + "data value : " + d.y);
+//     });
+//
+// var tooltip = d3.select("body")
+//     .append("div")
+//     .attr("class", "toolTip")
+//     .style("display", "none");
+//
+// /*-------범례 start---------*/
+// /*범례(legend)구현
+// * 범례는 차트 내에서 적당한 위치(우측 상단)에
+// * 각 라인이 나타내는 의미를 보여준다.*/
+// var legend = svgG.append("g")
+//     .attr("text-anchor", "end")
+//     .selectAll("g")
+//     .data(series)
+//     .enter().append("g")
+//     .attr("transform", function (d, i) {
+//         return "translate(0," + i * 20 + ")";
+//     });
+//
+// /*
+// * 각 라인은 색으로 구분하기 때문에
+// * 도형(rect)을 생성, 어떤 데이터인지(series)를
+// * 문자로(text)로 출력
+// */
+// legend.append("rect")
+//     .attr("x", width - 20)
+//     .attr("width", 19)
+//     .attr("height", 19)
+//     .attr("fill", colors);
+//
+// legend.append("text")
+//     .attr("x", width - 30)
+//     .attr("y", 9.5)
+//     .attr("dy", "0.32em")
+//     .text(function (d) {
+//         return d;
+//     });
 /*-------범례 end---------*/
+/*/기존*/
+var chartLabels = [];
 
+var chartData1 = [];
+var chartData2 = [];
+
+
+$.getJSON("http://localhost:8085/incomeList", function(data){
+
+    $.each(data, function(inx, obj){
+        chartLabels.push(obj.num);
+        chartData1.push(obj.valve_time);
+        chartData2.push(obj.cork_time);
+    });
+
+    createChart();
+    console.log("create Chart")
+
+
+});
+
+var lineChartData = {
+    type: "line",
+    labels : chartLabels,
+    datasets : [
+        {
+            label : "valve_time",
+            fill : false,
+            backgroundColor: window.chartColors.red,
+            borderColor: window.chartColors.red,
+            data : chartData1
+        },
+        {
+            label : "cork_time",
+            fill : false,
+            backgroundColor: window.chartColors.blue,
+            borderColor: window.chartColors.blue,
+            data : chartData2
+        }
+    ]
+}
+
+
+
+function createChart(){
+    var ctx = document.getElementById("canvas").getContext("2d");
+    LineChartDemo = Chart.Line(ctx,{
+        data : lineChartData,
+        options :{
+            responsive: true,
+            title: {
+                display: true,
+                text: "Smart Valve"
+            },
+            scales : {
+                xAxes: [{
+                   display: true,
+                   scaleLabel: {
+                       display: true,
+                       labelString: "elapsed time"
+                   }
+                }],
+                yAxes : [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Number"
+                    },
+                    ticks :{
+                        beginAtZero : true
+                    }
+                }]
+            }
+        }
+    })
+}
 </script>
-
 </body>
 </html>
