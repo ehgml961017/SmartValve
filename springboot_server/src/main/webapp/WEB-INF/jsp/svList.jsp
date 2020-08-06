@@ -169,7 +169,7 @@
         let off_sw1 =<%=sw1%>;
         if (off_sw1 === 0) {
             alert("1번스위치 시작");
-            location.href = "/onSw1?num=<%=num%>&sw1=<%=sw1+1%>&sw2=<%=sw2%>";
+            location.href = "/onSw1?num=<%=num%>&sw1=<%=sw1%>&sw2=<%=sw2%>";
         } else {
             alert("스위치가 이미 켜져있습니다 확인해주세요..");
         }
@@ -191,7 +191,7 @@
         <%=sw2%>
         if (off_sw2 === 0) {
             alert("2번스위치 시작");
-            location.href = "/onSw2?num=<%=num%>&sw1=<%=sw1%>&sw2=<%=sw2+1%>";
+            location.href = "/onSw2?num=<%=num%>&sw1=<%=sw1%>&sw2=<%=sw2%>";
         } else {
             alert("스위치가 이미 켜져있습니다 확인해주세요..");
         }

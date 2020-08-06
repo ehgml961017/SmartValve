@@ -32,53 +32,11 @@ public class NotificationController {
 
     @Autowired
     AndroidPushNotificationService androidPushNotificationService;
-    @Autowired
-    SvService svService;
+//    @Autowired
+//    SvService svService;
 
-    //    @Scheduled(fixedRate = 50000)
+    @Scheduled(fixedRate = 50000)
     @GetMapping(value = "/send")
-    public @ResponseBody
-    void timeDiff_send() throws Exception {
-        List<SvDTO> numArr = svService.getValue();
-        //모델에서 넘어온 파라미터.
-        //스위치가 껏다켯다 여러번했을때 푸쉬가 여러번 될 가능성이 있음.
-//        (마지막이 켰을때로 종료되면)
-        LocalDateTime on_sw1 = numArr.get(0).getOn_sw1();
-        LocalDateTime on_sw2 = numArr.get(0).getOn_sw2();
-        Timer timer = new Timer();
-        if (svService.getThreadCount() != 1) {
-            svService.updateThreadCount(1);
-            TimerTask timerTask = new TimerTask() {
-                @SneakyThrows
-                @Override
-                public void run() throws JSONException {
-                    if (on_sw1 != null || on_sw2 != null) {
-                        svService.updateThreadCount(0);
-                        send();
-
-                    }
-                }
-            };
-            timer.schedule(timerTask, 300000);
-        }
-        else{
-            timer.cancel();
-            TimerTask timerTask = new TimerTask() {
-                @SneakyThrows
-                @Override
-                public void run() throws JSONException {
-                    if (on_sw1 != null || on_sw2 != null) {
-                        svService.updateThreadCount(0);
-                        send();
-                    }
-                }
-            };
-            timer.schedule(timerTask, 300000);
-        }
-
-
-    }
-
     public @ResponseBody
     ResponseEntity<String> send() throws JSONException,
             InterruptedException {
@@ -103,6 +61,49 @@ public class NotificationController {
         return new ResponseEntity<>("Push Notification ERROR!",
                 HttpStatus.BAD_REQUEST);
     }
+
+    //    public @ResponseBody
+//    void timeDiff_send() throws Exception {
+//        List<SvDTO> numArr = svService.getValue();
+//        //모델에서 넘어온 파라미터.
+//        //스위치가 껏다켯다 여러번했을때 푸쉬가 여러번 될 가능성이 있음.아마도?
+////        (마지막이 켰을때로 종료되면)
+//        LocalDateTime on_sw1 = numArr.get(0).getOn_sw1();
+//        LocalDateTime on_sw2 = numArr.get(0).getOn_sw2();
+//        Timer timer = new Timer();
+//        if (svService.getThreadCount() != 1) {
+//            svService.updateThreadCount(1);
+//            TimerTask timerTask = new TimerTask() {
+//                @SneakyThrows
+//                @Override
+//                public void run() throws JSONException {
+//                    if (on_sw1 != null || on_sw2 != null) {
+//                        svService.updateThreadCount(0);
+//                        send();
+//                        System.out.println("타이머실행 제대로됨");
+//                    }
+//                }
+//            };
+//            timer.schedule(timerTask, 10000);
+//        }
+//        else{
+//            timer.cancel();
+//            TimerTask timerTask = new TimerTask() {
+//                @SneakyThrows
+//                @Override
+//                public void run() throws JSONException {
+//                    if (on_sw1 != null || on_sw2 != null) {
+//                        svService.updateThreadCount(0);
+//                        send();
+//                        System.out.println("타이머취소후 재실행");
+//                    }
+//                }
+//            };
+//            timer.schedule(timerTask, 10000);
+//        }
+//
+//
+//    }
 }
 /*
  * @Controller(Spring MVC Controller) 와 @RestController 의 차이점

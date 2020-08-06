@@ -11,14 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SNSLoginContoller {
     @RequestMapping("/")
     public String login() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Authentication auth =
+                SecurityContextHolder.getContext().getAuthentication();
         log.info(auth.getPrincipal().toString());
         return "main";
     }
 
-//    @RequestMapping("/callback")
-//    public String callback() {
-//        System.out.println("redirecting to home page");
-//        return "home";
-//    }
 }

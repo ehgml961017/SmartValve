@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -18,14 +17,13 @@ public class testController {
     @Autowired
     SvService svService;
 
-
-
     @GetMapping("/svList")
     public void getList(Model model) throws Exception {
         List<SvDTO> list = null;
         list = svService.getValue();
         model.addAttribute("list", list);
     }
+    //modelAndView 사용가능
 
     @GetMapping("/onSw1")
     public String onSw1(SvDTO svDTO,
@@ -57,16 +55,7 @@ public class testController {
     ) throws Exception {
 
         svService.offSw2(svDTO);
-        System.out.println(svDTO.getSw2());
         return "redirect:/svList";
     }
-
-    @RequestMapping("/main")
-    public String main() {
-        return "main";
-    }
-
-
-
 
 }

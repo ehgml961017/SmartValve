@@ -6,7 +6,7 @@
     <select id="getValue"
             resultType="com.springboot.smartvalve.dto.SvDTO">
         select * from valve_status
-        order by num desc limit 10;
+        order by num desc limit 11;
 
     </select>
     <insert id="insertValue"
@@ -68,7 +68,6 @@
 		off_sw2=now(),
 		cork_time = TIMESTAMPDIFF(SECOND, on_sw2, off_sw2),
 		sw2_onLimit=null
-
 		where num = #{num}
 	</update>
     <select id="time_sw1"
