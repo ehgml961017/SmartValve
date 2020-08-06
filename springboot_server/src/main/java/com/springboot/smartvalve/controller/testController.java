@@ -18,8 +18,6 @@ public class testController {
     @Autowired
     SvService svService;
 
-
-
     @GetMapping("/svList")
     public void getList(Model model) throws Exception {
         List<SvDTO> list = null;
@@ -28,34 +26,26 @@ public class testController {
     }
 
     @GetMapping("/onSw1")
-    public String onSw1(SvDTO svDTO,
-                        RedirectAttributes rttr) throws Exception {
-
+    public String onSw1(SvDTO svDTO, RedirectAttributes rttr) throws Exception {
         svService.onSw1(svDTO);
-
         return "redirect:/svList";
     }
 
     @GetMapping("/offSw1")
-    public String offSw1(SvDTO svDTO, RedirectAttributes rttr
-    ) throws Exception {
+    public String offSw1(SvDTO svDTO, RedirectAttributes rttr) throws Exception {
         svService.offSw1(svDTO);
-
         return "redirect:/svList";
     }
 
     @GetMapping("/onSw2")
-    public String onSw2(SvDTO svDTO, RedirectAttributes rttr
-    ) throws Exception {
+    public String onSw2(SvDTO svDTO, RedirectAttributes rttr) throws Exception {
         svService.onSw2(svDTO);
         System.out.println(svDTO.getSw2());
         return "redirect:/svList";
     }
 
     @GetMapping("/offSw2")
-    public String offSw2(SvDTO svDTO, RedirectAttributes rttr
-    ) throws Exception {
-
+    public String offSw2(SvDTO svDTO, RedirectAttributes rttr) throws Exception {
         svService.offSw2(svDTO);
         System.out.println(svDTO.getSw2());
         return "redirect:/svList";
@@ -65,8 +55,5 @@ public class testController {
     public String main() {
         return "main";
     }
-
-
-
 
 }

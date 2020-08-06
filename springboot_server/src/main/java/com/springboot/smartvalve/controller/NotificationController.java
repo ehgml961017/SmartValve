@@ -30,21 +30,29 @@ public class NotificationController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
 
+    /*Springboot와 FCM 연동한 service class*/
     @Autowired
     AndroidPushNotificationService androidPushNotificationService;
+
     @Autowired
     SvService svService;
 
-    //    @Scheduled(fixedRate = 50000)
+    //@Scheduled(fixedRate = 50000)
     @GetMapping(value = "/send")
     public @ResponseBody
+    /*
+     * @ResponseBody
+     * 자바 객체를 HTTP 요청의 body 내용으로 매핑하는 역할을 합니다.
+     */
     void timeDiff_send() throws Exception {
         List<SvDTO> numArr = svService.getValue();
         //모델에서 넘어온 파라미터.
         //스위치가 껏다켯다 여러번했을때 푸쉬가 여러번 될 가능성이 있음.
-//        (마지막이 켰을때로 종료되면)
+//      (마지막이 켰을때로 종료되면)
         LocalDateTime on_sw1 = numArr.get(0).getOn_sw1();
+        /*LocalDataTime : 날짜와 시간 정보 모두가 필요할 때 사용*/
         LocalDateTime on_sw2 = numArr.get(0).getOn_sw2();
+        /*Timer : 실제 타이머의 기능을 수행하는 클래스*/
         Timer timer = new Timer();
         if (svService.getThreadCount() != 1) {
             svService.updateThreadCount(1);
@@ -143,4 +151,6 @@ public class NotificationController {
     - client들의 개별 실행 정보
     - 가령 누가 로그인을 했느냐? 이 사람이 서핑한 page는 어디냐
 */
+
+
 
