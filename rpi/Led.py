@@ -1,12 +1,9 @@
 # -*-coding: utf-8-*-
 
-# GPIO 라이브러리 임포트
-# import RPi.GPIO as GPIO
-# import time
 import requests
 import logging
 # GPIO 라이브러리 임포트
-import RPi.GPIO as GPIO
+# import RPi.GPIO as GPIO
 
 logging.basicConfig(level=logging.DEBUG, format="'%(asctime)s - %(message)s'")
 

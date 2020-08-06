@@ -50,12 +50,4 @@ public class testController {
         return "redirect:/svList";
     }
 
-<<<<<<< HEAD
-=======
-    @RequestMapping("/main")
-    public String main() {
-        return "main";
-    }
-
->>>>>>> e21e952baf4d7eee3afe412415e6aa779426e7b2
 }
