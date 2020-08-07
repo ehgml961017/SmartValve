@@ -14,6 +14,7 @@ public class SvService {
     @Autowired
     SvMapper svMapper;
 
+
     public List<SvDTO> getValue() throws Exception {
         return svMapper.getValue();
     }
@@ -73,4 +74,5 @@ public class SvService {
     public int updateThreadCount(int num) throws Exception {
         return svMapper.updateThreadCount(num) ;
     }
+
 }

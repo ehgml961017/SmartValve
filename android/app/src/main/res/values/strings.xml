@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SmartValve</string>
+    <string name="app_name">Smart Valve</string>
     <string name="status_title">가스 현황</string>
     <string name="gas_knob">점화 손잡이</string>
     <string name="gas_valve">가스 밸브</string>
