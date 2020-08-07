@@ -1,5 +1,6 @@
 package com.springboot.smartvalve.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -30,4 +31,5 @@ public class SvDTO {
     private LocalDateTime sw1_onLimit;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime sw2_onLimit;
+
 }
