@@ -29,7 +29,7 @@
 <style>
     .align {
         text-align: center;
-        background-image: url('/resources/le-creuset-04rqqMN_x7Q-unsplash.jpg');
+        background-image: url('/resources/image/le-creuset-04rqqMN_x7Q-unsplash.jpg');
         background-size: 1200px;
         height: 150px;
         padding-top: 40px;
@@ -51,7 +51,7 @@
     <div>
         <p>
         <h1 class="align">Smart Valve
-            <img src="/resources/logo.png" width=40px;
+            <img src="/resources/image/logo.png" width=40px;
                  height=40px;>
         </h1>
         </p>
