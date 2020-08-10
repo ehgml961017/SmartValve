@@ -34,11 +34,6 @@
         height: 150px;
         padding-top: 40px;
     }
-
-    body {
-        text-align: center;
-    }
-
 </style>
 
 <link rel="stylesheet"
