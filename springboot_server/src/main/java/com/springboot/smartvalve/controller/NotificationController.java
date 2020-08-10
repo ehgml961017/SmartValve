@@ -36,7 +36,6 @@ public class NotificationController {
 //    @Autowired
 //    SvService svService;
 
-    @Scheduled(fixedRate = 50000)
     @GetMapping(value = "/send")
     public @ResponseBody
     ResponseEntity<String> send() throws JSONException,
