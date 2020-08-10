@@ -34,8 +34,6 @@
         height: 150px;
         padding-top: 40px;
     }
-<<<<<<< HEAD
-=======
 
     body {
         text-align: center;
@@ -48,7 +46,6 @@
 
 
 
->>>>>>> fc47e07e970fb58ecfdbd0737673dd478becfd4b
 </style>
 
 <link rel="stylesheet"
@@ -150,10 +147,10 @@
     </article>
 
     <article>
-        <button id="on_sw1" onclick="on_sw1()">sw1(on)</button>
-        <button id="off_sw1" onclick="off_sw1()">sw1(off)</button>
-        <button id="on_sw2" onclick="on_sw2()">sw2(on)</button>
-        <button id="off_sw2" onclick="off_sw2()">sw2(off)</button>
+        <button id="on_sw1" class="btn btn-secondary" onclick="on_sw1()">sw1(on)</button>
+        <button id="off_sw1" class="btn btn-secondary" onclick="off_sw1()">sw1(off)</button>
+        <button id="on_sw2" class="btn btn-secondary" onclick="on_sw2()">sw2(on)</button>
+        <button id="off_sw2" class="btn btn-secondary" onclick="off_sw2()">sw2(off)</button>
     </article>
 </section>
 </body>
