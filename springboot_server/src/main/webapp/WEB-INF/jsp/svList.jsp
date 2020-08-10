@@ -20,10 +20,10 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="http://d3js.org/d3.v3.js"></script>
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
-    <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+    <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script> <%--필수--%>
+    <script src="https://www.chartjs.org/samples/latest/utils.js"></script> <%--필수--%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <%--필수--%>
+    <script src="analyser.js"></script>
     <title>Smart Valve List</title>
 </head>
 <style>
@@ -52,8 +52,7 @@
       href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
+
 <section>
     <div>
         <p>
@@ -208,7 +207,7 @@
 var chartLabels = [];
 
 var chartData1 = [];
-var chartData2 = [];
+var chartData2 = [];0
 
 
 $.getJSON("http://localhost:8085/incomeList", function(data){
@@ -231,10 +230,10 @@ var lineChartData = {
     datasets : [
         {
             label : "valve_time",
-            fill : false,
+            fill: false,
             backgroundColor: window.chartColors.red,
-            borderColor: window.chartColors.red,
-            data : chartData1
+            borderColor:  window.chartColors.red,
+            data : chartData1,
         },
         {
             label : "cork_time",
@@ -263,14 +262,14 @@ function createChart(){
                    display: true,
                    scaleLabel: {
                        display: true,
-                       labelString: "elapsed time"
+                       labelString: "Number"
                    }
                 }],
                 yAxes : [{
                     display: true,
                     scaleLabel: {
                         display: true,
-                        labelString: "Number"
+                        labelString: "elapsed time"
                     },
                     ticks :{
                         beginAtZero : true
