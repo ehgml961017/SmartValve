@@ -68,7 +68,6 @@
 		off_sw2=now(),
 		cork_time = TIMESTAMPDIFF(SECOND, on_sw2, off_sw2),
 		sw2_onLimit=null
-
 		where num = #{num}
 	</update>
     <select id="time_sw1"

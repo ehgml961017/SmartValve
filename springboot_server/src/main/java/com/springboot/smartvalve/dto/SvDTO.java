@@ -1,13 +1,10 @@
 package com.springboot.smartvalve.dto;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import java.time.LocalDateTime;
-import java.util.Date;
 
 
 @Getter
