@@ -36,16 +36,17 @@ android api version 24부터 정상작동하는것 확인
     * DB Data Response  
       구글에서 "Python Json 연결" 검색  
     * SW1, SW2 On/Off시 LED On/Off  
-      교재 실습 예제파일 응용중  
-        
+      교재 실습 예제파일 응용중   
+    
+
 ## Local에서 돌려보는 매뉴얼  
   - Android  
     * https://blog.naver.com/ehgml961017/222046346179  
   - Springboot + DB 실행  
     * Maven > smartValve > Lifecycle > install 더블 클릭
     * https://blog.naver.com/ehgml961017/222051108602
-  - WEB Front  
   - Raspberry Pi  
+    * https://blog.naver.com/forand52/222056628558
   
 ## 개발환경
   
@@ -70,6 +71,9 @@ android api version 24부터 정상작동하는것 확인
     
   - Hardware
     * Raspberry Pi Model 3 B
+    * IDE : Visual Studio Code, PyCharm
+    * Language : Python
+    * OS : Raspbian GNU/Linux 10
 
   - 형상관리
     * Git(2.27.0) & Sourcetree, Slack 메신저, oven 스토리 보드 활용
