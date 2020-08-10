@@ -34,6 +34,8 @@
         height: 150px;
         padding-top: 40px;
     }
+<<<<<<< HEAD
+=======
 
     body {
         text-align: center;
@@ -46,6 +48,7 @@
 
 
 
+>>>>>>> fc47e07e970fb58ecfdbd0737673dd478becfd4b
 </style>
 
 <link rel="stylesheet"
