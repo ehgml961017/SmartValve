@@ -34,6 +34,21 @@
         height: 150px;
         padding-top: 40px;
     }
+<<<<<<< HEAD
+=======
+
+    body {
+        text-align: center;
+    }
+
+    .tableSet th {
+        text-align: center;
+    }
+
+
+
+
+>>>>>>> fc47e07e970fb58ecfdbd0737673dd478becfd4b
 </style>
 
 <link rel="stylesheet"
@@ -56,7 +71,7 @@
 <section>
     <article>
         <table class="table table-striped">
-            <tr>
+            <tr class="tableSet">
                 <th>No.</th>
                 <th>valve</th>
                 <th>cork</th>
@@ -70,8 +85,22 @@
             <c:forEach items="${list}" var="list">
                 <tr>
                     <td>${list.num}</td>
-                    <td>${list.sw1}</td>
-                    <td>${list.sw2}</td>
+                    <td>
+                        <c:if test="${list.sw1 ne 0}">
+                            on
+                        </c:if>
+                        <c:if test="${list.sw1 eq 0}">
+                            off
+                        </c:if>
+                    </td>
+                    <td>
+                        <c:if test="${list.sw2 ne 0}">
+                            on
+                        </c:if>
+                        <c:if test="${list.sw2 eq 0}">
+                            off
+                        </c:if>
+                    </td>
                     <td>
                         <c:if test="${list.on_sw1 ne null}">  <%--ne : not equal--%>
                             <javatime:format
@@ -79,7 +108,7 @@
                                     value="${list.on_sw1}"/>
                         </c:if>
                         <c:if test="${list.on_sw1 eq null}">
-                            null
+                            -
                         </c:if>
                     </td>
                     <td>
@@ -90,7 +119,7 @@
                                     value="${list.off_sw1}"/>
                         </c:if>
                         <c:if test="${list.off_sw1 eq null}">
-                            null
+                            -
                         </c:if>
                     </td>
                     <td>
@@ -100,7 +129,7 @@
                                     value="${list.on_sw2}"/>
                         </c:if>
                         <c:if test="${list.on_sw2 eq null}">
-                            null
+                            -
                         </c:if>
                     </td>
                     <td>
@@ -110,11 +139,25 @@
                                     value="${list.off_sw2}"/>
                         </c:if>
                         <c:if test="${list.off_sw2 eq null}">
-                            null
+                            -
                         </c:if>
                     </td>
-                    <td>${list.valve_time}</td>
-                    <td>${list.cork_time}</td>
+                    <td>
+                        <c:if test="${list.valve_time ne 0}">
+                            ${list.valve_time}
+                        </c:if>
+                        <c:if test="${list.valve_time eq 0}">
+                            -
+                        </c:if>
+                    </td>
+                    <td>
+                        <c:if test="${list.cork_time ne 0}">
+                            ${list.cork_time}
+                        </c:if>
+                        <c:if test="${list.cork_time eq 0}">
+                            -
+                        </c:if>
+                    </td>
                 </tr>
             </c:forEach>
         </table>

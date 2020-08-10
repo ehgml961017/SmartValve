@@ -21,6 +21,13 @@ import org.springframework.http.*;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
+// REST : Representational State Transfer
+// 하나의 URI가 하나의 고유한 리소스를 대표하도록 설계된 개념
+
+// http://localhost/list?num=1   -> url+파라미터
+// http://localhost/list/1   -> url
+// @Controller, @RestController 차이점은 메서드가 종료되면 화면전환의 유무
+
 /*
  * 프로젝트를 실행한 뒤 /send로 접속하여 동작이 실행되게 한다. firebase project의 server key를 가지고
  * 디바이스 토큰으로 알림을 json 데이터 형식으로 firebase에게 요청한다.
@@ -56,6 +63,9 @@ public class NotificationController {
         Timer timer = new Timer();
         if (svService.getThreadCount() != 1) {
             svService.updateThreadCount(1);
+            //TimerTask 클래스는 Timer 클래스가 수행되어야할 내용을 작성하는 클래스입니다.
+            //작성될 내용은 "TimerTask"클래스의 "run"메소드에 오버라이드를 통하여
+            //작성하도록 되어있습니다.
             TimerTask timerTask = new TimerTask() {
                 @SneakyThrows
                 @Override
@@ -67,10 +77,11 @@ public class NotificationController {
                     }
                 }
             };
+            //schedule() : 일정 시간(delay)이 지난 후에 지정한 작업(timerTask)을 수행한다.
             timer.schedule(timerTask, 300000);
         }
         else{
-            timer.cancel();
+            timer.cancel(); //cancel() : 이 TimerTask작업을 취소한다.
             TimerTask timerTask = new TimerTask() {
                 @SneakyThrows
                 @Override
@@ -86,9 +97,12 @@ public class NotificationController {
 
 
     }
-
+    // @ResponseEntity : 데이터 + http status code
+    // @ResponseBody : 객체를 json으로 !
+    // @RequestBody : json을 객체로 !
     public @ResponseBody
     ResponseEntity<String> send() throws JSONException,
+            // ResponseEntity 는 status field를 가지기 때문에 상태코드를 필수적으로 리턴해줘야 한다.
             InterruptedException {
         String notifications =
                 AndroidPushPeriodicNotifications.PeriodicNotificationJson();
@@ -151,6 +165,9 @@ public class NotificationController {
     - client들의 개별 실행 정보
     - 가령 누가 로그인을 했느냐? 이 사람이 서핑한 page는 어디냐
 */
+
+/* @SneakyThrows :
+    해당 메소드에서 예외가 발생하면 catch문에서 e.printStackTrace();메소드를 호출한 것과 같이 예외가 출력된다.*/
 
 
 

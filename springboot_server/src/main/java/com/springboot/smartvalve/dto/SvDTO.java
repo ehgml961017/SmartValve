@@ -4,9 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import java.time.LocalDateTime;
-import java.util.Date;
 
 
 @Getter
@@ -30,4 +28,5 @@ public class SvDTO {
     private LocalDateTime sw1_onLimit;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime sw2_onLimit;
+
 }

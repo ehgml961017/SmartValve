@@ -1,6 +1,5 @@
 package com.example.smartvalve
 import android.util.Log
-import android.widget.Toast
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import org.json.JSONArray
@@ -46,7 +45,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     private fun valveoff(){
         var fcmNum = 0
-        var url = URL("${JSON_URL}/query")
+        var url = URL("${SERVER_URL}/query")
         var conn = url.openConnection() as HttpURLConnection
         Log.i("testLog", "conn.responseCode : ${conn.responseCode}")
 
@@ -56,8 +55,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             var item = arr.get(0) as JSONObject
             fcmNum = item["num"].toString().toInt()
         }
-        var res:String = "${JSON_URL}/offSw1?num=${fcmNum}&sw1=${valveStatus}&sw2=${knobStatus}"
-        Log.i("FCMLOG", "${JSON_URL}/offSw1?num=${fcmNum}&sw1=${valveStatus}&sw2=${knobStatus}")
+        var res:String = "${SERVER_URL}/offSw1?num=${fcmNum}&sw1=${valveStatus}&sw2=${knobStatus}"
+        Log.i("FCMLOG", "${SERVER_URL}/offSw1?num=${fcmNum}&sw1=${valveStatus}&sw2=${knobStatus}")
         url = URL(res)
         Log.i("urlLog", "$res")
         conn = url.openConnection() as HttpURLConnection
