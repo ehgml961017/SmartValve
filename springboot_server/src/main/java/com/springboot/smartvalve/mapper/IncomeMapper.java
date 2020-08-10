@@ -5,5 +5,5 @@ import com.springboot.smartvalve.dto.IncomeVO;
 import java.util.List;
 
 public interface IncomeMapper {
-    public List<IncomeVO> getIncome();
+    List<IncomeVO> getIncome();
 }

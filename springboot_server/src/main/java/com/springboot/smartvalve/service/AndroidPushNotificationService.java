@@ -1,7 +1,6 @@
 package com.springboot.smartvalve.service;
 
 import com.springboot.smartvalve.common.HeaderRequestInterceptor;
-import com.springboot.smartvalve.dto.SvDTO;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.scheduling.annotation.Async;
@@ -9,8 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.CompletableFuture;
 
 /*SpringBoot와 FCM 연동*/

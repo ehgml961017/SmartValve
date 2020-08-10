@@ -1,12 +1,12 @@
 package com.springboot.smartvalve.common;
 
-import java.io.IOException;
-
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.http.client.support.HttpRequestWrapper;
+
+import java.io.IOException;
 
 // header request Interceptor = header request를 가로챈다.
 /*
@@ -24,7 +24,8 @@ public class HeaderRequestInterceptor implements ClientHttpRequestInterceptor {
     }
 
     @Override
-    public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution)
+    public ClientHttpResponse intercept(HttpRequest request, byte[] body,
+                                        ClientHttpRequestExecution execution)
             throws IOException {
         HttpRequest wrapper = new HttpRequestWrapper(request);
         //interceptor한 것을 setting (headerName, headerValue)해주고 그것을 get한다.
