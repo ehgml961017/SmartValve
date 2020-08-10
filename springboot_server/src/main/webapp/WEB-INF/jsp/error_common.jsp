@@ -15,5 +15,7 @@
      width="110px" height="110px">
 <hr>
 <h1>에러페이지 입니다.</h1>
+<%--window.history.back()함수 사용--%>
+<a href="javascript:history.back();">뒤로가기</a>
 </body>
 </html>
