@@ -105,7 +105,7 @@
                                     value="${list.on_sw1}"/>
                         </c:if>
                         <c:if test="${list.on_sw1 eq null}">
-                            -
+
                         </c:if>
                     </td>
                     <td>
@@ -116,7 +116,7 @@
                                     value="${list.off_sw1}"/>
                         </c:if>
                         <c:if test="${list.off_sw1 eq null}">
-                            -
+
                         </c:if>
                     </td>
                     <td>
@@ -126,7 +126,7 @@
                                     value="${list.on_sw2}"/>
                         </c:if>
                         <c:if test="${list.on_sw2 eq null}">
-                            -
+
                         </c:if>
                     </td>
                     <td>
@@ -136,25 +136,11 @@
                                     value="${list.off_sw2}"/>
                         </c:if>
                         <c:if test="${list.off_sw2 eq null}">
-                            -
+
                         </c:if>
                     </td>
-                    <td>
-                        <c:if test="${list.valve_time ne 0}">
-                            ${list.valve_time}
-                        </c:if>
-                        <c:if test="${list.valve_time eq 0}">
-                            -
-                        </c:if>
-                    </td>
-                    <td>
-                        <c:if test="${list.cork_time ne 0}">
-                            ${list.cork_time}
-                        </c:if>
-                        <c:if test="${list.cork_time eq 0}">
-                            -
-                        </c:if>
-                    </td>
+                    <td>${list.valve_time}</td>
+                    <td>${list.cork_time}</td>
                 </tr>
             </c:forEach>
         </table>
