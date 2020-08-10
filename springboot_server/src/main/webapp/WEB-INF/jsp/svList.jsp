@@ -20,10 +20,10 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="http://d3js.org/d3.v3.js"></script>
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
-    <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+    <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script> <%--필수--%>
+    <script src="https://www.chartjs.org/samples/latest/utils.js"></script> <%--필수--%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <%--필수--%>
+    <script src="analyser.js"></script>
     <title>Smart Valve List</title>
 </head>
 <style>
@@ -34,8 +34,6 @@
         height: 150px;
         padding-top: 40px;
     }
-<<<<<<< HEAD
-=======
 
     body {
         text-align: center;
@@ -48,15 +46,13 @@
 
 
 
->>>>>>> fc47e07e970fb58ecfdbd0737673dd478becfd4b
 </style>
 
 <link rel="stylesheet"
       href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
+
 <section>
     <div>
         <p>
@@ -150,10 +146,10 @@
     </article>
 
     <article>
-        <button id="on_sw1" onclick="on_sw1()">sw1(on)</button>
-        <button id="off_sw1" onclick="off_sw1()">sw1(off)</button>
-        <button id="on_sw2" onclick="on_sw2()">sw2(on)</button>
-        <button id="off_sw2" onclick="off_sw2()">sw2(off)</button>
+        <button id="on_sw1" class="btn btn-secondary" onclick="on_sw1()">sw1(on)</button>
+        <button id="off_sw1" class="btn btn-secondary" onclick="off_sw1()">sw1(off)</button>
+        <button id="on_sw2" class="btn btn-secondary" onclick="on_sw2()">sw2(on)</button>
+        <button id="off_sw2" class="btn btn-secondary" onclick="off_sw2()">sw2(off)</button>
     </article>
 </section>
 </body>
@@ -211,7 +207,7 @@
 var chartLabels = [];
 
 var chartData1 = [];
-var chartData2 = [];
+var chartData2 = [];0
 
 
 $.getJSON("http://localhost:8085/incomeList", function(data){
@@ -234,10 +230,10 @@ var lineChartData = {
     datasets : [
         {
             label : "valve_time",
-            fill : false,
+            fill: false,
             backgroundColor: window.chartColors.red,
-            borderColor: window.chartColors.red,
-            data : chartData1
+            borderColor:  window.chartColors.red,
+            data : chartData1,
         },
         {
             label : "cork_time",
@@ -266,14 +262,14 @@ function createChart(){
                    display: true,
                    scaleLabel: {
                        display: true,
-                       labelString: "elapsed time"
+                       labelString: "Number"
                    }
                 }],
                 yAxes : [{
                     display: true,
                     scaleLabel: {
                         display: true,
-                        labelString: "Number"
+                        labelString: "elapsed time"
                     },
                     ticks :{
                         beginAtZero : true
