@@ -3,11 +3,7 @@ package com.example.smartvalve
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.util.Log
-import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.core.view.marginTop
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_main.*
@@ -16,19 +12,14 @@ import org.json.JSONObject
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.*
-import java.util.concurrent.Delayed
-import kotlin.collections.ArrayList
-import kotlin.concurrent.thread
-import kotlin.concurrent.timerTask
 
 val ON:Int = 1
 val OFF:Int = 0
-//var JSON_URL = "http://192.168.0.90:8085/query"
-var JSON_URL = "http://192.168.0.45:8085/query"
+var SERVER_URL = "http://192.168.0.90:8085"
 var knobStatus:Int = OFF
 var valveStatus:Int = OFF
-var num = 0;
-
+var num = 0; // top of list
+var logRes = "null"
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,11 +63,7 @@ class MainActivity : AppCompatActivity() {
         }.start()
 
         Thread(){
-            var logRes = UpdateMainLog()
-            runOnUiThread{
-                if(!logRes.equals("null")) log_main_body.text = logRes.substring(0,4) + "/" + logRes.substring(5,7) + "/" + logRes.substring(8,10) + " " + logRes.substring(11, 19)
-                else log_main_body.text = "No data"
-            }
+            UpdateMainLog()
         }.start()
 
     }
@@ -86,7 +73,7 @@ class MainActivity : AppCompatActivity() {
         Log.i("testLog", "checkStatus")
         var timerTask:Timer? = kotlin.concurrent.timer(period = 500) {
             // connect to server
-            val url = URL(JSON_URL)
+            val url = URL("${SERVER_URL}/query")
             val conn = url.openConnection() as HttpURLConnection // casting
             Log.i("testLog", "conn.responseCode : ${conn.responseCode}")
 
@@ -121,10 +108,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     // using polling, it gets last log and shows in view
-    fun UpdateMainLog():String{
-        var res:String = "null";
+    fun UpdateMainLog(){
         val timerTask:Timer? = kotlin.concurrent.timer(period = 1500){
-            val url = URL(JSON_URL)
+            val url = URL("${SERVER_URL}/query")
             val conn = url.openConnection() as HttpURLConnection // casting
             Log.i("testLog", "conn.responseCode : ${conn.responseCode}")
 
@@ -132,17 +118,26 @@ class MainActivity : AppCompatActivity() {
                 val txt = url.readText()
                 val arr = JSONArray(txt)
                 var item = arr.get(0) as JSONObject
-                res = "${item["on_sw1"]}"
+                var item2 = arr.get(1) as JSONObject
+                if(item["on_sw1"].equals(null)) logRes = "${item2["on_sw1"]}"
+                else logRes = "${item["on_sw1"]}"
+                Log.i("text", "res : ${logRes}")
                 num = "${item["num"]}".toInt()
-            } else res = "null"
+            } else logRes = "null"
+
+            runOnUiThread {
+                if(!logRes.equals("null")){
+                    log_main_body.text = logRes.substring(0,4) + "/" + logRes.substring(5,7) + "/" + logRes.substring(8,10) + " " + logRes.substring(11, 19)
+                } else log_main_body.text = "No data"
+            }
         }
-        return res
+        Log.i("text", "res2 : ${logRes}")
     }
 
     fun valveOn(){
-        var res:String = "http://192.168.0.45:8085/onSw1?num=${num}&sw1=${valveStatus}&sw2=${knobStatus}";
-        val url = URL(res)
-        Log.i("urlLog", "$res")
+        var reqUrl = getSwitchControlUrl("onSw1")
+        val url = URL(reqUrl)
+        Log.i("urlLog", "$reqUrl")
         val conn = url.openConnection() as HttpURLConnection // casting
         Log.i("urlLog", "conn.responseCode : ${conn.responseCode}")
 
@@ -151,9 +146,9 @@ class MainActivity : AppCompatActivity() {
         } else Log.i("urlLog", "fail")
     }
     fun valveOff(){
-        var res:String = "http://192.168.0.45:8085/offSw1?num=${num}&sw1=${valveStatus}&sw2=${knobStatus}";
-        val url = URL(res)
-        Log.i("urlLog", "$res")
+        var reqUrl = getSwitchControlUrl("offSw1")
+        val url = URL(reqUrl)
+        Log.i("urlLog", "$reqUrl")
         val conn = url.openConnection() as HttpURLConnection // casting
         Log.i("urlLog", "conn.responseCode : ${conn.responseCode}")
 
@@ -162,9 +157,9 @@ class MainActivity : AppCompatActivity() {
         } else Log.i("urlLog", "fail")
     }
     fun knobOn(){
-        var res:String = "http://192.168.0.45:8085/onSw2?num=${num}&sw1=${valveStatus}&sw2=${knobStatus}";
-        val url = URL(res)
-        Log.i("urlLog", "$res")
+        var reqUrl = getSwitchControlUrl("onSw2")
+        val url = URL(reqUrl)
+        Log.i("urlLog", "$reqUrl")
         val conn = url.openConnection() as HttpURLConnection // casting
         Log.i("urlLog", "conn.responseCode : ${conn.responseCode}")
 
@@ -173,14 +168,21 @@ class MainActivity : AppCompatActivity() {
         } else Log.i("urlLog", "fail")
     }
     fun knobOff(){
-        var res:String = "http://192.168.0.45:8085/offSw2?num=${num}&sw1=${valveStatus}&sw2=${knobStatus}";
-        val url = URL(res)
-        Log.i("urlLog", "$res")
+        var reqUrl = getSwitchControlUrl("offSw2")
+        val url = URL(reqUrl)
         val conn = url.openConnection() as HttpURLConnection // casting
-        Log.i("urlLog", "conn.responseCode : ${conn.responseCode}")
 
+
+        Log.i("urlLog", "conn.responseCode : ${conn.responseCode}")
         if(conn.responseCode == 200){
             Log.i("urlLog", "knob off")
         } else Log.i("urlLog", "fail")
     }
+
+    fun getSwitchControlUrl(tmp:String):String{
+        return "${SERVER_URL}/${tmp}?num=${num}&sw1=${valveStatus}&sw2=${knobStatus}"
+    }
+
+
+
 }

@@ -2,12 +2,10 @@ package com.example.smartvalve
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_recent_log.*
-import kotlinx.android.synthetic.main.layout_list.*
 import org.json.JSONArray
 import org.json.JSONObject
 import java.net.HttpURLConnection
@@ -39,7 +37,7 @@ class RecentLogActivity : AppCompatActivity() {
     }
 
     fun ReadDB(listItem:ArrayList<LogVO>) {
-        val url = URL(JSON_URL)
+        val url = URL("${SERVER_URL}/query")//요청
         val conn = url.openConnection() as HttpURLConnection // casting
         Log.i("testLog", "conn.responseCode : ${conn.responseCode}")
 
@@ -47,8 +45,18 @@ class RecentLogActivity : AppCompatActivity() {
             val txt = url.readText()
             val arr = JSONArray(txt)
 
+            // If the log's start is null, log will print the next one.
+            var startNull = false
             for(i in 0..arr.length()-1){
+                Log.i("logDEBUG", "idx : $i")
+                if(!startNull && i == arr.length()-1) continue
                 var obj:JSONObject = arr.get(i) as JSONObject
+                if(i == 0 && obj["on_sw1"].equals(null) && obj["off_sw1"].equals(null)){
+                    // 시작이 null인 경우 -> 1~10까지 들어감
+                    // 시작이 null이 아닌 경우 -> 0~9까지 들어감
+                    startNull = true
+                    continue
+                }
                 var valve = if(obj["sw1"] == ON) "열림" else "닫힘"
                 var knob = if(obj["sw2"] == ON) "열림" else "닫힘"
                 var onTime:String = if(obj["on_sw1"].equals(null)) "시간 정보 없음" else{

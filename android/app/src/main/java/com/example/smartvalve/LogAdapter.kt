@@ -19,7 +19,7 @@ class LogAdapter(val c: Context, val layoutList: Int, val listItem: ArrayList<Lo
         var on_time_valve_view:TextView = v.findViewById(R.id.on_time_valve_content)
         var off_time_valve_view:TextView = v.findViewById(R.id.off_time_valve_content)
 
-        no_view.text = (listItem.get(position).num + 1).toString()
+        no_view.text = (listItem.get(position).num).toString()
         status_valve_view.text = listItem.get(position).statusOfValve
         status_knob_view.text = listItem.get(position).statusOfKnob
         on_time_valve_view.text = listItem.get(position).onTimeValve
