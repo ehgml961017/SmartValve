@@ -2,12 +2,10 @@ package com.example.smartvalve
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_recent_log.*
-import kotlinx.android.synthetic.main.layout_list.*
 import org.json.JSONArray
 import org.json.JSONObject
 import java.net.HttpURLConnection
@@ -39,7 +37,7 @@ class RecentLogActivity : AppCompatActivity() {
     }
 
     fun ReadDB(listItem:ArrayList<LogVO>) {
-        val url = URL("${JSON_URL}/query")//요청
+        val url = URL("${SERVER_URL}/query")//요청
         val conn = url.openConnection() as HttpURLConnection // casting
         Log.i("testLog", "conn.responseCode : ${conn.responseCode}")
 
