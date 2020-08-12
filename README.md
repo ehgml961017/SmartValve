@@ -78,3 +78,5 @@ android api version 24부터 정상작동하는것 확인
   - 형상관리
     * Git(2.27.0) & Sourcetree, Slack 메신저, oven 스토리 보드 활용
   
+## 시연 영상
+  https://youtu.be/yiD7I2acSng
