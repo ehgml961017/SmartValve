@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
+ * 이 클래스의 용도는 밸브나 콕크의 특정시간(5분=300000ms)조건에 따라
+ * send를 보내 푸쉬알림을 한다.
+ * 클래스명이 Android Push Periodic Notification 이다.
  * 현재 코드에서는 /send로 접속을 할 시에만 알림이 push된다.
  *
  * sampleData안에 device code를 넣어주면 된다.
@@ -21,9 +24,8 @@ public class AndroidPushPeriodicNotifications {
     public static String PeriodicNotificationJson() throws JSONException {
         LocalDate localDate = LocalDate.now();
 
-        String sampleData[] = {"d2cORgcrRcaaUOsbM_F9wj" +
-                ":APA91bGYN1QttYsst4lq6wMDYPUBnunEO8lFIilPg5ul0f2kLDQnfk0yvrOYDR-R0Gk1Efjq43BRnzI_FAJUqAsCoK0v_FsNcCVWgi_hMIYE-h_aa7403XpNcyN-k6STqoXbTZuK61wc",
-        "cwELjuCQRDeiuiygc8oUQy:APA91bGdt8fB2_9bzcmHyabUxT_3PhXU6z2fB_qxI8epQcwS5vt9YcYCKE6B30m7BkIf72is5Va_jbOin35T2l1r8sh-4kYPrCoDqzya4KyDtNakwhwqIV95JhXuUG64OCV28gHTGbsc"};
+        String sampleData[] = {"cR1hRvc5TzaidT8PlVuNs7" +
+                ":APA91bEOBduKlQWYBNUZA6P2rZ_4YPm7V5H58X6vQlyx6VfAuj61jFXBpkEi5JBXg8oPRq3UJ3qyKJ1RTNX678kgmZoKAq8xSa6Xf7SHNLT_mdcMvhU3vx043VM9HIr0YaaWNamdEXQT"};
 
         /*log테스트*/
         String name = "홍길동";
@@ -34,7 +36,7 @@ public class AndroidPushPeriodicNotifications {
         JsonObject는 객체(주로 String)를 Json객체로 바꿔주거나
         Json객체를 새로 만드는 역할을 합니다.
         */
-       JSONObject body = new JSONObject(); //json 객체 생성
+        JSONObject body = new JSONObject(); //json 객체 생성
 
         List<String> tokenlist = new ArrayList<String>();  //<~>는 <String>값이 생략
         //tokenlist : 알림을 보낼 디바이스의 디바이스토큰을 넣는 list( registration_ids의 값으로 들어간다.)

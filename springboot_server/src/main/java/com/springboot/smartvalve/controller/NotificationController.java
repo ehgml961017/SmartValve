@@ -40,66 +40,17 @@ public class NotificationController {
     /*Springboot와 FCM 연동한 service class*/
     @Autowired
     AndroidPushNotificationService androidPushNotificationService;
+    //@Autowired
+    //SvService svService;
 
-    @Autowired
-    SvService svService;
-
-    //@Scheduled(fixedRate = 50000)
-    @GetMapping(value = "/send")
-    public @ResponseBody
     /*
      * @ResponseBody
      * 자바 객체를 HTTP 요청의 body 내용으로 매핑하는 역할을 합니다.
      */
-    void timeDiff_send() throws Exception {
-        List<SvDTO> numArr = svService.getValue();
-        //모델에서 넘어온 파라미터.
-        //스위치가 껏다켯다 여러번했을때 푸쉬가 여러번 될 가능성이 있음.
-//      (마지막이 켰을때로 종료되면)
-        LocalDateTime on_sw1 = numArr.get(0).getOn_sw1();
-        /*LocalDataTime : 날짜와 시간 정보 모두가 필요할 때 사용*/
-        LocalDateTime on_sw2 = numArr.get(0).getOn_sw2();
-        /*Timer : 실제 타이머의 기능을 수행하는 클래스*/
-        Timer timer = new Timer();
-        if (svService.getThreadCount() != 1) {
-            svService.updateThreadCount(1);
-            //TimerTask 클래스는 Timer 클래스가 수행되어야할 내용을 작성하는 클래스입니다.
-            //작성될 내용은 "TimerTask"클래스의 "run"메소드에 오버라이드를 통하여
-            //작성하도록 되어있습니다.
-            TimerTask timerTask = new TimerTask() {
-                @SneakyThrows
-                @Override
-                public void run() throws JSONException {
-                    if (on_sw1 != null || on_sw2 != null) {
-                        svService.updateThreadCount(0);
-                        send();
-
-                    }
-                }
-            };
-            //schedule() : 일정 시간(delay)이 지난 후에 지정한 작업(timerTask)을 수행한다.
-            timer.schedule(timerTask, 300000);
-        }
-        else{
-            timer.cancel(); //cancel() : 이 TimerTask작업을 취소한다.
-            TimerTask timerTask = new TimerTask() {
-                @SneakyThrows
-                @Override
-                public void run() throws JSONException {
-                    if (on_sw1 != null || on_sw2 != null) {
-                        svService.updateThreadCount(0);
-                        send();
-                    }
-                }
-            };
-            timer.schedule(timerTask, 300000);
-        }
-
-
-    }
     // @ResponseEntity : 데이터 + http status code
     // @ResponseBody : 객체를 json으로 !
     // @RequestBody : json을 객체로 !
+    @GetMapping(value = "/send")
     public @ResponseBody
     ResponseEntity<String> send() throws JSONException,
             // ResponseEntity 는 status field를 가지기 때문에 상태코드를 필수적으로 리턴해줘야 한다.
@@ -125,6 +76,49 @@ public class NotificationController {
         return new ResponseEntity<>("Push Notification ERROR!",
                 HttpStatus.BAD_REQUEST);
     }
+
+    //    public @ResponseBody
+//    void timeDiff_send() throws Exception {
+//        List<SvDTO> numArr = svService.getValue();
+//        //모델에서 넘어온 파라미터.
+//        //스위치가 껏다켯다 여러번했을때 푸쉬가 여러번 될 가능성이 있음.아마도?
+////        (마지막이 켰을때로 종료되면)
+//        LocalDateTime on_sw1 = numArr.get(0).getOn_sw1();
+//        LocalDateTime on_sw2 = numArr.get(0).getOn_sw2();
+//        Timer timer = new Timer();
+//        if (svService.getThreadCount() != 1) {
+//            svService.updateThreadCount(1);
+//            TimerTask timerTask = new TimerTask() {
+//                @SneakyThrows
+//                @Override
+//                public void run() throws JSONException {
+//                    if (on_sw1 != null || on_sw2 != null) {
+//                        svService.updateThreadCount(0);
+//                        send();
+//                        System.out.println("타이머실행 제대로됨");
+//                    }
+//                }
+//            };
+//            timer.schedule(timerTask, 10000);
+//        }
+//        else{
+//            timer.cancel();
+//            TimerTask timerTask = new TimerTask() {
+//                @SneakyThrows
+//                @Override
+//                public void run() throws JSONException {
+//                    if (on_sw1 != null || on_sw2 != null) {
+//                        svService.updateThreadCount(0);
+//                        send();
+//                        System.out.println("타이머취소후 재실행");
+//                    }
+//                }
+//            };
+//            timer.schedule(timerTask, 10000);
+//        }
+//
+//
+//    }
 }
 /*
  * @Controller(Spring MVC Controller) 와 @RestController 의 차이점

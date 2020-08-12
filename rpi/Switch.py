@@ -1,8 +1,12 @@
-#-*-coding: utf-8-*-
+# -*-coding: utf-8-*-
 
 # GPIO 라이브러리 임포트
 import RPi.GPIO as GPIO
 import time
+import requests
+
+logging.basicConfig(level=logging.DEBUG, format="'%(asctime)s - %(message)s'")
+
 
 def main():
     # 핀 번호 할당 방법을 커넥터 핀 번호로 설정
@@ -35,32 +39,44 @@ def main():
             # 스위치 상태를 변수 key_in에 할당
             key_in1 = GPIO.input(SW1)
             # 변수 key_in 상태 판별
-            if key_in1==0: # 눌렀을 때
-                if isLedOn1 == False:               # isLedOn1이 False 일때
-                    GPIO.output(LED1, GPIO.HIGH)    # 하이 레벨 출력
-                    isLedOn1 = True                 # 하이레벨 출력 시 isLedOn1은 True
-                    pass                            # 아무것도 안 함
-                else:                    
-                    GPIO.output(LED1, GPIO.LOW)     # 로우 레벨 출력
-                    isLedOn1 = False                # 로우 레벨 출력 시 isLedOn1은 False
-                    pass                            # 아무것도 안 함
-            time.sleep(0.5)                         # 0.5초 대기
+            if key_in1 == 0:  # 눌렀을 때
+                if not isLedOn1:  # isLedOn1이 False 일때
+                    GPIO.output(LED1, GPIO.HIGH)  # 하이 레벨 출력
+                    isLedOn1 = True  # 하이레벨 출력 시 isLedOn1은 True
+                    pass  # 아무것도 안 함
+                else:
+                    GPIO.output(LED1, GPIO.LOW)  # 로우 레벨 출력
+                    isLedOn1 = False  # 로우 레벨 출력 시 isLedOn1은 False
+                    pass  # 아무것도 안 함
+            time.sleep(0.5)  # 0.5초 대기
 
             print('listening...')
             print('isLedOn2', isLedOn2)
             # 스위치 상태를 변수 key_in에 할당
             key_in2 = GPIO.input(SW2)
             # 변수 key_in 상태 판별
-            if key_in2==0: # 눌렀을 때
-                if isLedOn2 == False:               # isLedOn1이 False 일때
-                    GPIO.output(LED2, GPIO.HIGH)    # 하이 레벨 출력
-                    isLedOn2 = True                 # 하이레벨 출력 시 isLedOn1은 True
-                    pass                            # 아무것도 안 함
+            if key_in2 == 0:  # 눌렀을 때
+                if not isLedOn2:  # isLedOn1이 False 일때
+                    GPIO.output(LED2, GPIO.HIGH)  # 하이 레벨 출력
+                    isLedOn2 = True  # 하이레벨 출력 시 isLedOn1은 True
+                    data = requests.get('http://localhost:8085/query')
+                    resp = data.json()
+                    num = resp[0]['num']  # num 여부
+                    sw1 = resp[0]['sw1']  # sw1 여부
+                    sw2 = resp[0]['sw2']  # sw2 여부
+                    print(num)
+                    print(sw1)
+                    print(sw2)
+                    if sw1 != 1:
+                        requests.get('http://localhost:8085/onSw1?num={}&sw1={}&sw2={}'.format(num, sw1, sw2))
+                    pass  # 아무것도 안 함
                 else:
-                    GPIO.output(LED2, GPIO.LOW)     # 로우 레벨 출력
-                    isLedOn2 = False                # 로우 레벨 출력 시 isLedOn1은 False
-                    pass                            # 아무것도 안 함
-            time.sleep(0.5)                         # 0.5초 대기    
+                    GPIO.output(LED2, GPIO.LOW)  # 로우 레벨 출력
+                    isLedOn2 = False  # 로우 레벨 출력 시 isLedOn1은 False
+                    if sw1 == 1:
+                        requests.get('http://localhost:8085/offSw1?num={}&sw1={}&sw2={}'.format(num, sw1, sw2))
+                    pass  # 아무것도 안 함
+            time.sleep(0.5)  # 0.5초 대기
 
     # 키보드 예외 검출
     except KeyboardInterrupt:
@@ -70,6 +86,6 @@ def main():
     # GPIO 개방
     GPIO.cleanup()
 
+
 if __name__ == "__main__":
     main()
-

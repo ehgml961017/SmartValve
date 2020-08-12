@@ -20,9 +20,12 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script> <%--필수--%>
-    <script src="https://www.chartjs.org/samples/latest/utils.js"></script> <%--필수--%>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <%--필수--%>
+    <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
+    <%--필수--%>
+    <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+    <%--필수--%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <%--필수--%>
     <script src="analyser.js"></script>
     <title>Smart Valve List</title>
 </head>
@@ -42,8 +45,6 @@
     .tableSet th {
         text-align: center;
     }
-
-
 
 
 </style>
@@ -146,10 +147,18 @@
     </article>
 
     <article>
-        <button id="on_sw1" class="btn btn-secondary" onclick="on_sw1()">sw1(on)</button>
-        <button id="off_sw1" class="btn btn-secondary" onclick="off_sw1()">sw1(off)</button>
-        <button id="on_sw2" class="btn btn-secondary" onclick="on_sw2()">sw2(on)</button>
-        <button id="off_sw2" class="btn btn-secondary" onclick="off_sw2()">sw2(off)</button>
+        <button id="on_sw1" class="btn btn-secondary" onclick="on_sw1()">
+            sw1(on)
+        </button>
+        <button id="off_sw1" class="btn btn-secondary" onclick="off_sw1()">
+            sw1(off)
+        </button>
+        <button id="on_sw2" class="btn btn-secondary" onclick="on_sw2()">
+            sw2(on)
+        </button>
+        <button id="off_sw2" class="btn btn-secondary" onclick="off_sw2()">
+            sw2(off)
+        </button>
     </article>
 </section>
 </body>
@@ -160,7 +169,7 @@
         let off_sw1 =<%=sw1%>;
         if (off_sw1 === 0) {
             alert("1번스위치 시작");
-            location.href = "/onSw1?num=<%=num%>&sw1=<%=sw1+1%>&sw2=<%=sw2%>";
+            location.href = "/onSw1?num=<%=num%>&sw1=<%=sw1%>&sw2=<%=sw2%>";
         } else {
             alert("스위치가 이미 켜져있습니다 확인해주세요..");
         }
@@ -182,7 +191,7 @@
         <%=sw2%>
         if (off_sw2 === 0) {
             alert("2번스위치 시작");
-            location.href = "/onSw2?num=<%=num%>&sw1=<%=sw1%>&sw2=<%=sw2+1%>";
+            location.href = "/onSw2?num=<%=num%>&sw1=<%=sw1%>&sw2=<%=sw2%>";
         } else {
             alert("스위치가 이미 켜져있습니다 확인해주세요..");
         }
@@ -204,15 +213,14 @@
     <canvas id="canvas" height="450" width="600"></canvas>
 </div>
 <script> /*차트 script*/
-var chartLabels = [];
+const chartLabels = [];
+const chartData1 = [];
+const chartData2 = [];
 
-var chartData1 = [];
-var chartData2 = [];0
 
+$.getJSON("http://localhost:8085/incomeList", function (data) {
 
-$.getJSON("http://localhost:8085/incomeList", function(data){
-
-    $.each(data, function(inx, obj){
+    $.each(data, function (inx, obj) {
         chartLabels.push(obj.num);
         chartData1.push(obj.valve_time);
         chartData2.push(obj.cork_time);
@@ -224,55 +232,54 @@ $.getJSON("http://localhost:8085/incomeList", function(data){
 
 });
 
-var lineChartData = {
+const lineChartData = {
     type: "line",
-    labels : chartLabels,
-    datasets : [
+    labels: chartLabels,
+    datasets: [
         {
-            label : "valve_time",
+            label: "valve_time",
             fill: false,
             backgroundColor: window.chartColors.red,
-            borderColor:  window.chartColors.red,
-            data : chartData1,
+            borderColor: window.chartColors.red,
+            data: chartData1,
         },
         {
-            label : "cork_time",
-            fill : false,
+            label: "cork_time",
+            fill: false,
             backgroundColor: window.chartColors.blue,
             borderColor: window.chartColors.blue,
-            data : chartData2
+            data: chartData2
         }
     ]
-}
+};
 
 
-
-function createChart(){
-    var ctx = document.getElementById("canvas").getContext("2d");
-    LineChartDemo = Chart.Line(ctx,{
-        data : lineChartData,
-        options :{
+function createChart() {
+    const ctx = document.getElementById("canvas").getContext("2d");
+    LineChartDemo = Chart.Line(ctx, {
+        data: lineChartData,
+        options: {
             responsive: true,
             title: {
                 display: true,
                 text: "Smart Valve"
             },
-            scales : {
+            scales: {
                 xAxes: [{
-                   display: true,
-                   scaleLabel: {
-                       display: true,
-                       labelString: "Number"
-                   }
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Number"
+                    }
                 }],
-                yAxes : [{
+                yAxes: [{
                     display: true,
                     scaleLabel: {
                         display: true,
                         labelString: "elapsed time"
                     },
-                    ticks :{
-                        beginAtZero : true
+                    ticks: {
+                        beginAtZero: true
                     }
                 }]
             }

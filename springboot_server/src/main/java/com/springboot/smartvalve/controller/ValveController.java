@@ -18,17 +18,19 @@ public class ValveController {
     SvService SvService;
 
     @GetMapping("/query")
-    public List<SvDTO> svDTOList() throws Exception{
+    public List<SvDTO> svDTOList() throws Exception {
 
         return SvService.getValue();
     }
+
     @GetMapping("/time_sw1")
-    public Integer time_sw1(@RequestParam int num) throws  Exception{
+    public Integer time_sw1(@RequestParam int num) throws Exception {
 
         return SvService.time_sw1(num);
     }
+
     @GetMapping("/time_sw2")
-    public Integer time_sw2(@RequestParam int num) throws  Exception{
+    public Integer time_sw2(@RequestParam int num) throws Exception {
 
         return SvService.time_sw2(num);
     }
@@ -36,7 +38,7 @@ public class ValveController {
 
 }
 /*
-* RedirectAttributes의 addFlashAttribute를 이용하여
-* post방식처럼 url뒤에 parameter를 추가하지 않아도
-* 화면에 값을 받을 수 있다.
-* */
+ * RedirectAttributes의 addFlashAttribute를 이용하여
+ * post방식처럼 url뒤에 parameter를 추가하지 않아도
+ * 화면에 값을 받을 수 있다.
+ * */

@@ -6,7 +6,7 @@
     <select id="getValue"
             resultType="com.springboot.smartvalve.dto.SvDTO">
         select * from valve_status
-        order by num desc limit 10;
+        order by num desc limit 11;
     </select>
 
     <insert id="insertValue"
@@ -80,9 +80,9 @@
 
     </select>
 
-	<select id="time_sw2"
-			resultType="int"
-			parameterType="com.springboot.smartvalve.dto.SvDTO">
+    <select id="time_sw2"
+            resultType="int"
+            parameterType="com.springboot.smartvalve.dto.SvDTO">
         select
         TIMESTAMPDIFF(SECOND, on_sw2, off_sw2)
     	from valve_status
@@ -90,13 +90,13 @@
 
     </select>
 
-	<select id="getThreadCount"
-	resultType="int">
+    <select id="getThreadCount"
+            resultType="int">
 		select th_count from Thread_count;
 	</select>
 
-	<update id="updateThreadCount"
-			parameterType="int">
+    <update id="updateThreadCount"
+            parameterType="int">
 		update Thread_count set th_count=#{num}
 	</update>
 

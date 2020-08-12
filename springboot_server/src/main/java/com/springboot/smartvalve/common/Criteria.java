@@ -3,9 +3,9 @@ package com.springboot.smartvalve.common;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /*Criteria 클래스 :
-*   페이징 처리를 위해서 사용될 객체로 페이지 번호, 페이지당 출력할 게시글 수를
-*   관리할 객체를 생성
-* */
+ *   페이징 처리를 위해서 사용될 객체로 페이지 번호, 페이지당 출력할 게시글 수를
+ *   관리할 객체를 생성
+ * */
 public class Criteria {
     private int page; //현재 페이지를 나타내는 필드 변수
     private int perPageNum; //페이지당 표시할 게시글의 수
@@ -24,6 +24,7 @@ public class Criteria {
         this.keyword = null;
 
     }
+
     //pageStart를 반환
     /*
        1페이지일 때 -> 0 ~ 9 게시글
@@ -31,7 +32,7 @@ public class Criteria {
        limit구문에서 시작 부분에 필요한 값을 반환(mybatis에서 사용)
     */
     public int getPageStart() {
-        return (this.page - 1)*perPageNum;
+        return (this.page - 1) * perPageNum;
     }
 
     //getter setter
@@ -42,10 +43,10 @@ public class Criteria {
     /* 페이지는 1페이지부터임으로 0보다 작거나 같은 값일 경우
       무조건 첫번째 페이지로 설정되도록 해준다. */
     public void setPage(int page) {
-        if(page <= 0) {
+        if (page <= 0) {
 
             this.page = 1;
-        }else {
+        } else {
             this.page = page;
         }
     }
@@ -71,20 +72,21 @@ public class Criteria {
     }
 
     public void setPerPageNum(int perPageNum) {
-        if(perPageNum <=0 || perPageNum > 100) {
+        if (perPageNum <= 0 || perPageNum > 100) {
             this.perPageNum = 10;
-        }else {
+        } else {
             this.perPageNum = perPageNum;
         }
     }
 
     public String makeQuery() {
-        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance()
+        UriComponentsBuilder uriComponentsBuilder =
+                UriComponentsBuilder.newInstance()
                 .queryParam("page", page)
                 .queryParam("perPageNum", this.perPageNum);
 
         /*사용자가 검색을 하지도 않았는데 굳이 searchType과 keyword를 가지고 갈 필요가 없기 때문에 조건을 줌*/
-        if (searchType!=null) {
+        if (searchType != null) {
             uriComponentsBuilder
                     .queryParam("searchType", this.searchType)
                     .queryParam("keyword", this.keyword);
@@ -94,7 +96,8 @@ public class Criteria {
 
     @Override
     public String toString() {
-        return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", searchType=" + searchType + ", keyword="
+        return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", " +
+                "searchType=" + searchType + ", keyword="
                 + keyword + "]";
     }
 }

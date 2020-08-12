@@ -31,11 +31,12 @@ public class SvService {
     public void onSw1(SvDTO svDTO) throws Exception {
         svMapper.sw1_on(svDTO);
     }
+
     public void offSw1(SvDTO svDTO) throws Exception {
-        System.out.println("아나 진짜 :"+svDTO);
+        System.out.println("아나 진짜 :" + svDTO);
         svMapper.sw1_off(svDTO);
         svDTO.setSw1(0);
-        if((svDTO.getSw1()==0) && (svDTO.getSw2()==0)){
+        if ((svDTO.getSw1() == 0) && (svDTO.getSw2() == 0)) {
             insertValue(svDTO);
         }
 
@@ -47,11 +48,12 @@ public class SvService {
         System.out.println(svDTO.getCork_time());
         svMapper.sw2_on(svDTO);
     }
+
     public void offSw2(SvDTO svDTO) throws Exception {
-        log.debug("확인용"+svDTO);
+        log.debug("확인용" + svDTO);
         svMapper.sw2_off(svDTO);
         svDTO.setSw2(0);
-        if((svDTO.getSw1()==0) && (svDTO.getSw2()==0)){
+        if ((svDTO.getSw1() == 0) && (svDTO.getSw2() == 0)) {
             insertValue(svDTO);
         }
 
@@ -60,7 +62,7 @@ public class SvService {
 
 
     public Integer time_sw1(int num) throws Exception {
-            return svMapper.time_sw1(num);
+        return svMapper.time_sw1(num);
     }
 
     public Integer time_sw2(int num) throws Exception {
@@ -68,11 +70,11 @@ public class SvService {
     }
 
     public int getThreadCount() throws Exception {
-        return svMapper.getThreadCount() ;
+        return svMapper.getThreadCount();
     }
 
     public int updateThreadCount(int num) throws Exception {
-        return svMapper.updateThreadCount(num) ;
+        return svMapper.updateThreadCount(num);
     }
 
 }

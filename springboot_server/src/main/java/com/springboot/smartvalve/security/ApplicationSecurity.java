@@ -7,7 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
-@EnableOAuth2Sso  /*OAuth2의 초기화와 자동설저을 지원한다.*/
+@EnableOAuth2Sso  /*OAuth2의 초기화와 자동설정을 지원한다.*/
 public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -15,9 +15,11 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
                 .antMatcher("/**")
                 .authorizeRequests()
                 .antMatchers("/", "/callback", "/login**", "/webjars/**",
-                        "/main","/error**","/svList","/query","/logout","/onSw1**","/dateIncome","/incomeList",
-                        "/offSw1**","/onSw2**","/offSw2**","/insert","/time" +
-                                "**","/send","/resources/**")
+                        "/main", "/error**", "/svList", "/query", "/logout",
+                        "/onSw1**", "/dateIncome", "/incomeList",
+                        "/offSw1**", "/onSw2**", "/offSw2**", "/insert",
+                        "/time" +
+                                "**", "/send", "/resources/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated();

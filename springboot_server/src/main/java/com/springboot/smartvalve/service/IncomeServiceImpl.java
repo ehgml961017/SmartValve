@@ -13,7 +13,7 @@ import java.util.List;
 @Log
 public class IncomeServiceImpl implements IncomeService {
 
-    @Setter(onMethod_=@Autowired)
+    @Setter(onMethod_ = @Autowired)
     private IncomeMapper mapper;
 
     @Override
