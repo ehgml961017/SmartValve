@@ -9,32 +9,29 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
-@RestController
 //소켓포트 , http 프로토콜 포트 각각 한개씩 보유.
 //android /bulb/on을 날려주면
 //라즈베리파이에서 led on 이 된다.
+
+@RestController
 public class ValveController {
     @Autowired
     SvService SvService;
 
     @GetMapping("/query")
     public List<SvDTO> svDTOList() throws Exception {
-
         return SvService.getValue();
     }
 
     @GetMapping("/time_sw1")
     public Integer time_sw1(@RequestParam int num) throws Exception {
-
         return SvService.time_sw1(num);
     }
 
     @GetMapping("/time_sw2")
     public Integer time_sw2(@RequestParam int num) throws Exception {
-
         return SvService.time_sw2(num);
     }
-
 
 }
 /*

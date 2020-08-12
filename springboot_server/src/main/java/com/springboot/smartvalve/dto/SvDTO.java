@@ -26,7 +26,7 @@ public class SvDTO {
     private int valve_time;
     private int cork_time;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    private LocalDateTime sw1_onLimit;
+    private LocalDateTime sw1_onLimit; //시간에 따른 sw1의 한계시간
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime sw2_onLimit;
 

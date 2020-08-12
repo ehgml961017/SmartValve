@@ -56,11 +56,11 @@ public class NotificationController {
             // ResponseEntity 는 status field를 가지기 때문에 상태코드를 필수적으로 리턴해줘야 한다.
             InterruptedException {
         String notifications =
-                AndroidPushPeriodicNotifications.PeriodicNotificationJson();
+                AndroidPushPeriodicNotifications.PeriodicNotificationJson(); /*클라이언트 키 받아오기*/
         HttpEntity<String> request = new HttpEntity<>(notifications);
 
         CompletableFuture<String> pushNotification =
-                androidPushNotificationService.send(request);
+                androidPushNotificationService.send(request); //성공200
         CompletableFuture.allOf(pushNotification).join();
 
         try {

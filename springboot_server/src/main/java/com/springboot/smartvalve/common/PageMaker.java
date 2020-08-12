@@ -2,6 +2,7 @@ package com.springboot.smartvalve.common;
 
 import org.springframework.web.util.UriComponentsBuilder;
 
+/*현 클래스는 차후 프로젝트 업그레이드를 하기 위한 클래스입니다.*/
 public class PageMaker {
     private int displayPageCnt = 10; // 화면에 보여질 페이지 번호 수
     private int totalDataCount; // 실제 게시물 수

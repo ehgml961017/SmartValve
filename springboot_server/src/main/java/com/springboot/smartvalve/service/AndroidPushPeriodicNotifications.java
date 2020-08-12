@@ -17,6 +17,8 @@ import java.util.List;
  *
  * sampleData안에 device code를 넣어주면 된다.
  * 다중수신으로 구현이 되어 있다.
+ *
+ *
  * */
 @Slf4j
 public class AndroidPushPeriodicNotifications {
@@ -24,6 +26,7 @@ public class AndroidPushPeriodicNotifications {
     public static String PeriodicNotificationJson() throws JSONException {
         LocalDate localDate = LocalDate.now();
 
+        /*클라이언트 키*/
         String sampleData[] = {"cR1hRvc5TzaidT8PlVuNs7" +
                 ":APA91bEOBduKlQWYBNUZA6P2rZ_4YPm7V5H58X6vQlyx6VfAuj61jFXBpkEi5JBXg8oPRq3UJ3qyKJ1RTNX678kgmZoKAq8xSa6Xf7SHNLT_mdcMvhU3vx043VM9HIr0YaaWNamdEXQT"};
 

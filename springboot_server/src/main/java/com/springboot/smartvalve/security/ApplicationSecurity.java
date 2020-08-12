@@ -16,10 +16,9 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/callback", "/login**", "/webjars/**",
                         "/main", "/error**", "/svList", "/query", "/logout",
-                        "/onSw1**", "/dateIncome", "/incomeList",
+                        "/onSw1**", "/incomeList",
                         "/offSw1**", "/onSw2**", "/offSw2**", "/insert",
-                        "/time" +
-                                "**", "/send", "/resources/**")
+                         "/send", "/resources/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated();

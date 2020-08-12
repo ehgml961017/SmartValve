@@ -8,10 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
-/*
-  클래스를 생성할 때마다 항상 로그를 남기기 위해 Logger변수를 선언해야 하는데
-  Lombok의 @Slf4j 어노테이션을 사용하면 편하다.
-*/
 public class SNSLoginContoller {
     @RequestMapping("/")
     public String login() {
@@ -22,3 +18,7 @@ public class SNSLoginContoller {
     }
 
 }
+/*
+  클래스를 생성할 때마다 항상 로그를 남기기 위해 Logger변수를 선언해야 하는데
+  Lombok의 @Slf4j 어노테이션을 사용하면 편하다.
+*/

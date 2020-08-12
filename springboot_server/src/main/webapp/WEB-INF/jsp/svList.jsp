@@ -213,35 +213,47 @@
     <canvas id="canvas" height="450" width="600"></canvas>
 </div>
 <script> /*차트 script*/
-const chartLabels = [];
-const chartData1 = [];
-const chartData2 = [];
+/*변수 선언 방식 const - 변수 재선언, 변수 재할당 모두 불가능하다.*/
+const chartLabels = []; //chart의 x축 데이터(num할당)
+const chartData1 = [];  //chart의 valve_time의 data를 담당
+const chartData2 = [];  //chart의 cork_time의 data를 담당
 
-
-$.getJSON("http://localhost:8085/incomeList", function (data) {
-
-    $.each(data, function (inx, obj) {
-        chartLabels.push(obj.num);
-        chartData1.push(obj.valve_time);
-        chartData2.push(obj.cork_time);
+$.getJSON("http://localhost:8085/incomeList", function (data) {//$.getJSON(url,callback) url에서 json파일 로드
+    $.each(data, function (index, item) { //$.each(collection, callback) collection은 배열이나 객체
+        chartLabels.push(item.num);
+        chartData1.push(item.valve_time);
+        chartData2.push(item.cork_time);
     });
-
-    createChart();
+/*
+    (1) $.getJSON(url,callback)
+    1) 자바에서 static 메서드와 유사--> jQuery에서는 전역메서드라 불린다.
+    2) 첫번째 매개변수로 JSON 파일을 로드한다.
+    3) 두번째 매개변수(콜백함수)에서 JSON 파일을 이용하여 로드된 데이터를 처리한다.
+        콜백함수는 로드된 데이터를 인자로 넘겨받는다.(JSON 데이터를 참조하기 위해 data 변수를 사용하고 있다.)
+*/
+/*
+    $.each(collection, callback)
+    1) 매개변수
+    - collection: 순회할 배열이나 객체
+    - callback: 컬렉션의 각 요소를 대상으로 실행할 콜백 함수
+        callback 함수에서 첫번째 매개변수는 객체의 개수를 반환한다. index는 0부터 시작한다.
+        callback 함수에서 두번째 매개변수는 객체의 key값을 반환한다. 반환된 key값을 이용하여 value값을 구할 수 있다.
+    2) 반환값: 컬렉션의 매개변수
+*/
+    createChart(); //함수 호출
     console.log("create Chart")
-
-
 });
 
 const lineChartData = {
-    type: "line",
-    labels: chartLabels,
-    datasets: [
+    type: "line",   //line chart 명시
+    labels: chartLabels,    //data들의 label, x축
+    datasets: [ //데이터 삽입
         {
-            label: "valve_time",
-            fill: false,
-            backgroundColor: window.chartColors.red,
-            borderColor: window.chartColors.red,
-            data: chartData1,
+            label: "valve_time",    //각 데이터의 label
+            fill: false,    //채우지 않음
+            backgroundColor: window.chartColors.red,    //선채우기 색상
+            borderColor: window.chartColors.red,    //선 색상
+            data: chartData1,   //데이터 값
         },
         {
             label: "cork_time",
@@ -255,31 +267,32 @@ const lineChartData = {
 
 
 function createChart() {
-    const ctx = document.getElementById("canvas").getContext("2d");
+    const ctx = document.getElementById("canvas").getContext("2d"); //캔버스 셋팅
+    /* 2D 그래픽의 경우, CanvasRenderingContext2D을 얻기위해 "2d"로 지정*/
     LineChartDemo = Chart.Line(ctx, {
         data: lineChartData,
         options: {
-            responsive: true,
-            title: {
+            responsive: true,   //canvas의 크기 상대적 조정(반응형)
+            title: {    /*차트의 이름*/
                 display: true,
                 text: "Smart Valve"
             },
             scales: {
-                xAxes: [{
+                xAxes: [{   //x축 정의
                     display: true,
-                    scaleLabel: {
+                    scaleLabel: {   //x축 Label
                         display: true,
-                        labelString: "Number"
+                        labelString: "Number"   //제목 text
                     }
                 }],
-                yAxes: [{
+                yAxes: [{   //y축 정의
                     display: true,
-                    scaleLabel: {
+                    scaleLabel: {   //y축 label
                         display: true,
                         labelString: "elapsed time"
                     },
                     ticks: {
-                        beginAtZero: true
+                        beginAtZero: true   //y축이 0부터 시작
                     }
                 }]
             }

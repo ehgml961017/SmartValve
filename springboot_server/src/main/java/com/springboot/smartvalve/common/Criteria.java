@@ -6,6 +6,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  *   페이징 처리를 위해서 사용될 객체로 페이지 번호, 페이지당 출력할 게시글 수를
  *   관리할 객체를 생성
  * */
+/*현 클래스는 차후 프로젝트 업그레이드를 하기 위한 클래스입니다.*/
 public class Criteria {
     private int page; //현재 페이지를 나타내는 필드 변수
     private int perPageNum; //페이지당 표시할 게시글의 수

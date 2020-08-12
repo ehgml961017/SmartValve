@@ -12,8 +12,8 @@ public class CommonExceptionAdvice {
     private static final Logger logger = LoggerFactory
             .getLogger(CommonExceptionAdvice.class);
 
-    // @Controller, @RestController가 적용된 Bean내에서 발생하는 예외를 잡아서 하나의 메서드에서 처리해주는
-    // 기능을 합니다.
+    // @Controller, @RestController가 적용된 Bean내에서 발생하는
+    // 예외를 잡아서 하나의 메서드에서 처리해주는 기능을 합니다.
     @ExceptionHandler(Exception.class)
     public ModelAndView errorModelAndView(Exception e) {
         logger.info(e.toString());
