@@ -12,7 +12,9 @@ import com.springboot.smartvalve.dto.SvDTO;
 import com.springboot.smartvalve.service.AndroidPushNotificationService;
 import com.springboot.smartvalve.service.AndroidPushPeriodicNotifications;
 import com.springboot.smartvalve.service.SvService;
+import lombok.Setter;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,30 +35,41 @@ import org.springframework.web.bind.annotation.*;
  * 디바이스 토큰으로 알림을 json 데이터 형식으로 firebase에게 요청한다.
  * */
 @RestController
+@Slf4j
 public class NotificationController {
-    Logger logger = LoggerFactory.getLogger(this.getClass());
 
-
-    /*Springboot와 FCM 연동한 service class*/
-    @Autowired
+    /**
+     * @Autowired 빈객체 자동주입인데 스프링 DI 의존성주입
+     * 스프링진영에서 생성자를 이용한 주입을 가장 추천한다.
+     * Springboot와 FCM 연동한 Controller class
+     */
+    @Setter(onMethod_ = @Autowired)
     AndroidPushNotificationService androidPushNotificationService;
-    //@Autowired
-    //SvService svService;
+    //안드로이드로 푸쉬알림을 날려주는 비즈니스 로직
+    //TODO: 요구사항이 있으면 웹으로 push알림도 구현 예정
 
-    /*
+    /**
      * @ResponseBody
      * 자바 객체를 HTTP 요청의 body 내용으로 매핑하는 역할을 합니다.
      */
     // @ResponseEntity : 데이터 + http status code
     // @ResponseBody : 객체를 json으로 !
     // @RequestBody : json을 객체로 !
+
+    /**
+     * @return new ResponseEntity<>("Push Notification ERROR!",
+     * HttpStatus.BAD_REQUEST);
+     * @throws JSONException
+     * @throws InterruptedException
+     */
     @GetMapping(value = "/send")
     public @ResponseBody
     ResponseEntity<String> send() throws JSONException,
             // ResponseEntity 는 status field를 가지기 때문에 상태코드를 필수적으로 리턴해줘야 한다.
             InterruptedException {
         String notifications =
-                AndroidPushPeriodicNotifications.PeriodicNotificationJson(); /*클라이언트 키 받아오기*/
+                AndroidPushPeriodicNotifications.PeriodicNotificationJson();
+        /*클라이언트 키 받아오기*/
         HttpEntity<String> request = new HttpEntity<>(notifications);
 
         CompletableFuture<String> pushNotification =
@@ -67,22 +80,21 @@ public class NotificationController {
             String firebaseResponse = pushNotification.get();
             return new ResponseEntity<>(firebaseResponse, HttpStatus.OK);
         } catch (InterruptedException e) {
-            logger.debug("got interrupted!");
+            log.debug("got interrupted!");
             throw new InterruptedException();
         } catch (ExecutionException e) {
-            logger.debug("execution error!");
+            log.debug("execution error!");
         }
 
         return new ResponseEntity<>("Push Notification ERROR!",
                 HttpStatus.BAD_REQUEST);
     }
-
-    //    public @ResponseBody
-//    void timeDiff_send() throws Exception {
+//TODO:서버에서 시간을 자동측정해서 자동으로 보내주는 메소드 . 구현 아직 안됨.//    public @ResponseBody
+    //    void timeDiff_send() throws Exception {
 //        List<SvDTO> numArr = svService.getValue();
 //        //모델에서 넘어온 파라미터.
 //        //스위치가 껏다켯다 여러번했을때 푸쉬가 여러번 될 가능성이 있음.아마도?
-////        (마지막이 켰을때로 종료되면)
+//        (마지막이 켰을때로 종료되면)
 //        LocalDateTime on_sw1 = numArr.get(0).getOn_sw1();
 //        LocalDateTime on_sw2 = numArr.get(0).getOn_sw2();
 //        Timer timer = new Timer();

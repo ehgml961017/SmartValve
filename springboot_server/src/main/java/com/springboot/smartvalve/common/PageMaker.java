@@ -1,9 +1,12 @@
 package com.springboot.smartvalve.common;
 
 import org.springframework.web.util.UriComponentsBuilder;
-
-/*현 클래스는 차후 프로젝트 업그레이드를 하기 위한 클래스입니다.*/
+//TODO: 요구사항에 따라 내역 리스트 페이징처리 위함.
+/**
+ * 현 클래스는 차후 프로젝트 업그레이드를 하기 위한 클래스입니다.
+ * */
 public class PageMaker {
+
     private int displayPageCnt = 10; // 화면에 보여질 페이지 번호 수
     private int totalDataCount; // 실제 게시물 수
     private int startPage; // 현재 페이지 기준 시작 페이지 번호
@@ -24,6 +27,7 @@ public class PageMaker {
     }
 
     //startPage, endPage, prev, next 를 계산
+
     public void calcData() {
         int page = this.cri.getPage();
         int perPageNum = this.cri.getPerPageNum();
@@ -47,6 +51,7 @@ public class PageMaker {
         this.next = (endPage * perPageNum < totalDataCount); //아직 더 보여질 페이지가
         // 있으면 true
     }
+
 
     public String makeQuery(int page) {
         UriComponentsBuilder uriComponentsBuilder =

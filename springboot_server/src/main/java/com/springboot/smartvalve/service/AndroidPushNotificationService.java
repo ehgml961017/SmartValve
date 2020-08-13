@@ -10,12 +10,12 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 
-/*SpringBoot와 FCM 연동*/
-/*
+/**
+ * SpringBoot와 FCM 연동
  * string 변수 firebase_servere_key 값에 firebase project 서버 키 값을 가져와
  * 붙여넣기만 하면 된다.
- *   console firebase > project > 프로젝트 설정 > 클라우드 메시징 > 서버키
- * */
+ * console firebase > project > 프로젝트 설정 > 클라우드 메시징 > 서버키
+ */
 @Service
 public class AndroidPushNotificationService {
 
@@ -28,11 +28,11 @@ public class AndroidPushNotificationService {
     private static final String firebase_api_url = "https://fcm.googleapis" +
             ".com/fcm/send";
 
+    //상수 처리
     @Async
     public CompletableFuture<String> send(HttpEntity<String> entity) {
 
         RestTemplate restTemplate = new RestTemplate();
-
 
         /*요청을 보낼 때마다 헤더를 설정하지 않으려면 RestTemplate에
          * 인터셉터 "ClientHttpRequestInterceptor"를 설정할 수 있습니다.*/
@@ -50,8 +50,6 @@ public class AndroidPushNotificationService {
 
         return CompletableFuture.completedFuture(firebaseResponse);
     }
-
-
 }
 
 /*@Service :

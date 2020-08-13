@@ -1,8 +1,8 @@
 package com.springboot.smartvalve.common;
 
 import org.springframework.web.util.UriComponentsBuilder;
-
-/*Criteria 클래스 :
+//TODO: 요구사항에 따라 내역 리스트 페이징처리 위함.
+/**Criteria 클래스 :
  *   페이징 처리를 위해서 사용될 객체로 페이지 번호, 페이지당 출력할 게시글 수를
  *   관리할 객체를 생성
  * */

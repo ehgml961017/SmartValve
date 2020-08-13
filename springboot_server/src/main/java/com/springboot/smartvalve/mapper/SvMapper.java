@@ -4,6 +4,9 @@ import com.springboot.smartvalve.dto.SvDTO;
 
 import java.util.List;
 
+/**
+ * 데이터수집값 DB처리 작업 인터페이스
+ */
 public interface SvMapper {
     List<SvDTO> getValue() throws Exception;
 
@@ -20,8 +23,4 @@ public interface SvMapper {
     Integer time_sw1(int num) throws Exception;
 
     Integer time_sw2(int num) throws Exception;
-
-    int getThreadCount() throws Exception;
-
-    int updateThreadCount(int num) throws Exception;
 }

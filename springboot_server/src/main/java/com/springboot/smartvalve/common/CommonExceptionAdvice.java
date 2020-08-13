@@ -1,22 +1,20 @@
 package com.springboot.smartvalve.common;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
 
 @ControllerAdvice //컨트롤러를 보조하는 클래스에 사용하는 어노테이션.
+@Slf4j
 public class CommonExceptionAdvice {
-    private static final Logger logger = LoggerFactory
-            .getLogger(CommonExceptionAdvice.class);
 
     // @Controller, @RestController가 적용된 Bean내에서 발생하는
     // 예외를 잡아서 하나의 메서드에서 처리해주는 기능을 합니다.
     @ExceptionHandler(Exception.class)
     public ModelAndView errorModelAndView(Exception e) {
-        logger.info(e.toString());
+        log.info(e.toString());
 
         //ModelAndView 객체 생성
         ModelAndView modelAndView = new ModelAndView();

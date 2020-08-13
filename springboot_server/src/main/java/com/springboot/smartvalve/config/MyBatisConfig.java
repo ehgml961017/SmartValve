@@ -11,12 +11,19 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
-/*DB 커넥션 설정을 위한 패키지 - config*/
+/**
+ * DB 커넥션 설정을 위한 패키지 - config
+ * */
 @Configuration
 @MapperScan("com.springboot.smartvalve.mapper")
 @EnableTransactionManagement
 public class MyBatisConfig {
-
+    /**
+     *
+     * @param dataSource
+     * @return
+     * @throws Exception
+     */
     @Bean
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
         final SqlSessionFactoryBean sessionFactory =
@@ -29,6 +36,12 @@ public class MyBatisConfig {
         return sessionFactory.getObject();
     }
 
+    /**
+     *
+     * @param sqlSessionFactory
+     * @return
+     * @throws Exception
+     */
     @Bean
     public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) throws Exception {
         final SqlSessionTemplate sqlSessionTemplate =

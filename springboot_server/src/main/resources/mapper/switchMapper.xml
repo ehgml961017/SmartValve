@@ -90,15 +90,15 @@
 
     </select>
 
-    <select id="getThreadCount"
-            resultType="int">
-		select th_count from Thread_count;
-	</select>
+<!--    <select id="getThreadCount"-->
+<!--            resultType="int">-->
+<!--		select th_count from Thread_count;-->
+<!--	</select>-->
 
-    <update id="updateThreadCount"
-            parameterType="int">
-		update Thread_count set th_count=#{num}
-	</update>
+<!--    <update id="updateThreadCount"-->
+<!--            parameterType="int">-->
+<!--		update Thread_count set th_count=#{num}-->
+<!--	</update>-->
 
 </mapper>
 

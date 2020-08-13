@@ -8,6 +8,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @EnableOAuth2Sso  /*OAuth2의 초기화와 자동설정을 지원한다.*/
+/**
+ * 스프링 시큐리티 설정 클래스
+ */
 public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -18,7 +21,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
                         "/main", "/error**", "/svList", "/query", "/logout",
                         "/onSw1**", "/incomeList",
                         "/offSw1**", "/onSw2**", "/offSw2**", "/insert",
-                         "/send", "/resources/**")
+                        "/send", "/resources/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated();

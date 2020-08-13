@@ -18,16 +18,30 @@ public class ValveController {
     @Autowired
     SvService SvService;
 
+    /**
+     * @return 데이터 수집값 json형태 리턴
+     * @throws Exception
+     */
     @GetMapping("/query")
     public List<SvDTO> svDTOList() throws Exception {
         return SvService.getValue();
     }
 
+    /**
+     * @param num
+     * @return 가스밸브의 사용시간 json리턴
+     * @throws Exception
+     */
     @GetMapping("/time_sw1")
     public Integer time_sw1(@RequestParam int num) throws Exception {
         return SvService.time_sw1(num);
     }
 
+    /**
+     * @param num
+     * @return 가스콕크의 사용시간
+     * @throws Exception
+     */
     @GetMapping("/time_sw2")
     public Integer time_sw2(@RequestParam int num) throws Exception {
         return SvService.time_sw2(num);
