@@ -79,4 +79,4 @@ android api version 24부터 정상작동하는것 확인
     * Git(2.27.0) & Sourcetree, Slack 메신저, oven 스토리 보드 활용
   
 ## 시연 영상
-  https://youtu.be/yiD7I2acSng
+  [![test video](https://img.youtube.com/vi/yiD7I2acSng/0.jpg)](http://www.youtube.com/watch?v=yiD7I2acSng)
